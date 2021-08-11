@@ -1,0 +1,2 @@
+F:\SporsStore\GeneticDataParser\FileHelpers-3.3.0\Debug\FileHelpers.Wizard.exe.config
+F:\SporsStore\GeneticDataParser\FileHelpers-3.3.0\FileHelpers.WizardApp\obj\Debug\FileHelpers.WizardApp.csprojResolveAssemblyReference.cache

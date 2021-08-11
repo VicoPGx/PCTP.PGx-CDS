@@ -1,0 +1,1 @@
+F:\SporsStore\GeneticDataParser\FileHelpers-3.3.0\FileHelpers.ExcelNPOIStorage\obj\Debug\FileHelpers.ExcelNPOIStorage.csprojResolveAssemblyReference.cache
