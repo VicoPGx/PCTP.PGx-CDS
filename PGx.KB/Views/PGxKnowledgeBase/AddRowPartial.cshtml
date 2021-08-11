@@ -1,0 +1,15 @@
+﻿@using PGx.Model.Entities;
+@model string
+<tr id="@Model">
+    <td>
+        @Html.DropDownList("gene", new SelectList(new string[] { "Unselected" }.Concat(new PGx_KBEntities().DefinitionFile.Select(x => x.GeneSymbol).ToList())), new { onchange="phenoList('"+Model+"')" })
+    </td>
+    <td>
+        <Select name="phenotype">
+            <option>Unselected</option>
+        </Select>
+    </td>
+    <td>
+        <img onclick="deletePhenotype('@Model');" style="cursor:pointer; position: relative; margin-bottom: -5px" src="/Content/images/trash.png" alt="Delete" />
+    </td>
+</tr>

@@ -1,0 +1,116 @@
+﻿@*@model List<PGx.Model.Entities.DefinitionFile>
+*@
+@{
+    ViewBag.Title = "GeneList";
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#tabs").tabs();
+        $("#gene_list").dataTable({
+            "bJQueryUI": true,
+            "sAjaxSource": "/AjaxHandler/GeneListSelectTableAjaxHandler",
+            "bServerSide": true,
+            "bProcessing": false,
+            "bAutoWidth": false,
+            "bSort": false,
+            "bRetrive": false,
+            "aoColumns": [
+            {
+                "fnRender": function (oObj) {
+                    return "<span>" + oObj.aData["0"] + "</span>";
+                }
+            },
+            {
+                "fnRender": function (oObj) {
+                    var ln = '<a href="#" onclick="geneEdit(' + oObj.aData["1"] + ')">Edit </a>';
+                    return ln;
+                }
+            }
+            ]
+        })
+    });
+
+
+
+
+    function geneEdit(id) {
+        $.ajax({
+            url: '@Url.Action("GeneEdit", "PGxKnowledgeBase")',
+            data: { id: id },
+            type: 'Get',
+            async: false,
+            cache: false
+        }).done(function (data) {
+            $("#gene_edit").html('');
+            $("#gene_edit").html(data);
+        })
+        }
+
+
+
+        function variantEdit(id, geneId) {
+            debugger;
+            $.ajax({
+
+                url: '@Url.Action("VariantEdit", "PGxKnowledgeBase")',
+            data: { id: id, geneId: geneId },
+            type: 'Get',
+            async: false,
+            cache: false
+        }).done(function (data) {
+            $("#variant-edit").html("");
+            $("#variant-edit").html(data);
+        });
+    }
+
+    function alleleEdit(id, fileID) {
+        debugger;
+        $.ajax({
+            url: '@Url.Action("AlleleEdit", "PGxKnowledgeBase")',
+            data: { id: id, fileID: fileID },
+            type: 'Get'
+        }).done(function (data) {
+            debugger;
+            $("#allele-edit").html('');
+            $("#allele-edit").html(data);
+        })
+    }
+
+    function editPhenotype(phe, fileID) {
+        debugger;
+        $.ajax({
+            url: '@Url.Action("PhenotypeEdit", "PGxKnowledgeBase")',
+            data: { phe: phe, fileID: fileID },
+            type: 'Get'
+        }).done(function (data) {
+            $('#pheno-edit').html('');
+            $('#pheno-edit').html(data);
+        })
+    }
+</script>
+
+<div class="page-header">
+    <h1>Genomic Knowledge
+            <small>Pharmacogene related knowledge management </small>
+    </h1>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <div class="panel panel-primary ">
+            <div class="panel-heading">
+                <h3 class="panel-title">Genes</h3>
+            </div>
+            <div style="font-style: italic">
+                Following are pharmacogenes included in the genome knowledge base. Choose one to edit or <a href="#" onclick="geneEdit('')">create a new one</a>.
+            </div>
+            <table id="gene_list" class="table table-hover table-striped" style="margin-bottom: 0px">
+                <tr>
+                    <th>Gene</th>
+                    <th>Edit</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id="gene_edit" class="col-md-9">
+    </div>
+</div>

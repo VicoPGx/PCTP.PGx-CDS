@@ -1,0 +1,338 @@
+﻿@using PGx.Model.Entities
+@model PGx.Model.Entities.NamedPhenotype
+
+<script>
+    $(document).ready(function () {
+        $("#phenotype-form>div").accordion({ heightStyle: "content", header: "h3", collapsible: true });
+    });
+    function addGenotype()
+    {
+        debugger;
+        var funcs = document.getElementById("NamedFunctions").value;
+        var rows = document.getElementById("genotype_table").rows.length;
+        thisId = "row_" + rows;
+        debugger;
+        if (funcs) {
+            var array = ["Unselected"].concat(funcs.split(","));
+            var functionSelectA = document.createElement("select");
+            var functionSelectB = document.createElement("select");
+            functionSelectA.style.width = "300px";
+            functionSelectA.setAttribute('name', "funcA");
+            functionSelectB.style.width = "300px";
+            functionSelectB.setAttribute('name', "funcB");
+
+            for (var j = 0; j < array.length; j++) {
+                addSelectOption(functionSelectA, array[j], array[j], "");
+                addSelectOption(functionSelectB, array[j], array[j], "")
+            }
+            var html = '<tr id="' + thisId + '"><td>' + functionSelectA.outerHTML + '</td><td>' + functionSelectB.outerHTML + '</td><td><span style="color:blue" onmouseover="this.style.cursor=\'pointer\';" onclick = "deleteGenotype(\'' + thisId + '\')" >[-]</span></td></tr>';
+            $('#genotype_table tr:last').after(html);
+        }
+        else {
+            var funcInputA = document.createElement("input");
+            var funcInputB = document.createElement("input");
+
+            funcInputA.style.width = "300px";
+            funcInputB.setAttribute("style", "width:300px");
+            funcInputA.setAttribute("name", "funcA");
+            funcInputB.setAttribute("name", "funcB");
+            var html = '<tr id="' + thisId + '"><td>' + funcInputA.outerHTML + '</td><td>' + funcInputB.outerHTML + '</td><td><span style="color:blue" onmouseover="this.style.cursor=\'pointer\';" onclick = "deleteGenotype(\'' + thisId + '\')" >[-]</span></td></tr>';
+
+            $('#genotype_table tr:last').after(html);
+        }
+    }
+
+    function deleteGenotype(id)
+    {
+        debugger;
+        var me = document.getElementById(id);
+        if (me)
+            me.parentNode.removeChild(me);
+    }
+
+    function savePhenotype() {
+        debugger;
+        var genoTable = document.getElementById("genotype_table");
+        var tRows = genoTable.rows;
+        var genoArr = new Array();
+        for (var i = 1; i < tRows.length; i++)
+        {
+            var funcA, funcB;
+            funcA = tRows[i].children[0].children[0].value;
+            funcB = tRows[i].children[1].children[0].value;
+            if (funcA == "Unselected" || funcB == "Unselected"||funcA==""||funcB==""||funcA==""||typeof(funcA)=='undefined'||typeof(funcB)=='undefined')
+            {
+                continue;
+            }
+            genoArr[i - 1] = funcA + '/' + funcB;
+        }
+        document.getElementById("GenotypeList").value = genoArr.join(',');
+        var pRows = $("#phenotype_frequency").find("tr");
+        var frequencyObj, frequencyArr=[];
+        var pRowsLength = pRows.length;
+        debugger;
+        for (var j = 1; j < pRows.length; j++)
+        {
+            frequencyObj = {};
+            var popStr=pRows[j].children[0].children[0].value;
+            frequencyObj["Population"] = popStr;
+            frequencyObj["Frequency"] = pRows[j].children[1].children[0].value;
+            frequencyArr.push(frequencyObj);//frequencyArr[j - 1] = frequencyObj;
+        }
+        var freString = JSON.stringify(frequencyArr);
+        $("#PopulationFreList").val(freString);
+
+        $("#phenotype-form").ajaxSubmit(function (data) {
+            debugger;
+            alert(data);
+        });
+        geneEdit('@Model.DefinitionFileID');
+        $('#tabs a[href="#fragment-3"]').click();
+        return false;
+    }
+
+    //var trIdNumPhe = 0;
+    //function addPhenotypeFrequency(id) {
+    //    trIdNumPhe++;
+    //    var thisTrId = "add" + "_" + trIdNumPhe;
+    //    var html = "<tr id=" + thisTrId + "><td><input type='text' name='population'  ></td><td><input type='text' name='frequency' ></td><td><button type='button' onclick=calcPhenotypeFre('"+thisTrId+"')>Calculate</button></td><td> <img onclick='deletePhenotypeFrequency(\"" + thisTrId + "\");' style='cursor:pointer; position: relative; margin-bottom: -5px' src='/Content/images/trash.png' alt='Delete' /></td>/tr>"
+    //    $('#' + id + ' tr:last').after(html);
+    //}
+
+    function addPhenotypeFrequency(id) {
+        debugger;
+        var funcs = document.getElementById("Populations").value;
+        var rows = document.getElementById(id).rows.length;
+        thisId = "key_" + rows;
+        debugger;
+        var array=["Unselected"]
+        if (funcs) {
+             array = ["Unselected"].concat(funcs.split(","));
+        }
+        var populationSelect = document.createElement("select");
+        populationSelect.style.width = "300px";
+        populationSelect.setAttribute('name', "population");
+
+        for (var j = 0; j < array.length; j++) {
+            addSelectOption(populationSelect, array[j], array[j], "");
+        }
+        var html = '<tr id="' + thisId + '"><td>' + populationSelect.outerHTML + '</td><td><input type="text" name="frequency" ></td><td><button type="button" onclick=calcPhenotypeFre(\''+thisId+'\')>Calculate</button></td><td> <img onclick="deletePhenotypeFrequency(\'' + thisId + '\');" style="cursor:pointer; position: relative; margin-bottom: -5px" src="/Content/images/trash.png"alt="Delete" /></td></tr>';
+        $('#' + id + ' tr:last').after(html);
+
+    }
+
+    function deletePhenotypeFrequency(thisTrId) {
+        debugger;
+        var thisRow = document.getElementById(thisTrId);
+        if (thisRow)
+            thisRow.parentNode.removeChild(thisRow);
+    }
+
+    function calcPhenotypeFre(trId)
+    {
+        debugger;
+        var tr = document.getElementById(trId);
+        var population = tr.children[0].children[0].value;
+        if (population == null || population == "") {
+            alert("Population information can't be null!");
+            return;
+        }
+        else
+        {
+            var gene = $("#Symbol").val();
+            var phenotype = $("#Phenotype").val();
+            var id = $("#ID").val();
+            $.ajax({
+                url: '@Url.Action("RiskPhenotypeCalc", "PGxKnowledgeBase")',
+                data:{population:population,gene:gene,phenotype:phenotype,id:id},
+                type: 'Get',
+                async: false,
+                cache: false,
+                timeout: 10000
+            }).done(function (obj) {
+                debugger;
+                if (obj.state == "sucess") {
+                    var tr1 = $("#" + trId);
+                    var td1=tr1.children().eq(1);
+                    var input1 = td1.children().eq(0);
+                    input1.val(obj.data);
+                    //tr.children[1].children[0].value = obj.data;    
+                }
+                alert(obj.state);
+            })
+        }
+    }
+
+</script>
+ <div>
+    <fieldset style="margin-left:5px">
+        @if (string.IsNullOrEmpty(Model.Phenotype) == false)
+        {
+        <legend>@Model.Phenotype</legend>
+        }
+        else
+        {
+            <legend>New phenotype</legend>
+        }
+@using (Html.BeginForm("PhenotypeEdit", "PGxKnowledgeBase", FormMethod.Post, new { id = "phenotype-form", onsubmit = "return savePhenotype();" }))
+{
+@*<div style="margin-left:10px;border-color:lightgray;border-style:solid;border-width:2px;float:left;width:75%;padding:5px;border-radius:2px">*@
+   
+
+  <div>
+        @Html.HiddenFor(m => m.ID)
+        @Html.HiddenFor(m => m.Symbol)
+        @Html.HiddenFor(m => m.GenotypeList)
+        @Html.HiddenFor(m => m.PopulationFreList)
+        @Html.HiddenFor(m => m.DefinitionFileID)
+      @*  @Html.HiddenFor(m=>m.DefinitionFileID)*@
+    <h3>Primary Info</h3>
+    <div>
+    <label>Phenotype Name</label>
+    <div class="editor-field">
+        @Html.TextBoxFor(m => m.Phenotype, new { style = "width:350px" })
+    </div>
+            <label>Activity Score</label>
+    <div class="editor-field">
+        @Html.TextBoxFor(m => m.ActivityScore, new { style = "width:350px" })
+    </div>
+          <label class="editor-field">Description</label>
+    <div class="editor-field">
+        @Html.TextAreaFor(m => m.Description, 3, 80, null)
+    </div>
+        <br />
+        </div>
+      </div>
+    
+    <div>
+            <H3>Phenotype Definition <img style="cursor:pointer; position: relative; margin-bottom: 2px" src="/Content/images/info0.png" title="Allele function pairs that define the phenotype." alt="Tip" /></H3>
+     <div>
+            <div style="margin-top:8px">
+    <label>Add New Function Pair</label> <img onclick="addGenotype();" style="cursor:pointer; position: relative" src="/Content/images/add_black.png" alt="Add" />
+    </div>
+    <table id="genotype_table" class=" editor-field table table-hover table-striped" style="margin-bottom:0px">
+        <tr>
+            <th>
+                Allele Function A
+            </th>
+            <th>Allele Function B</th>
+            <th>Action</th>
+        </tr>
+        @{ if (string.IsNullOrEmpty(Model.Symbol) == false)
+           {
+               var context = new PGx_KBEntities();
+               var gene = Model.Symbol;
+               string func = context.DefinitionFile.Where(x => x.GeneSymbol == gene).FirstOrDefault().NamedFunctions;
+               if (!string.IsNullOrEmpty(func))
+               {
+                   var funcList = func.Split(',');
+
+                   int i = 0;
+                   string rowId;
+                   foreach (var g in Model.PhenotypeDef)
+                   {
+                       i++;
+                       rowId = "row_" + i;
+                       string genoA = g.FunctionA;
+                       string genoB = g.FunctionB;
+                  <tr id="@rowId">
+                     <td>
+                        @Html.DropDownList("funcA", funcList.Select(x => new SelectListItem { Text = x, Value = x, Selected = x.ToLower() == genoA.ToLower() }), "Unselected", new { style = "width:300px" })
+                     </td>
+                     <td>@Html.DropDownList("funcB", funcList.Select(x => new SelectListItem { Text = x, Value = x, Selected = x.ToLower() == genoB.ToLower() }), "Unselected", new { style = "width:300px" })</td>
+                    <td><span style="color:blue;cursor:pointer;" onclick="deleteGenotype('@rowId')">[-]</span></td>
+                  </tr>
+                   }
+
+               }
+               else
+               {
+                   int i = 0;
+                   string rowId1;
+
+                   foreach (var g in Model.PhenotypeDef)
+                   {
+                       i++;
+                       rowId1 = "row_" + i;
+                       var funclist = g.Genotype.Split('/').ToList().Distinct();
+                       funclist = new[] { "Unselected" }.Concat(funclist);
+                       string genoA = g.FunctionA;
+                       string genoB = g.FunctionB;
+                  <tr id="@rowId1">
+                     <td>
+                        @Html.DropDownList("funcA", new SelectList(funclist, genoA), new { style = "width:300px" })
+                     </td>
+                     <td>
+                         @Html.DropDownList("funcB", new SelectList(funclist, genoB), new { style = "width:300px" })
+
+                     </td>
+                    <td><span style="color:blue;cursor:pointer;" onclick="deleteGenotype('@rowId1')">[-]</span></td>
+                  </tr>
+                   }
+               }
+           }
+        }
+    </table>
+         </div>
+   
+  </div>
+    
+         <div style="clear:both">
+             <h3>Phenotype Frequency</h3> 
+                <div>
+                    <label>Add New</label> <img onclick="addPhenotypeFrequency('phenotype_frequency');" style="cursor:pointer; position: relative;" src="/Content/images/add_black.png" alt="Add" />
+                    <table id="phenotype_frequency" class="table table-hover table-striped" style="margin-bottom:0px">
+                        <tr>
+                            <th>Population</th>
+                            <th>Frequency</th>
+                            <th>Calculation <img style="cursor:pointer; position: relative; margin-bottom: 3px" src="/Content/images/info0.png" title="Calculate by allele frequency." alt="Tip" /></th>
+                            <th>Action</th>
+                        </tr>
+                        @{
+           List<string> popList = new List<string> { "Unselected" };
+           var populationsForPhe = new PGx_KBEntities().DefinitionFile.Where(x => x.ID == Model.DefinitionFileID).FirstOrDefault().Populations;
+           if (string.IsNullOrEmpty(populationsForPhe) == false)
+           {
+               popList = popList.Concat(populationsForPhe.Split(',')).ToList();
+           }
+           if (Model.PhenotypePopFreq.Count > 0)
+           {
+               foreach (var p in Model.PhenotypePopFreq)
+               {
+                   var tId = "key" + "_" + p.ID.ToString();
+                            <tr id="@tId">
+                                <td>@Html.DropDownList("population", new SelectList(popList, p.Population), new { style = "width:300px" })</td> 
+                                <td>@Html.TextBox("frequency", p.Frequency)</td>
+                                <td><button type="button" onclick="calcPhenotypeFre('@tId')">Calculate</button></td>
+                                <td>
+                                     <img onclick="deletePhenotypeFrequency('@tId');" style="cursor:pointer; position: relative;" src="/Content/images/trash.png" alt="Delete" />
+                                </td>
+                            </tr> 
+               }
+           }
+           else
+           {
+                            
+                            <tr id="key_0">
+                                <td>@Html.DropDownList("population", new SelectList(popList), new { style = "width:300px" })</td>
+                                <td>@Html.TextBox("frequency", "")</td>
+                                <td><button type="button" onclick="calcPhenotypeFre('key_0')">Calculate</button></td>
+                                <td>
+                                     <img onclick="deletePhenotypeFrequency('key_0');" style="cursor:pointer; position: relative;" src="/Content/images/trash.png" alt="Delete" />
+                                </td>
+                            </tr>
+           }
+                        }
+                    </table>
+               </div>
+     </div>
+
+        
+           <div style="padding-top:10px;clear:both"><input type="submit" value="Save" />
+               <button type="button" onclick="DeletePhenotype(@Model.ID,@Model.DefinitionFileID)">Delete</button>
+            <Button type="button" onclick="GeneCancel()" >Cancle</Button>
+       </div>
+}
+
+    </fieldset>
+     </div>

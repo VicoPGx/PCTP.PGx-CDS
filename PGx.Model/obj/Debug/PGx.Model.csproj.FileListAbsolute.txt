@@ -1,0 +1,248 @@
+F:\SporsStore\Pharmacogenetic\PGx.Model\bin\Debug\PGx.Model.dll.config
+F:\SporsStore\Pharmacogenetic\PGx.Model\bin\Debug\PGx.Model.dll
+F:\SporsStore\Pharmacogenetic\PGx.Model\bin\Debug\PGx.Model.pdb
+F:\SporsStore\Pharmacogenetic\PGx.Model\bin\Debug\EntityFramework.dll
+F:\SporsStore\Pharmacogenetic\PGx.Model\bin\Debug\EntityFramework.xml
+F:\SporsStore\Pharmacogenetic\PGx.Model\bin\Debug\zh-Hans\EntityFramework.resources.dll
+F:\SporsStore\Pharmacogenetic\PGx.Model\obj\Debug\PGx.Model.csprojResolveAssemblyReference.cache
+F:\SporsStore\Pharmacogenetic\PGx.Model\obj\Debug\PGx.Model.dll
+F:\SporsStore\Pharmacogenetic\PGx.Model\obj\Debug\PGx.Model.pdb
+F:\SporsStore\Pharmacogenetic\PGx.Model\bin\Debug\en-US\PGx.Model.resources.dll
+F:\SporsStore\Pharmacogenetic\PGx.Model\obj\Debug\PGx.Model.Resources.Resource.resources
+F:\SporsStore\Pharmacogenetic\PGx.Model\obj\Debug\PGx.Model.Resources.Resource.en-US.resources
+F:\SporsStore\Pharmacogenetic\PGx.Model\obj\Debug\PGx.Model.csproj.GenerateResource.Cache
+F:\SporsStore\Pharmacogenetic\PGx.Model\obj\Debug\en-US\PGx.Model.resources.dll
+F:\pharmCDS\PGx.Model\bin\Debug\PGx.Model.dll.config
+F:\pharmCDS\PGx.Model\bin\Debug\PGx.Model.dll
+F:\pharmCDS\PGx.Model\bin\Debug\PGx.Model.pdb
+F:\pharmCDS\PGx.Model\bin\Debug\en-US\PGx.Model.resources.dll
+F:\pharmCDS\PGx.Model\bin\Debug\EntityFramework.dll
+F:\pharmCDS\PGx.Model\bin\Debug\EntityFramework.xml
+F:\pharmCDS\PGx.Model\bin\Debug\zh-Hans\EntityFramework.resources.dll
+F:\pharmCDS\PGx.Model\obj\Debug\PGx.Model.csprojResolveAssemblyReference.cache
+F:\pharmCDS\PGx.Model\obj\Debug\PGx.Model.Resources.Resource.resources
+F:\pharmCDS\PGx.Model\obj\Debug\PGx.Model.Resources.Resource.en-US.resources
+F:\pharmCDS\PGx.Model\obj\Debug\PGx.Model.csproj.GenerateResource.Cache
+F:\pharmCDS\PGx.Model\obj\Debug\en-US\PGx.Model.resources.dll
+F:\pharmCDS\PGx.Model\obj\Debug\PGx.Model.dll
+F:\pharmCDS\PGx.Model\obj\Debug\PGx.Model.pdb
+F:\PGx\PGx.Model\bin\Debug\PGx.Model.dll.config
+F:\PGx\PGx.Model\bin\Debug\PGx.Model.dll
+F:\PGx\PGx.Model\bin\Debug\PGx.Model.pdb
+F:\PGx\PGx.Model\bin\Debug\en-US\PGx.Model.resources.dll
+F:\PGx\PGx.Model\bin\Debug\EntityFramework.dll
+F:\PGx\PGx.Model\obj\Debug\PGx.Model.Resources.Resource.resources
+F:\PGx\PGx.Model\obj\Debug\PGx.Model.Resources.Resource.en-US.resources
+F:\PGx\PGx.Model\obj\Debug\PGx.Model.csproj.GenerateResource.Cache
+F:\PGx\PGx.Model\obj\Debug\en-US\PGx.Model.resources.dll
+F:\PGx\PGx.Model\obj\Debug\PGx.Model.dll
+F:\PGx\PGx.Model\obj\Debug\PGx.Model.pdb
+F:\PGx\PGx.Model\bin\Debug\System.Net.Http.dll
+F:\PGx\PGx.Model\bin\Debug\System.Net.Http.xml
+F:\PGx\PGx.Model\obj\Debug\PGx.Model.csprojResolveAssemblyReference.cache
+F:\新建文件夹\PGx\PGx.Model\bin\Debug\PGx.Model.dll.config
+F:\新建文件夹\PGx\PGx.Model\bin\Debug\PGx.Model.dll
+F:\新建文件夹\PGx\PGx.Model\bin\Debug\PGx.Model.pdb
+F:\新建文件夹\PGx\PGx.Model\bin\Debug\en-US\PGx.Model.resources.dll
+F:\新建文件夹\PGx\PGx.Model\bin\Debug\EntityFramework.dll
+F:\新建文件夹\PGx\PGx.Model\bin\Debug\System.Net.Http.dll
+F:\新建文件夹\PGx\PGx.Model\bin\Debug\EntityFramework.xml
+F:\新建文件夹\PGx\PGx.Model\bin\Debug\System.Net.Http.xml
+F:\新建文件夹\PGx\PGx.Model\obj\Debug\PGx.Model.csprojResolveAssemblyReference.cache
+F:\新建文件夹\PGx\PGx.Model\obj\Debug\PGx.Model.Resources.Resource.resources
+F:\新建文件夹\PGx\PGx.Model\obj\Debug\PGx.Model.Resources.Resource.en-US.resources
+F:\新建文件夹\PGx\PGx.Model\obj\Debug\PGx.Model.csproj.GenerateResource.Cache
+F:\新建文件夹\PGx\PGx.Model\obj\Debug\en-US\PGx.Model.resources.dll
+F:\新建文件夹\PGx\PGx.Model\obj\Debug\PGx.Model.dll
+F:\新建文件夹\PGx\PGx.Model\obj\Debug\PGx.Model.pdb
+F:\新建文件夹\PGx1\PGx\PGx.Model\bin\Debug\PGx.Model.dll.config
+F:\新建文件夹\PGx1\PGx\PGx.Model\bin\Debug\PGx.Model.dll
+F:\新建文件夹\PGx1\PGx\PGx.Model\bin\Debug\PGx.Model.pdb
+F:\新建文件夹\PGx1\PGx\PGx.Model\bin\Debug\en-US\PGx.Model.resources.dll
+F:\新建文件夹\PGx1\PGx\PGx.Model\bin\Debug\EntityFramework.dll
+F:\新建文件夹\PGx1\PGx\PGx.Model\bin\Debug\System.Net.Http.dll
+F:\新建文件夹\PGx1\PGx\PGx.Model\bin\Debug\EntityFramework.xml
+F:\新建文件夹\PGx1\PGx\PGx.Model\bin\Debug\System.Net.Http.xml
+F:\新建文件夹\PGx1\PGx\PGx.Model\obj\Debug\PGx.Model.csprojResolveAssemblyReference.cache
+F:\新建文件夹\PGx1\PGx\PGx.Model\obj\Debug\PGx.Model.Resources.Resource.resources
+F:\新建文件夹\PGx1\PGx\PGx.Model\obj\Debug\PGx.Model.Resources.Resource.en-US.resources
+F:\新建文件夹\PGx1\PGx\PGx.Model\obj\Debug\PGx.Model.csproj.GenerateResource.Cache
+F:\新建文件夹\PGx1\PGx\PGx.Model\obj\Debug\en-US\PGx.Model.resources.dll
+F:\新建文件夹\PGx1\PGx\PGx.Model\obj\Debug\PGx.Model.dll
+F:\新建文件夹\PGx1\PGx\PGx.Model\obj\Debug\PGx.Model.pdb
+F:\PGx-FE4.0-v2\PGx\PGx.Model\bin\Debug\PGx.Model.dll.config
+F:\PGx-FE4.0-v2\PGx\PGx.Model\bin\Debug\PGx.Model.dll
+F:\PGx-FE4.0-v2\PGx\PGx.Model\bin\Debug\PGx.Model.pdb
+F:\PGx-FE4.0-v2\PGx\PGx.Model\bin\Debug\en-US\PGx.Model.resources.dll
+F:\PGx-FE4.0-v2\PGx\PGx.Model\bin\Debug\EntityFramework.dll
+F:\PGx-FE4.0-v2\PGx\PGx.Model\bin\Debug\EntityFramework.xml
+F:\PGx-FE4.0-v2\PGx\PGx.Model\obj\Debug\PGx.Model.Resources.Resource.resources
+F:\PGx-FE4.0-v2\PGx\PGx.Model\obj\Debug\PGx.Model.Resources.Resource.en-US.resources
+F:\PGx-FE4.0-v2\PGx\PGx.Model\obj\Debug\PGx.Model.csproj.GenerateResource.Cache
+F:\PGx-FE4.0-v2\PGx\PGx.Model\obj\Debug\en-US\PGx.Model.resources.dll
+F:\PGx-FE4.0-v2\PGx\PGx.Model\obj\Debug\PGx.Model.dll
+F:\PGx-FE4.0-v2\PGx\PGx.Model\obj\Debug\PGx.Model.pdb
+F:\PGx-FE4.0-v2\PGx\PGx.Model\bin\Debug\System.Net.Http.dll
+F:\PGx-FE4.0-v2\PGx\PGx.Model\bin\Debug\System.Net.Http.xml
+F:\PGx-FE4.0-v2\PGx\PGx.Model\bin\Debug\zh-Hans\System.Net.Http.resources.dll
+F:\PGx.KB\PGx.Model\bin\Debug\PGx.Model.dll.config
+F:\PGx.KB\PGx.Model\bin\Debug\PGx.Model.dll
+F:\PGx.KB\PGx.Model\bin\Debug\PGx.Model.pdb
+F:\PGx.KB\PGx.Model\bin\Debug\en-US\PGx.Model.resources.dll
+F:\PGx.KB\PGx.Model\obj\Debug\PGx.Model.Resources.Resource.resources
+F:\PGx.KB\PGx.Model\obj\Debug\PGx.Model.Resources.Resource.en-US.resources
+F:\PGx.KB\PGx.Model\obj\Debug\PGx.Model.csproj.GenerateResource.Cache
+F:\PGx.KB\PGx.Model\obj\Debug\en-US\PGx.Model.resources.dll
+F:\PGx.KB\PGx.Model\obj\Debug\PGx.Model.dll
+F:\PGx.KB\PGx.Model\obj\Debug\PGx.Model.pdb
+F:\PGx.KB\PGx.Model\obj\Debug\PGx.Model.csprojResolveAssemblyReference.cache
+F:\PGx.KB\PGx.Model\bin\Debug\EntityFramework.dll
+F:\PGx.KB\PGx.Model\bin\Debug\EntityFramework.xml
+F:\PGx.KB\PGx.Model\bin\Debug\zh-Hans\EntityFramework.resources.dll
+F:\PGx.KB 0717\PGx.Model\bin\Debug\PGx.Model.dll.config
+F:\PGx.KB 0717\PGx.Model\bin\Debug\PGx.Model.dll
+F:\PGx.KB 0717\PGx.Model\bin\Debug\PGx.Model.pdb
+F:\PGx.KB 0717\PGx.Model\bin\Debug\en-US\PGx.Model.resources.dll
+F:\PGx.KB 0717\PGx.Model\bin\Debug\EntityFramework.dll
+F:\PGx.KB 0717\PGx.Model\bin\Debug\EntityFramework.xml
+F:\PGx.KB 0717\PGx.Model\bin\Debug\zh-Hans\EntityFramework.resources.dll
+F:\PGx.KB 0717\PGx.Model\obj\Debug\PGx.Model.Resources.Resource.resources
+F:\PGx.KB 0717\PGx.Model\obj\Debug\PGx.Model.Resources.Resource.en-US.resources
+F:\PGx.KB 0717\PGx.Model\obj\Debug\PGx.Model.csproj.GenerateResource.Cache
+F:\PGx.KB 0717\PGx.Model\obj\Debug\en-US\PGx.Model.resources.dll
+F:\PGx.KB 0717\PGx.Model\obj\Debug\PGx.Model.dll
+F:\PGx.KB 0717\PGx.Model\obj\Debug\PGx.Model.pdb
+F:\PGx.KB 0717\PGx.Model\obj\Debug\PGx.Model.csprojResolveAssemblyReference.cache
+E:\PGx.KB\PGx.KB 0717\PGx.Model\bin\Debug\PGx.Model.dll.config
+E:\PGx.KB\PGx.KB 0717\PGx.Model\bin\Debug\PGx.Model.dll
+E:\PGx.KB\PGx.KB 0717\PGx.Model\bin\Debug\PGx.Model.pdb
+E:\PGx.KB\PGx.KB 0717\PGx.Model\bin\Debug\en-US\PGx.Model.resources.dll
+E:\PGx.KB\PGx.KB 0717\PGx.Model\bin\Debug\EntityFramework.dll
+E:\PGx.KB\PGx.KB 0717\PGx.Model\bin\Debug\System.Net.Http.dll
+E:\PGx.KB\PGx.KB 0717\PGx.Model\bin\Debug\EntityFramework.xml
+E:\PGx.KB\PGx.KB 0717\PGx.Model\bin\Debug\System.Net.Http.xml
+E:\PGx.KB\PGx.KB 0717\PGx.Model\bin\Debug\zh-Hans\EntityFramework.resources.dll
+E:\PGx.KB\PGx.KB 0717\PGx.Model\bin\Debug\zh-Hans\System.Net.Http.resources.dll
+E:\PGx.KB\PGx.KB 0717\PGx.Model\obj\Debug\PGx.Model.Resources.Resource.resources
+E:\PGx.KB\PGx.KB 0717\PGx.Model\obj\Debug\PGx.Model.Resources.Resource.en-US.resources
+E:\PGx.KB\PGx.KB 0717\PGx.Model\obj\Debug\PGx.Model.csproj.GenerateResource.Cache
+E:\PGx.KB\PGx.KB 0717\PGx.Model\obj\Debug\en-US\PGx.Model.resources.dll
+E:\PGx.KB\PGx.KB 0717\PGx.Model\obj\Debug\PGx.Model.dll
+E:\PGx.KB\PGx.KB 0717\PGx.Model\obj\Debug\PGx.Model.pdb
+E:\PGx.KB\PGx.KB 0717\PGx.Model\obj\Debug\PGx.Model.csprojResolveAssemblyReference.cache
+E:\PGx.KB\PGx.KB 002\PGx.Model\bin\Debug\PGx.Model.dll.config
+E:\PGx.KB\PGx.KB 002\PGx.Model\bin\Debug\PGx.Model.dll
+E:\PGx.KB\PGx.KB 002\PGx.Model\bin\Debug\PGx.Model.pdb
+E:\PGx.KB\PGx.KB 002\PGx.Model\bin\Debug\en-US\PGx.Model.resources.dll
+E:\PGx.KB\PGx.KB 002\PGx.Model\bin\Debug\EntityFramework.dll
+E:\PGx.KB\PGx.KB 002\PGx.Model\bin\Debug\System.Net.Http.dll
+E:\PGx.KB\PGx.KB 002\PGx.Model\bin\Debug\EntityFramework.xml
+E:\PGx.KB\PGx.KB 002\PGx.Model\bin\Debug\System.Net.Http.xml
+E:\PGx.KB\PGx.KB 002\PGx.Model\bin\Debug\zh-Hans\EntityFramework.resources.dll
+E:\PGx.KB\PGx.KB 002\PGx.Model\bin\Debug\zh-Hans\System.Net.Http.resources.dll
+E:\PGx.KB\PGx.KB 002\PGx.Model\obj\Debug\PGx.Model.csprojResolveAssemblyReference.cache
+E:\PGx.KB\PGx.KB 002\PGx.Model\obj\Debug\PGx.Model.Resources.Resource.resources
+E:\PGx.KB\PGx.KB 002\PGx.Model\obj\Debug\PGx.Model.Resources.Resource.en-US.resources
+E:\PGx.KB\PGx.KB 002\PGx.Model\obj\Debug\PGx.Model.csproj.GenerateResource.Cache
+E:\PGx.KB\PGx.KB 002\PGx.Model\obj\Debug\en-US\PGx.Model.resources.dll
+E:\PGx.KB\PGx.KB 002\PGx.Model\obj\Debug\PGx.Model.dll
+E:\PGx.KB\PGx.KB 002\PGx.Model\obj\Debug\PGx.Model.pdb
+E:\PGx.KB\PGx.KB 003\PGx.Model\bin\Debug\PGx.Model.dll.config
+E:\PGx.KB\PGx.KB 003\PGx.Model\bin\Debug\PGx.Model.dll
+E:\PGx.KB\PGx.KB 003\PGx.Model\bin\Debug\PGx.Model.pdb
+E:\PGx.KB\PGx.KB 003\PGx.Model\bin\Debug\en-US\PGx.Model.resources.dll
+E:\PGx.KB\PGx.KB 003\PGx.Model\bin\Debug\EntityFramework.dll
+E:\PGx.KB\PGx.KB 003\PGx.Model\bin\Debug\System.Net.Http.dll
+E:\PGx.KB\PGx.KB 003\PGx.Model\bin\Debug\EntityFramework.xml
+E:\PGx.KB\PGx.KB 003\PGx.Model\bin\Debug\System.Net.Http.xml
+E:\PGx.KB\PGx.KB 003\PGx.Model\bin\Debug\zh-Hans\EntityFramework.resources.dll
+E:\PGx.KB\PGx.KB 003\PGx.Model\bin\Debug\zh-Hans\System.Net.Http.resources.dll
+E:\PGx.KB\PGx.KB 003\PGx.Model\obj\Debug\PGx.Model.csprojResolveAssemblyReference.cache
+E:\PGx.KB\PGx.KB 003\PGx.Model\obj\Debug\PGx.Model.Resources.Resource.resources
+E:\PGx.KB\PGx.KB 003\PGx.Model\obj\Debug\PGx.Model.Resources.Resource.en-US.resources
+E:\PGx.KB\PGx.KB 003\PGx.Model\obj\Debug\PGx.Model.csproj.GenerateResource.Cache
+E:\PGx.KB\PGx.KB 003\PGx.Model\obj\Debug\en-US\PGx.Model.resources.dll
+E:\PGx.KB\PGx.KB 003\PGx.Model\obj\Debug\PGx.Model.dll
+E:\PGx.KB\PGx.KB 003\PGx.Model\obj\Debug\PGx.Model.pdb
+E:\PGx.KB\PGx.KB 004\PGx.Model\bin\Debug\PGx.Model.dll.config
+E:\PGx.KB\PGx.KB 004\PGx.Model\bin\Debug\PGx.Model.dll
+E:\PGx.KB\PGx.KB 004\PGx.Model\bin\Debug\PGx.Model.pdb
+E:\PGx.KB\PGx.KB 004\PGx.Model\bin\Debug\en-US\PGx.Model.resources.dll
+E:\PGx.KB\PGx.KB 004\PGx.Model\bin\Debug\EntityFramework.dll
+E:\PGx.KB\PGx.KB 004\PGx.Model\bin\Debug\System.Net.Http.dll
+E:\PGx.KB\PGx.KB 004\PGx.Model\bin\Debug\EntityFramework.xml
+E:\PGx.KB\PGx.KB 004\PGx.Model\bin\Debug\System.Net.Http.xml
+E:\PGx.KB\PGx.KB 004\PGx.Model\bin\Debug\zh-Hans\EntityFramework.resources.dll
+E:\PGx.KB\PGx.KB 004\PGx.Model\bin\Debug\zh-Hans\System.Net.Http.resources.dll
+E:\PGx.KB\PGx.KB 004\PGx.Model\obj\Debug\PGx.Model.csprojResolveAssemblyReference.cache
+E:\PGx.KB\PGx.KB 004\PGx.Model\obj\Debug\PGx.Model.Resources.Resource.resources
+E:\PGx.KB\PGx.KB 004\PGx.Model\obj\Debug\PGx.Model.Resources.Resource.en-US.resources
+E:\PGx.KB\PGx.KB 004\PGx.Model\obj\Debug\PGx.Model.csproj.GenerateResource.Cache
+E:\PGx.KB\PGx.KB 004\PGx.Model\obj\Debug\en-US\PGx.Model.resources.dll
+E:\PGx.KB\PGx.KB 004\PGx.Model\obj\Debug\PGx.Model.dll
+E:\PGx.KB\PGx.KB 004\PGx.Model\obj\Debug\PGx.Model.pdb
+D:\PGx.KB\PGx.KB 004\PGx.Model\bin\Debug\PGx.Model.dll.config
+D:\PGx.KB\PGx.KB 004\PGx.Model\bin\Debug\PGx.Model.dll
+D:\PGx.KB\PGx.KB 004\PGx.Model\bin\Debug\PGx.Model.pdb
+D:\PGx.KB\PGx.KB 004\PGx.Model\bin\Debug\en-US\PGx.Model.resources.dll
+D:\PGx.KB\PGx.KB 004\PGx.Model\bin\Debug\EntityFramework.dll
+D:\PGx.KB\PGx.KB 004\PGx.Model\bin\Debug\System.Net.Http.dll
+D:\PGx.KB\PGx.KB 004\PGx.Model\bin\Debug\EntityFramework.xml
+D:\PGx.KB\PGx.KB 004\PGx.Model\bin\Debug\System.Net.Http.xml
+D:\PGx.KB\PGx.KB 004\PGx.Model\bin\Debug\zh-Hans\EntityFramework.resources.dll
+D:\PGx.KB\PGx.KB 004\PGx.Model\bin\Debug\zh-Hans\System.Net.Http.resources.dll
+D:\PGx.KB\PGx.KB 004\PGx.Model\obj\Debug\PGx.Model.csprojResolveAssemblyReference.cache
+D:\PGx.KB\PGx.KB 004\PGx.Model\obj\Debug\PGx.Model.Resources.Resource.resources
+D:\PGx.KB\PGx.KB 004\PGx.Model\obj\Debug\PGx.Model.Resources.Resource.en-US.resources
+D:\PGx.KB\PGx.KB 004\PGx.Model\obj\Debug\PGx.Model.csproj.GenerateResource.Cache
+D:\PGx.KB\PGx.KB 004\PGx.Model\obj\Debug\en-US\PGx.Model.resources.dll
+D:\PGx.KB\PGx.KB 004\PGx.Model\obj\Debug\PGx.Model.dll
+D:\PGx.KB\PGx.KB 004\PGx.Model\obj\Debug\PGx.Model.pdb
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Debug\PGx.Model.dll.config
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Debug\PGx.Model.dll
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Debug\PGx.Model.pdb
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Debug\en-US\PGx.Model.resources.dll
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Debug\EntityFramework.dll
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Debug\System.Net.Http.dll
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Debug\EntityFramework.xml
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Debug\System.Net.Http.xml
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Debug\zh-Hans\EntityFramework.resources.dll
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Debug\zh-Hans\System.Net.Http.resources.dll
+D:\PGx.KB\PGx.KB 005\PGx.Model\obj\Debug\PGx.Model.csprojResolveAssemblyReference.cache
+D:\PGx.KB\PGx.KB 005\PGx.Model\obj\Debug\PGx.Model.Resources.Resource.resources
+D:\PGx.KB\PGx.KB 005\PGx.Model\obj\Debug\PGx.Model.Resources.Resource.en-US.resources
+D:\PGx.KB\PGx.KB 005\PGx.Model\obj\Debug\PGx.Model.csproj.GenerateResource.Cache
+D:\PGx.KB\PGx.KB 005\PGx.Model\obj\Debug\en-US\PGx.Model.resources.dll
+D:\PGx.KB\PGx.KB 005\PGx.Model\obj\Debug\PGx.Model.dll
+D:\PGx.KB\PGx.KB 005\PGx.Model\obj\Debug\PGx.Model.pdb
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Debug\Java\iris.arff
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Debug\System.App.Utility.dll
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Debug\System.App.Utility.UnitsConversion.dll
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Debug\IKVM.OpenJDK.Core.dll
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Debug\weka.dll
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Debug\LumenWorks.Framework.IO.dll
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Debug\System.App.Utility.pdb
+D:\PGx.KB\PCTP.github\PGx.Model\bin\Debug\Java\iris.arff
+D:\PGx.KB\PCTP.github\PGx.Model\bin\Debug\PGx.Model.dll.config
+D:\PGx.KB\PCTP.github\PGx.Model\bin\Debug\PGx.Model.dll
+D:\PGx.KB\PCTP.github\PGx.Model\bin\Debug\PGx.Model.pdb
+D:\PGx.KB\PCTP.github\PGx.Model\bin\Debug\en-US\PGx.Model.resources.dll
+D:\PGx.KB\PCTP.github\PGx.Model\bin\Debug\EntityFramework.dll
+D:\PGx.KB\PCTP.github\PGx.Model\bin\Debug\System.App.Utility.dll
+D:\PGx.KB\PCTP.github\PGx.Model\bin\Debug\System.Net.Http.dll
+D:\PGx.KB\PCTP.github\PGx.Model\bin\Debug\System.App.Utility.UnitsConversion.dll
+D:\PGx.KB\PCTP.github\PGx.Model\bin\Debug\IKVM.OpenJDK.Core.dll
+D:\PGx.KB\PCTP.github\PGx.Model\bin\Debug\weka.dll
+D:\PGx.KB\PCTP.github\PGx.Model\bin\Debug\LumenWorks.Framework.IO.dll
+D:\PGx.KB\PCTP.github\PGx.Model\bin\Debug\System.App.Utility.pdb
+D:\PGx.KB\PCTP.github\PGx.Model\bin\Debug\EntityFramework.xml
+D:\PGx.KB\PCTP.github\PGx.Model\bin\Debug\System.Net.Http.xml
+D:\PGx.KB\PCTP.github\PGx.Model\bin\Debug\zh-Hans\EntityFramework.resources.dll
+D:\PGx.KB\PCTP.github\PGx.Model\bin\Debug\zh-Hans\System.Net.Http.resources.dll
+D:\PGx.KB\PCTP.github\PGx.Model\obj\Debug\PGx.Model.csprojResolveAssemblyReference.cache
+D:\PGx.KB\PCTP.github\PGx.Model\obj\Debug\PGx.Model.Resources.Resource.resources
+D:\PGx.KB\PCTP.github\PGx.Model\obj\Debug\PGx.Model.Resources.Resource.en-US.resources
+D:\PGx.KB\PCTP.github\PGx.Model\obj\Debug\PGx.Model.csproj.GenerateResource.Cache
+D:\PGx.KB\PCTP.github\PGx.Model\obj\Debug\en-US\PGx.Model.resources.dll
+D:\PGx.KB\PCTP.github\PGx.Model\obj\Debug\PGx.Model.dll
+D:\PGx.KB\PCTP.github\PGx.Model\obj\Debug\PGx.Model.pdb

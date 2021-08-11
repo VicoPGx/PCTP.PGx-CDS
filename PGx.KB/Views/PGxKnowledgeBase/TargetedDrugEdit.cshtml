@@ -1,0 +1,477 @@
+﻿@using PGx.Model.Entities
+@model PGx.Model.Entities.PGxGuideline
+
+<script>
+    $(function () {
+
+        $("#guideline-form>div").accordion({ heightStyle: "content", header: "h3", collapsible: true });
+        $('#relatedgene_list').multiselect({
+            selectedList: 20
+        }).multiselectfilter({
+            label: 'Search',
+            placeholder: ''
+        });
+
+        $("#recommendation_table").dataTable({
+            "bJQueryUI": true,
+            "sAjaxSource": "/AjaxHandler/RecommendationSelectTableAjaxHandler",
+            "bServerSide": true,
+            "bProcessing": false,
+            "bAutoWidth": false,
+            "bSort": false,
+            "bRetrive": false,
+            "fnServerParams": function (aoData) {
+                aoData.push(
+                            { "name": "GuidelineID", "value": "@Model.ID" });
+            },
+            "aoColumns": [
+            {
+                "fnRender": function (oObj) {
+                    return "<span>" + oObj.aData["0"] + "</span>";
+                }
+            },
+            {
+                "fnRender": function (oObj) {
+                    var ln = '<a href="#" onclick="dosingEdit(' + oObj.aData["1"] + ')">Edit </a>';
+                    return ln;
+                }
+            }
+            ]
+        });
+        $("#alternative_drugs_table").dataTable({
+            "bJQueryUI": true,
+            "sAjaxSource": "/AjaxHandler/AlternativeDrugSelectTableAjaxHandler",
+            "bServerSide": true,
+            "bProcessing": false,
+            "bAutoWidth": false,
+            "bSort": false,
+            "bRetrive": false,
+            "fnServerParams": function (aoData) {
+                aoData.push(
+                            { "name": "ChemicalID", "value": "@Model.ChemicalDictID" });
+            },
+            "aoColumns": [
+            {
+                "fnRender": function (oObj) {
+                    return "<span>" + oObj.aData["0"] + "</span>";
+                }
+            },
+            {
+                "fnRender": function (oObj) {
+                    var ln = '<a href="#" onclick="alternativeDrugEdit(' + oObj.aData["1"] + ',' + oObj.aData["2"] + ')">Edit </a>';
+                    return ln;
+                }
+            }
+            ]
+        });
+        $("#drugs_table").dataTable({
+            "bJQueryUI": true,
+            "sAjaxSource": "/AjaxHandler/TradeDrugSelectTableAjaxHandler",
+            "bServerSide": true,
+            "bProcessing": false,
+            "bAutoWidth": false,
+            "bSort": false,
+            "bRetrive": false,
+            "fnServerParams": function (aoData) {
+                aoData.push(
+                            { "name": "ChemicalID", "value": "@Model.ChemicalDictID" });
+            },
+            "aoColumns": [
+            {
+                "fnRender": function (oObj) {
+                    return "<span>" + oObj.aData["0"] + "</span>";
+                }
+            },
+            {
+                "fnRender": function (oObj) {
+                    var ln = '<a href="#" onclick="drugEdit(' + oObj.aData["1"] + ',' + oObj.aData["2"] + ')">Edit </a>';
+                    return ln;
+                }
+            }
+            ]
+        });
+
+    });
+
+    function dosingEdit(id,guidelineId) {
+        debugger;
+        $.ajax({
+            url: '@Url.Action("DosingEdit", "PGxKnowledgeBase")',
+            data: { id: id,guidelineId:guidelineId },
+            type: 'Get',
+            async: false,
+            cache: false,
+            timeout: 10000
+        }).done(function (data) {
+            $('#dosing').html('');
+            $('#dosing').html(data);
+        });
+        }
+
+        function drugEdit(id, chemicalId) {
+            debugger;
+            $.ajax({
+                url: '@Url.Action("DrugEdit", "PGxKnowledgeBase")',
+            data: { id: id, chemicalId: chemicalId },
+            type: 'Get',
+            async: false,
+            cache: false,
+            timeout: 10000
+        }).done(function (data) {
+            $('#drug').html('');
+            $('#drug').html(data);
+        });
+        }  
+    function deleteDrug(id, chemicalId) {
+        $.ajax({
+            url: '@Url.Action("DeleteDrug", "PGxKnowledgeBase")',
+            data: { id: id, chemicalId: chemicalId },
+            type: 'Get',
+            async: false,
+            cache: false,
+            timeout: 10000
+        }).done(function (data) {
+            $('#drug').html('');
+            guideLineEdit(chemicalId);
+            alert(data);
+        });
+    }
+    function addGuidelineLiterature() {
+        var rowNo = document.getElementById("literature_table").rows.length-1;
+        var thisTrId = "guideline_" + rowNo;
+        var html = "<tr id=" + thisTrId + "><td><textarea name='_title' class='form-control'></textarea></td><td><input type='text' name='_journal' class='form-control'></td><td><input type='text' name='_pmid' class='form-control'></td><td><input name='_year' class='form-control'></td><td> <img onclick='deleteGuidelineLiterature(\"" + thisTrId + "\");' style='cursor:pointer; position: relative; margin-bottom: -5px' src='/Content/images/remove.png' alt='Delete' /></td>/tr>"
+        $('#literature_table tr:last').after(html);
+    }
+    function deleteGuidelineLiterature(thisTrId) {
+        debugger;
+        var thisRow = document.getElementById(thisTrId);
+        if (thisRow)
+            thisRow.parentNode.removeChild(thisRow);
+    }
+
+    var trNum = 0;
+    function addPhenotype(tabelId) {
+        debugger;
+        trNum++;
+        var thisTrId = "addTr" + "_" + trNum;
+        $.ajax({
+            url: '@Url.Action("AddRowPartial", "PGxKnowledgeBase")',
+            data: { id: thisTrId },
+            type: 'Get',
+            async: false,
+            cache: false,
+            timeout: 10000
+        }).done(function (data) {
+            $('#' + tabelId + ' tr:last').after(data);
+        })
+
+    }
+
+    function deletePhenotype(rowId) {
+        debugger;
+        var thisRow = document.getElementById(rowId);
+        if (thisRow)
+            thisRow.parentNode.removeChild(thisRow);
+    }
+
+    var trIdNum = 0;
+    function addAlteration(id) {
+        debugger;
+        trIdNum++;
+        var thisTrId = "add" + "_" + trIdNum;
+        var html = "<tr id=" + thisTrId + "><td><input type='text' name='_gene'  ></td><td><input type='text' name='_alteration' ></td><td><input type='text' name='_level' ></td><td> <img onclick='deleteAlteration(\"" + thisTrId + "\");' style='cursor:pointer; position: relative; margin-bottom: -5px' src='/Content/images/trash.png' alt='Delete' /></td>/tr>"
+        $('#' + id + ' tr:last').after(html);
+    }
+
+    function deleteAlteration(thisTrId) {
+        debugger;
+        var thisRow = document.getElementById(thisTrId);
+        if (thisRow)
+            thisRow.parentNode.removeChild(thisRow);
+    }
+
+    function phenoList(id) {
+        debugger;
+        //jquery 方法
+        var tr = $("#" + id);
+        var td = tr.children(":first");
+        var select = td.children(':first');
+        var gene = select.find("option:selected").text();
+
+        if (gene != "Unselected" && gene != "") {
+            $.ajax({
+                url: '@Url.Action("NamedPhenotypeList", "PGxKnowledgeBase")',
+                data: { gene: gene },
+                type: 'Get',
+                async: false,
+                cache: false,
+                timeout: 10000
+            }).done(function (data) {
+                debugger;
+                $("#" + id).children().eq(1).html(data);
+   
+            })
+        }
+    }
+
+    function saveGuidePrimInfo() {
+        debugger;
+        $("#GenesInStr").val(getMultiSelectVal("relatedgene_list"));
+        //$("#ChemicalsInStr").val(getMultiSelectVal("relateddrug_list"));
+
+        var litRows = document.getElementById("literature_table").rows;
+        var litArr = [];
+        for (j = 1; j < litRows.length; j++)
+        {
+            var litObj = {};
+            litObj["M_title"] = litRows[j].children[0].children[0].value;
+            litObj["M_journal"] = litRows[j].children[1].children[0].value;
+            litObj["M_pmid"] = litRows[j].children[2].children[0].value;
+            litObj["M_year"] = litRows[j].children[3].children[0].value;
+            litArr.push(litObj)
+        }
+
+        $("#LiteratureJson").val(JSON.stringify(litArr));
+        debugger;
+        var pRows = $("#alteration_table").find("tr");
+        var altObj, altArray = [];
+        for (var i = 1; i < pRows.length; i++) {
+            altObj = {};
+            altObj["Gene"] = pRows[i].children[0].children[0].value;
+            altObj["Alteration"] = pRows[i].children[1].children[0].value;
+            altObj["Level"] = pRows[i].children[2].children[0].value;
+            altArray.push(altObj);
+        }
+        var altStr = JSON.stringify(altArray);
+        $("#Alterations").val(altStr);
+
+        var tRows = document.getElementById("risk_pheno_list").rows;
+        var obj = [];
+        for (var i = 1; i < tRows.length; i++) {
+            var arr = [];
+            arr[0] = tRows[i].children[0].children[0].value;
+            arr[1] = tRows[i].children[1].children[0].value;
+            obj[i - 1] = arr;
+        }
+        var phenotypeStr = JSON.stringify(obj);
+        $("#RiskPhenotypeJson").val(phenotypeStr);
+        $("#guideline-form").ajaxSubmit(function (data) {
+            debugger;
+            alert(data)
+        });
+        return false;
+    }
+</script>
+
+<div>
+            @using (Html.BeginForm("GuidelineEdit", "PGxKnowledgeBase", FormMethod.Post, new { id = "guideline-form", onsubmit = "return saveGuidePrimInfo();" }))
+        {
+
+                @Html.ValidationSummary(true)
+            if(Model.ID>0)
+            {
+                @Html.HiddenFor(m => m.ID)
+            }
+            else
+            {
+               <input id="ID" name="ID" type="hidden" value="0"/>
+            }
+                @Html.HiddenFor(m => m.ChemicalsInStr)
+                @Html.HiddenFor(m => m.GenesInStr)
+                @Html.HiddenFor(m => m.RiskPhenotypeJson)
+                @Html.HiddenFor(m => m.LiteratureJson)
+                @Html.HiddenFor(m => m.Source)
+                @Html.HiddenFor(m=>m.Alterations)
+                @Html.HiddenFor(m => m.ChemicalDict.TargetedDrug, new { value="Yes"})
+            @Html.HiddenFor(m => m.ClinicalImplication)
+
+                
+            PGx_KBEntities context = new PGx_KBEntities();
+            var genes = context.DefinitionFile.Select(x => x.GeneSymbol).ToList();
+
+        <div>
+            <h3>Primary Info</h3>
+            <div>        
+                    <div><label>Generic Name</label></div>
+                    <div class="editor-field">@Html.TextBoxFor(m => m.ChemicalDict.Name)</div>
+                    <div class="editor-field">
+                        <label>Affected Genes</label></div>
+                    <div class="editor-field">
+                        <select id="relatedgene_list" class="genelist" style="width: 350px" multiple="multiple">
+                            @foreach (var gene in genes)
+                            {
+                                if (Model.DefinitionFile != null && Model.DefinitionFile.Select(x => x.GeneSymbol).Contains(gene))
+                                {
+                                <option class="geneOption" selected="selected">@gene</option>
+                                }
+                                else
+                                {
+                                <option class="geneOption">@gene</option>
+                                }
+
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>  
+                   <div>
+                    <h3>Alterations</h3>                  
+                    <div class="editor-field">
+                        <label>Add New</label> <img onclick="addAlteration('alteration_table');" style="cursor:pointer; position: relative; margin-bottom: -5px" src="/Content/images/add_black.png" alt="Add" />
+                        <table id="alteration_table" class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Gene</th>
+                                    <th>Alteration</th>
+                                    <th>Level</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var alter in Model.TumorAlteration)
+                                {
+                                    var tId = "key" + "_" + alter.ID.ToString();
+                                    <tr id="@tId">
+                                        <td>@Html.TextBox("_gene",@alter.Gene)</td>
+                                        <td>@Html.TextBox("_alteration",@alter.Alteration)</td>
+                                        <td>@Html.TextBox("_level",@alter.Level)</td>
+                                <td>
+                                     <img onclick="deleteAlteration('@tId');" style="cursor:pointer; position: relative; margin-bottom: -5px" src="/Content/images/trash.png" alt="Delete" />
+                                </td>                                        
+                                    </tr> 
+                                }
+
+                               
+                            </tbody>
+                        </table>
+                        </div>
+                        </div>
+           <div>
+                 <h3>PGx clinical guidelines</h3>                  
+                    <div>
+                        <label>Add New</label> <img onclick="addGuidelineLiterature();" style="cursor:pointer; position: relative" src="/Content/images/add_black.png" alt="Add" />
+       
+                                   <table id="literature_table" class="table table-hover table-striped">
+                                       <thead>
+                                           <tr>
+                                               <th class="col-md-6">Title</th>
+                                               <th class="col-md-3">Source</th>
+                                               <th class="col-md-1.2">Pmid</th>
+                                               <th class="col-md-1.2">Year</th>
+                                               <th class=""></th>
+                                           </tr>
+                                       </thead>
+                                       <tbody>
+                                      @{ 
+                                           if (Model.Literature.Count > 0)
+                                              {
+                                                  int guidelineNo = 0;
+                                                  foreach (var lit in Model.Literature)
+                                                  {
+                                                      string guidelineId = "guideline_" + guidelineNo.ToString();
+                                               <tr id="@guidelineId">
+                                                   <td>@Html.TextArea("_title", lit.M_title, new { @class = "form-control" })</td>
+                                                   <td >@Html.TextBox("_source", lit.M_journal, new { @class = "form-control" })</td>
+                                                   <td>@Html.TextBox("_pmid", lit.M_pmid, new { @class = "form-control" })</td>
+                                                   <td>@Html.TextBox("_year", lit.M_year, new { @class = "form-control" })</td>
+                                                   <td><img onclick="deleteGuidelineLiterature('@guidelineId');" style="cursor:pointer" src="/Content/images/remove.png" alt="Delete" /></td>
+                                               </tr>
+                                                      guidelineNo++;
+                                                  }
+                                              }
+                                              else
+                                              {
+                                                   <tr id="guideline_0">
+                                                   <td>@Html.TextArea("_title", "", new { @class = "form-control" })</td>
+                                                   <td >@Html.TextBox("_source", "", new { @class = "form-control" })</td>
+                                                   <td>@Html.TextBox("_pmid", "", new { @class = "form-control" })</td>
+                                                   <td>@Html.TextBox("_year", "", new { @class = "form-control" })</td>
+                                                   <td><img onclick="deleteGuidelineLiterature('guideline_0');" style="cursor:pointer" src="/Content/images/remove.png" alt="Delete" /></td>
+                                               </tr>
+                                              }
+                                           }
+                                       </tbody>
+                                   </table>
+                        </div>
+                        </div>              
+                    <div>
+                        <h3>Risk Phenotype</h3>                  
+                    <div class="editor-field">
+                        <H4><a href="#" onclick="addPhenotype('risk_pheno_list')">Add Item</a>
+                                    <img onclick="addPhenotype('risk_pheno_list');" style="cursor: pointer; position: relative;" src="/Content/images/add_black.png" alt="Add" /></H4>
+                        <table id="risk_pheno_list" class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Gene</th>
+                                    <th>Alterations</th>
+                                    <th>Level</th>
+                                    <th>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.RelatedPhenotypes.Count == 0)
+                                {
+
+                                    <tr id="key_0">
+                                        <td>@Html.DropDownList("gene", new SelectList(new string[] { "Unselected" }.Concat(context.DefinitionFile.Select(x => x.GeneSymbol)), ""), new { onchange = "phenoList('key_0')" })</td>
+                                        <td>
+                                            @Html.DropDownList("phenotype", new SelectList(new string[] { "Unselected" }))
+                                        </td>
+                                        <td>
+                                            <img onclick="deletePhenotype('key_0');" style="cursor: pointer; position: relative; margin-bottom: -5px" src="/Content/images/trash.png" alt="Delete" /></td>
+                                    </tr> 
+                                }
+                                else
+                                {
+                                    int i = 0;
+                                    foreach (var g in Model.RelatedPhenotypes)
+                                    {
+                                        var id = "key" + i.ToString();
+                                        var definitionFile = context.DefinitionFile.Where(x => x.GeneSymbol == g.Gene).FirstOrDefault();
+                                    <tr id="@id">
+                                       <td>
+                                            <select onchange="phenoList('@id')">
+                                                @{
+                                        var geneList = new string[] { "Unselected" }.Concat(context.DefinitionFile.Select(x => x.GeneSymbol.Trim())).ToList();
+                                        foreach (string gene in geneList)
+                                        {
+                                            if (gene == g.Gene)
+                                            {
+                                                    <option selected="selected">@gene</option> 
+                                            }
+                                            else
+                                            {
+                                                    <option>@gene</option>
+                                            }
+                                        }
+                                                }
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select>
+                                                @foreach (var p in definitionFile.PhenotypeMap)
+                                                {
+                                                    if (g.Phenotype == p.Phenotype)
+                                                    {
+                                                    <option selected="selected">@p.Phenotype</option> 
+                                                    }
+                                                    else
+                                                    {
+                                                    <option>@p.Phenotype</option>
+                                                    }
+                                                }
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <img onclick="deletePhenotype('@id');" style="cursor:pointer; position: relative; margin-bottom: 0px" src="/Content/images/trash.png" alt="Delete" /></td>
+                                    </tr> 
+                                                i++;
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>              
+                <input type="submit" value="submit" />
+        }
+</div>

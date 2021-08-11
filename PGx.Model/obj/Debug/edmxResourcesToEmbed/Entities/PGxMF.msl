@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="KB_PGxModelStoreContainer" CdmEntityContainer="PGxMFContainer">
+    <EntitySetMapping Name="Chemicals">
+      <EntityTypeMapping TypeName="IsTypeOf(KB_PGxModel.Chemical)">
+        <MappingFragment StoreEntitySet="Chemicals">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ChemicalName" ColumnName="ChemicalName" />
+          <ScalarProperty Name="ChemicalNameCN" ColumnName="ChemicalNameCN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Diplotypes">
+      <EntityTypeMapping TypeName="IsTypeOf(KB_PGxModel.Diplotype)">
+        <MappingFragment StoreEntitySet="Diplotypes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DiplotypeSymbol" ColumnName="DiplotypeSymbol" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Genes">
+      <EntityTypeMapping TypeName="IsTypeOf(KB_PGxModel.Gene)">
+        <MappingFragment StoreEntitySet="Genes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="GeneSymbol" ColumnName="GeneSymbol" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Haplotypes">
+      <EntityTypeMapping TypeName="IsTypeOf(KB_PGxModel.Haplotype)">
+        <MappingFragment StoreEntitySet="Haplotypes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HaplotypeName" ColumnName="HaplotypeName" />
+          <ScalarProperty Name="HaplotypeSymbol" ColumnName="HaplotypeSymbol" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Phenotypes">
+      <EntityTypeMapping TypeName="IsTypeOf(KB_PGxModel.Phenotype)">
+        <MappingFragment StoreEntitySet="Phenotypes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PhenotypeSymbol" ColumnName="PhenotypeSymbol" />
+          <ScalarProperty Name="PhenotypeSymbolCN" ColumnName="PhenotypeSymbolCN" />
+          <ScalarProperty Name="Genotype" ColumnName="Genotype" />
+          <ScalarProperty Name="GenotypeCN" ColumnName="GenotypeCN" />
+          <ScalarProperty Name="ActivityScore" ColumnName="ActivityScore" />
+          <ScalarProperty Name="Normal" ColumnName="Normal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Recomendations">
+      <EntityTypeMapping TypeName="IsTypeOf(KB_PGxModel.Recomendation)">
+        <MappingFragment StoreEntitySet="Recomendations">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Implication" ColumnName="Implication" />
+          <ScalarProperty Name="ImplicationCN" ColumnName="ImplicationCN" />
+          <ScalarProperty Name="DosingRecomendation" ColumnName="DosingRecomendation" />
+          <ScalarProperty Name="DosingRecomendationCN" ColumnName="DosingRecomendationCN" />
+          <ScalarProperty Name="Level" ColumnName="Level" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Varients">
+      <EntityTypeMapping TypeName="IsTypeOf(KB_PGxModel.Varient)">
+        <MappingFragment StoreEntitySet="Varients">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="VarientSymbol" ColumnName="VarientSymbol" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Drugs">
+      <EntityTypeMapping TypeName="IsTypeOf(KB_PGxModel.Drug)">
+        <MappingFragment StoreEntitySet="Drugs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DrugName" ColumnName="DrugName" />
+          <ScalarProperty Name="DrugCode" ColumnName="DrugCode" />
+          <ScalarProperty Name="EMRId" ColumnName="EMRId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="RecomendationPhenotype" TypeName="KB_PGxModel.RecomendationPhenotype" StoreEntitySet="RecomendationPhenotype">
+      <EndProperty Name="Recomendation">
+        <ScalarProperty Name="Id" ColumnName="Recomendation_Id" />
+      </EndProperty>
+      <EndProperty Name="Phenotype">
+        <ScalarProperty Name="Id" ColumnName="Phenotype_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="DiplotypeHaplotype" TypeName="KB_PGxModel.DiplotypeHaplotype" StoreEntitySet="DiplotypeHaplotype">
+      <EndProperty Name="Diplotype">
+        <ScalarProperty Name="Id" ColumnName="Diplotype_Id" />
+      </EndProperty>
+      <EndProperty Name="Haplotype">
+        <ScalarProperty Name="Id" ColumnName="Haplotype_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="RecomendationChemical" TypeName="KB_PGxModel.RecomendationChemical" StoreEntitySet="Recomendations">
+      <EndProperty Name="Chemical">
+        <ScalarProperty Name="Id" ColumnName="Chemical_Id" />
+      </EndProperty>
+      <EndProperty Name="Recomendation">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="HaplotypeVarient" TypeName="KB_PGxModel.HaplotypeVarient" StoreEntitySet="HaplotypeVarient">
+      <EndProperty Name="Haplotype">
+        <ScalarProperty Name="Id" ColumnName="Haplotype_Id" />
+      </EndProperty>
+      <EndProperty Name="Varient">
+        <ScalarProperty Name="Id" ColumnName="Varient_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="DiplotypePhenotype" TypeName="KB_PGxModel.DiplotypePhenotype" StoreEntitySet="Diplotypes">
+      <EndProperty Name="Phenotype">
+        <ScalarProperty Name="Id" ColumnName="Phenotype_Id" />
+      </EndProperty>
+      <EndProperty Name="Diplotype">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ChemicalGene" TypeName="KB_PGxModel.ChemicalGene" StoreEntitySet="ChemicalGene">
+      <EndProperty Name="Chemical">
+        <ScalarProperty Name="Id" ColumnName="Chemical_Id" />
+      </EndProperty>
+      <EndProperty Name="Gene">
+        <ScalarProperty Name="Id" ColumnName="Gene_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="HaplotypeGene" TypeName="KB_PGxModel.HaplotypeGene" StoreEntitySet="Haplotypes">
+      <EndProperty Name="Gene">
+        <ScalarProperty Name="Id" ColumnName="Gene_Id" />
+      </EndProperty>
+      <EndProperty Name="Haplotype">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="GenePhenotype" TypeName="KB_PGxModel.GenePhenotype" StoreEntitySet="Phenotypes">
+      <EndProperty Name="Gene">
+        <ScalarProperty Name="Id" ColumnName="Gene_Id" />
+      </EndProperty>
+      <EndProperty Name="Phenotype">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ChemicalDrug" TypeName="KB_PGxModel.ChemicalDrug" StoreEntitySet="Drugs">
+      <EndProperty Name="Chemical">
+        <ScalarProperty Name="Id" ColumnName="Chemical_Id" />
+      </EndProperty>
+      <EndProperty Name="Drug">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="GeneDiplotype" TypeName="KB_PGxModel.GeneDiplotype" StoreEntitySet="Diplotypes">
+      <EndProperty Name="Gene">
+        <ScalarProperty Name="Id" ColumnName="Gene_Id" />
+      </EndProperty>
+      <EndProperty Name="Diplotype">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

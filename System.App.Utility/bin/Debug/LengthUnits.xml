@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<UnitTable>
+  <Units>
+    <Unit code="1" name="Meter" symbol="m" plural="Meters" alias ="米"/>
+    <Unit code="2" name="Kilometer" symbol="km" plural="Kilometers" alias="千米"/>
+    <Unit code="3" name="Centimeter" symbol="cm" plural="Centimeters" alias="厘米"/>
+    <Unit code="4" name="Milimeter" symbol="mm" plural="Milimeters" alias="毫米"/>
+    <Unit code="5" name="Mile" symbol="mi." plural="Miles" alias="英里"/>
+    <Unit code="6" name="Yards" symbol="yrd" plural="Yards" alias="码"/>
+    <Unit code="7" name="Foot" symbol="ft" plural="Feet" alias="英寸"/>
+    <Unit code="8" name="Inch" symbol="in" plural="Inches" alias="英尺"/>
+  </Units>
+  <Conversions>
+    <Linear srcCode="1" destCode="2" factor="1e-3"/>
+    <Linear srcCode="1" destCode="3" factor="1e2"/>
+    <Linear srcCode="1" destCode="4" factor="1e3"/>
+    <Linear srcCode="1" destCode="5" factor="0.621371e-3"/>
+    <Linear srcCode="1" destCode="6" factor="1.093613"/>
+    <Linear srcCode="1" destCode="7" factor="3.280839"/>
+    <Linear srcCode="1" destCode="8" factor="39.37"/>
+
+    <Linear srcCode="2" destCode="3" factor="1e-5"/>
+    <Linear srcCode="2" destCode="4" factor="1e-6"/>
+    <Linear srcCode="2" destCode="5" factor="0.621371"/>
+    <Linear srcCode="2" destCode="6" factor="1.093613e3"/>
+    <Linear srcCode="2" destCode="7" factor="3.280839e3" />
+    <Linear srcCode="2" destCode="8" factor="3.937e4"/>
+
+    <Linear srcCode="3" destCode="4" factor="1e-1"/>
+    <Linear srcCode="3" destCode="5" factor="0.621371e-5"/>
+    <Linear srcCode="3" destCode="6" factor="1.093613e-2"/>
+    <Linear srcCode="3" destCode="7" factor="3.280839e-2" />
+    <Linear srcCode="3" destCode="8" factor="3.937e-1"/>
+    
+    <Linear srcCode="4" destCode="5" factor="0.621371e-6"/>
+    <Linear srcCode="4" destCode="6" factor="1.093613e-3"/>
+    <Linear srcCode="4" destCode="7" factor="3.280839e-3" />
+    <Linear srcCode="4" destCode="8" factor="3.937e-2"/>
+
+    <Linear srcCode="5" destCode="6" factor="1760" />
+    <Linear srcCode="5" destCode="7" factor="5280" />
+    <Linear srcCode="5" destCode="8" factor="63360" />
+    
+    <Linear srcCode="6" destCode="7" factor="3" />
+    <Linear srcCode="6" destCode="8" factor="48" />
+
+    <Linear srcCode="7" destCode="8" factor="12" />
+  </Conversions>
+</UnitTable>

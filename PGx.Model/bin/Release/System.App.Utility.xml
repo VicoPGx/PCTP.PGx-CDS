@@ -1,0 +1,931 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>System.App.Utility</name>
+    </assembly>
+    <members>
+        <member name="T:System.App.Utility.Attributes.OptionalAuthorizeAttribute">
+            <summary>
+            This attribute only decorates controller, not action. 
+            </summary>
+        </member>
+        <member name="T:System.App.Utility.Helpers.ChineseNameGenerator">
+            <summary>
+            Generate a random chinese name
+            </summary>
+        </member>
+        <member name="T:System.App.Utility.Helpers.ComHelper">
+            <summary>
+            Utility class to get a Class Factory for a certain Class ID 
+            by loading the dll that implements that class
+            </summary>
+        </member>
+        <member name="M:System.App.Utility.Helpers.ComHelper.GetClassFactory(System.String,System.String)">
+            <summary>
+            Gets a class factory for a specific COM Class ID. 
+            </summary>
+            <param name="dllName">The dll where the COM class is implemented</param>
+            <param name="filterPersistClass">The requested Class ID</param>
+            <returns>IClassFactory instance used to create instances of that class</returns>
+        </member>
+        <member name="M:System.App.Utility.Helpers.ComHelper.Win32NativeMethods.GetProcAddress(System.IntPtr,System.String)">
+            <remarks>
+            GetProcAddress only comes in an ANSI flavor, hence we help the runtime by telling it to always use ANSI when marshalling the string parameter. We also prevent the runtime looking for a non-existent GetProcAddressA, because the default for C# is to set ExactSpelling to false.
+            </remarks>
+        </member>
+        <member name="T:System.App.Utility.Helpers.ComHelper.DllList">
+            <summary>
+            Holds a list of dll handles and unloads the dlls 
+            in the destructor
+            </summary>
+        </member>
+        <member name="T:System.App.Utility.Helpers.ChineseNameDeidentifier">
+            <summary>
+            Generate a random chinese name
+            </summary>
+        </member>
+        <member name="M:System.App.Utility.Helpers.ChineseNameDeidentifier.Convert(System.String)">
+            <summary>
+            Deidentification or reverse-Deidentification of a Chinese name. 
+            The process is reversible.
+            </summary>        
+        </member>
+        <member name="T:System.App.Utility.Helpers.ChineseNameHelper">
+            <summary>
+            Generate a random chinese name
+            </summary>
+        </member>
+        <member name="M:System.App.Utility.Helpers.FileTypeHelper.IsImageFile(System.String)">
+            <summary>
+            Judge whether is an image by file extension
+            </summary>
+        </member>
+        <member name="M:System.App.Utility.Helpers.FileTypeHelper.IsReallyImageFile(System.String)">
+            <summary>
+            Judge whether is an image by parsing headers
+            </summary>
+            <param name="filename">requires a local file full path name</param>
+            <returns>true or false</returns>
+        </member>
+        <member name="T:System.App.Utility.Helpers.Log">
+            <summary>
+            日志类
+            </summary>
+        </member>
+        <member name="M:System.App.Utility.Helpers.Log.WriteLog(System.String)">
+            <summary>
+            输出日志记录（参数：记录消息）
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:System.App.Utility.Helpers.Log.WriteLog(System.String,System.String)">
+            <summary>
+            输出日志记录（参数：记录消息，错误异常信息）
+            </summary>
+            <param name="message"></param>
+            <param name="error"></param>
+        </member>
+        <member name="M:System.App.Utility.Helpers.Log.WriteLog(System.String,System.String,System.String)">
+            <summary>
+            输出日志记录（参数：记录消息，错误异常信息，执行的SQL语句）
+            </summary>
+            <param name="message"></param>
+            <param name="error"></param>
+            <param name="strSql"></param>
+        </member>
+        <!-- 对于成员“T:System.App.Utility.Helpers.DynamicTypeBuilder”忽略有格式错误的 XML 注释 -->
+        <member name="M:System.App.Utility.Helpers.PathHelper.GetAspNetBinDir">
+            <remarks>
+            3 possible methods can be considered:
+            AppDomain.CurrentDomain.BaseDirectory ->
+            D:\VicoSvc\WebRoot\KB\kms6\
+            Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase) ->
+            file:\C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temporary ASP.NET Files\root\04e9da4e\dfa35f69
+            Server.MapPath("~")
+            D:\VicoSvc\WebRoot\KB\kms6\
+            </remarks>
+        </member>
+        <member name="T:System.App.Utility.Helpers.WindowsApiHelper">
+            <summary>
+            Provide windows 
+            </summary>
+        </member>
+        <member name="M:System.App.Utility.Helpers.WindowsApiHelper.GetControlText(System.IntPtr)">
+            <example>
+            IntPtr hwnd = (IntPtr)(0x000A0CFE);
+            var s = Class1.GetControlText(hwnd);
+            </example>
+        </member>
+        <member name="M:System.App.Utility.Helpers.DateTimeHelper.GetMonthStart(System.DateTime)">
+            <summary>
+            Get 1st day of month
+            </summary>
+        </member>
+        <member name="M:System.App.Utility.Helpers.DateTimeHelper.GetNextMonthStart(System.DateTime)">
+            <summary>
+            Get 1st day of next month
+            </summary>
+        </member>
+        <member name="M:System.App.Utility.Helpers.DateTimeHelper.GetMonthEnd(System.DateTime)">
+            <summary>
+            Get last day of month
+            </summary>
+        </member>
+        <member name="M:System.App.Utility.Helpers.DateTimeHelper.GetMonthDiff(System.DateTime,System.DateTime)">
+            <summary>
+            Get month differences between two datetimes
+            </summary>
+        </member>
+        <member name="M:System.App.Utility.Helpers.DateTimeHelper.GetExplorerFileDate(System.String)">
+            <summary>
+            Get the correct LocalDateTime of files no matter which date settings your computer has
+            </summary>
+            <param name="filename">full file path name</param>
+            <returns>last modified time</returns>
+        </member>
+        <member name="M:System.App.Utility.Helpers.DllHelper.ExportFunctions(System.String)">
+            <summary>
+            Export function names of a native C style API dll
+            </summary>
+            <param name="filepath">File path of dll</param>
+            <returns>List of function names</returns>
+            <remarks>
+            Use dbghelp.dl (part of the Debugging Tools for the Windows platform) to enumerate dll functions. The dbghelp DLL provides a function called SymEnumerateSymbols64 which allows you to enumerate all exported symbols of a dynamic link library. There is also a newer function called SymEnumSymbols which also allows to enumerate exported symbols.
+            </remarks>
+        </member>
+        <member name="T:System.App.Utility.Helpers.LambdaExpression">
+            <summary>
+            a helper class of Lambda generic methods
+            </summary>
+        </member>
+        <member name="T:System.App.Utility.Helpers.RegistryHelper">
+            <summary>
+            A registry helper that works for both 32-bit and 64-bit OS
+            </summary>
+            <remarks>
+            http://stackoverflow.com/questions/1268715/registry-localmachine-opensubkey-returns-null
+            </remarks>
+        </member>
+        <member name="M:System.App.Utility.Helpers.TextEncodingHelper.IsChineseString(System.String)">
+            <summary>
+            Judge whether a string is encoded in Chinese
+            </summary>
+        </member>
+        <member name="T:System.App.Utility.Helpers.DynamicInitializer">
+            <summary>
+            The quickest way to instantiate an object with a default constructor through Reflection
+            </summary>
+        </member>
+        <member name="M:System.App.Utility.Helpers.DynamicInvoker.Invoke(System.String,System.String,System.String,System.Object[])">
+            <summary>
+            Invoke a method of a class from a assembly
+            </summary>
+            <param name="path">full path name of the assembly file</param>
+            <param name="type">class name</param>
+            <param name="func">method name</param>
+            <param name="args">arguments</param>
+            <returns>return from invoking the method</returns>
+        </member>
+        <member name="M:System.App.Utility.Helpers.WebServerUtility.IsUrlAccessible(System.String)">
+            <summary>
+            Checks whether URL is accessible.
+            </summary>
+            <param name="url">URL</param>
+            <returns>True if accessible</returns>
+        </member>
+        <member name="M:System.App.Utility.Helpers.DbContextHelper.GetDbSet``1(System.Data.Entity.DbContext)">
+            <summary>
+            Get the DbSet of T 
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="db"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.App.Utility.Helpers.DbContextHelper.GetAssociatedItems``1(System.String,System.String,System.Data.Entity.DbContext)">
+            <summary>
+            Get associated items from DBContext by specified property name and value 
+            Requires the property be string type
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="name"></param>
+            <param name="value"></param>
+            <param name="db"></param>
+            <returns></returns>
+            <remarks>Only use this generic funciton for small-size data volume</remarks>
+        </member>
+        <member name="M:System.App.Utility.Helpers.EnumHelper.GetEnumDescription``1(``0)">
+            <summary>
+            Get description annotation
+            </summary>
+            <typeparam name="TEnum"></typeparam>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.App.Utility.Helpers.HttpFormSimulator.Submit(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Simulate a form submit action.
+            i.e. Get response from a POST method
+            </summary>
+            <param name="url">URL</param>
+            <param name="fc">form collection of parameters</param>
+            <returns>response from server side</returns>
+            <sample>
+            var dict = new Dictionary&lt;string,string&gt;();
+            dict.Add("drug_name",textBoxDrugName.Text);
+            dict.Add("drug_id",textBoxDrugId.Text);
+            this.textBoxResponse.Text = HttpFormSimulator.Submit(textBoxUrl.Text, dict);
+            </sample>
+        </member>
+        <member name="M:System.App.Utility.Helpers.XorEncryptor.Encrypt(System.String)">
+            <summary>
+            加密
+            </summary>
+            <param name="txt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.App.Utility.Helpers.XorEncryptor.Decrypt(System.String)">
+            <summary>
+            解密
+            </summary>
+            <param name="txt"></param>
+            <returns></returns>
+        </member>
+        <member name="T:System.App.Utility.Helpers.WebBrowserUtility">
+            <summary>
+            WebBrowser.Source is not a DependencyProperty. One workaround would be to use some AttachedProperty magic to enable this ability.
+            </summary>
+            <remarks>
+            http://stackoverflow.com/questions/263551/databind-the-source-property-of-the-webbrowser-in-wpf
+            </remarks>
+        </member>
+        <member name="T:System.App.Utility.Java.Weka">
+            <summary>
+            A wrapped .Net dll for weka.jar
+            </summary>
+        </member>
+        <member name="T:System.App.Utility.Parsers.LogEntry">
+            <summary>
+            A simple log object used for serialization
+            </summary>
+        </member>
+        <member name="T:System.App.Utility.Parsers.LogParser">
+            <summary>
+            Parses log files
+            Based on Microsoft Log Parser. 
+            Supports various log formats, e.g. IIS, IISW3C, CSV, TSV, XML, W3C, NCSA, EVT, REG
+            </summary>
+        </member>
+        <member name="M:System.App.Utility.Parsers.LogParser.ParseIISW3C(System.String,System.Boolean,System.Collections.Generic.List{System.String})">
+            <remarks>
+            
+            Error	Interop type 'Interop.MSUtil.LogQueryClassClass' cannot be embedded. Use the applicable interface instead.
+            
+            In most cases this error is the result of code which tries to instantiate a COM object e.g. here piece of code starting up Excel: Excel.ApplicationClass xlapp = new Excel.ApplicationClass();
+            Typically, in .Net 4 you just need to remove the 'Class' suffix and compile the code: Excel.Application xlapp = new Excel.Application();
+            </remarks>
+        </member>
+        <member name="M:System.App.Utility.Parsers.PdfOperator.GetFileSize(System.String)">
+            <summary>
+            Get file size
+            </summary>
+        </member>
+        <member name="M:System.App.Utility.Parsers.PdfOperator.GetMD5CheckSum(System.String)">
+            <summary>
+            Get MD5 check sum in Base64
+            </summary>
+        </member>
+        <member name="M:System.App.Utility.Parsers.PdfOperator.GetText(System.String)">
+            <summary>
+            Get plain text content from PDF file
+            </summary>
+        </member>
+        <member name="M:System.App.Utility.Parsers.PdfOperator.GetLeadingText(System.String,System.Int32)">
+            <summary>
+            Get leading plain text content from PDF file
+            </summary>
+        </member>
+        <member name="T:System.App.Utility.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:System.App.Utility.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:System.App.Utility.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:System.App.Utility.Properties.Resources.Pinyin_cn">
+            <summary>
+              Looks up a localized string similar to [[&quot;啊&quot;,&quot;a1&quot;,&quot;B0A1&quot;,&quot;True&quot;],[&quot;阿&quot;,&quot;a1&quot;,&quot;B0A2&quot;,&quot;True&quot;],[&quot;吖&quot;,&quot;a1&quot;,&quot;DFB9&quot;,&quot;False&quot;],[&quot;腌&quot;,&quot;a1&quot;,&quot;EBE7&quot;,&quot;True&quot;],[&quot;锕&quot;,&quot;a1&quot;,&quot;EFB9&quot;,&quot;False&quot;],[&quot;啊&quot;,&quot;a2&quot;,&quot;B0A1&quot;,&quot;True&quot;],[&quot;嗄&quot;,&quot;a2&quot;,&quot;E0C4&quot;,&quot;True&quot;],[&quot;啊&quot;,&quot;a3&quot;,&quot;B0A1&quot;,&quot;True&quot;],[&quot;啊&quot;,&quot;a4&quot;,&quot;B0A1&quot;,&quot;True&quot;],[&quot;啊&quot;,&quot;a5&quot;,&quot;B0A1&quot;,&quot;True&quot;],[&quot;呵&quot;,&quot;a5&quot;,&quot;BAC7&quot;,&quot;True&quot;],[&quot;埃&quot;,&quot;ai1&quot;,&quot;B0A3&quot;,&quot;False&quot;],[&quot;挨&quot;,&quot;ai1&quot;,&quot;B0A4&quot;,&quot;True&quot;],[&quot;哎&quot;,&quot;ai1&quot;,&quot;B0A5&quot;,&quot;True&quot;],[&quot;唉&quot;,&quot;ai1&quot;,&quot;B0A6&quot;,&quot;True&quot;],[&quot;哀&quot;,&quot;ai1&quot;,&quot;B....
+            </summary>
+        </member>
+        <member name="T:System.App.Utility.Helpers.HtmlDropDownListExtensions">
+            <summary>
+            Helper class for Html.EnumDropDownListFor
+            http://stackoverflow.com/questions/388483/how-do-you-create-a-dropdownlist-from-an-enum-in-asp-net-mvc
+            </summary>
+        </member>
+        <member name="M:System.App.Utility.Helpers.MathExpressionHelper.Evaluate(System.String)">
+            <summary>
+            A simple function to get the result of a C# expression (basic and advanced math possible)
+            </summary>
+            <param name="expression">String value containing an expression that can evaluate to a double.</param>
+            <returns>a Double value after evaluating the command string.</returns>
+        </member>
+        <member name="M:System.App.Utility.Helpers.PropertyComparer`1.#ctor(System.String)">
+            <summary>
+            Creates a new instance of PropertyComparer.
+            </summary>
+            <param name="propertyName">The name of the property on type T 
+            to perform the comparison on.</param>
+        </member>
+        <member name="M:System.App.Utility.Helpers.RandomDateTimeHelper.GetRandomDate">
+            <summary>
+            Get random date time between start and now
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:System.App.Utility.Helpers.RandomDateTimeHelper.GetRandomDate(System.DateTime,System.DateTime)">
+            <summary>
+            Get random date time between min and max
+            </summary>
+            <param name="min"></param>
+            <param name="max"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.App.Utility.Helpers.RandomNumberHelper.GetRandomNumber(System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="min">The inclusive lower bound of the random number returned.</param>
+            <param name="max">The exclusive upper bound of the random number returned</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.App.Utility.Helpers.ReflectionHelper.FindAssembly(System.String)">
+            <summary>
+            Find assembly from loaded assemblies by matching name, e.g. "System.App.NLP.dll".
+            </summary>
+            <param name="name">assembly name</param>
+            <returns>null if not found</returns>
+        </member>
+        <member name="M:System.App.Utility.Helpers.ReflectionHelper.IsTypeImplementsInterface(System.String,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Judge whether a type implements an interface by Reflection
+            </summary>
+            <param name="implementerName">Derived class; The type that implements interface, e.g. "System.App.NLP.Algorithms.ConceptValueExtractor"</param>
+            <param name="assemblyName1">The assembly where implementer type resides, e.g. "System.App.NLP.Algorithms.ConceptValueExtractor.dll"</param>
+            <param name="interfaceName">The interface / base type, e.g. "System.App.NLP.Infrastructure.Interfaces.IExtractConcept"</param>
+            <param name="assemblyName2">The assembly where interface / base type resides, e.g. "System.App.NLP.Infrastructure.dll"</param>
+            <param name="log">whether log message</param>
+        </member>
+        <member name="T:System.App.Utility.Helpers.RelativeDateTimeHelper">
+            <summary> 
+            Returns a friendly version of the provided DateTime, relative to now. E.g.: "2 days ago", or "in 6 months". 
+            </summary> 
+        </member>
+        <member name="M:System.App.Utility.Helpers.RelativeDateTimeHelper.GetFriendlyRelativeTime(System.DateTime)">
+            <summary> 
+            Returns a friendly version of the provided DateTime, relative to now. E.g.: "2 days ago", or "in 6 months". 
+            </summary> 
+            <param name="dateTime">The DateTime to compare to Now</param> 
+            <returns>A friendly string</returns> 
+        </member>
+        <member name="M:System.App.Utility.Helpers.ResourceHelper.GetKeys(System.Type)">
+            <summary>
+            Get all keys in a resx
+            </summary>
+            <param name="targetType">A resx auto-generated resource class</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.App.Utility.Helpers.ResourceHelper.GetKeyValuePairs(System.Type)">
+            <summary>
+            Get all keys and values in a resx
+            </summary>
+            <param name="targetType">A resx auto-generated resource class</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.App.Utility.Helpers.ResourceHelper.GetValue(System.Type,System.String)">
+            <summary>
+            Get a string value from resx by key
+            </summary>
+            <param name="targetType">A resx auto-generated resource class</param>
+            <param name="key">key</param>
+            <returns></returns>
+        </member>
+        <member name="T:System.App.Utility.Helpers.Pair`2">
+            <summary>
+            System.Collections.Generic.KeyValuePair cannot be serialized to xml.
+            Define this struct to replace KeyValuePair.
+            </summary>    
+        </member>
+        <member name="M:System.App.Utility.Helpers.SerializationHelper.Deserialize(System.Type,System.String)">
+            <summary>
+            Deserialize an xml string into a typed object
+            </summary>
+        </member>
+        <member name="M:System.App.Utility.Helpers.SerializationHelper.Serialize(System.Object@)">
+            <summary>
+            Serialize a typed object into an xml string
+            </summary>
+        </member>
+        <member name="M:System.App.Utility.Helpers.SerializationHelper.Serialize``1(``0,System.String)">
+            <summary>
+            Serializes an object.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="serializableObject"></param>
+            <param name="fileName"></param>
+        </member>
+        <member name="M:System.App.Utility.Helpers.SerializationHelper.Deserialize``1(System.String,System.String@)">
+            <summary>
+            Deserializes an xml file into an object list
+            </summary>
+            <typeparam name="T">type</typeparam>
+            <param name="fileName">xml file path name</param>
+            <param name="result">
+            returned message. can be any of:
+            "file name is empty", 
+            "file does not exist",
+            "parsing file failed",
+            "parsing file success".
+            </param>
+            <returns>an object of type T</returns>        
+        </member>
+        <member name="T:System.App.Utility.Helpers.AdmAuthentication">
+            <summary>
+            Authorization for MarketPlace services, such as Bing Search or Bing Translate.
+            <see cref="!:https://datamarket.azure.com/account"/>
+            </summary>
+        </member>
+        <member name="M:System.App.Utility.Helpers.TermTranslationHelper.BingTranslate(System.String,System.String,System.String)">
+            <summary>
+            Bing Translate API requires a MarketPlace App id。
+            Don't over use it, otherwise service will be blocked.
+            </summary>
+        </member>
+        <member name="M:System.App.Utility.Helpers.TermTranslationHelper.GoogleTranslate(System.String,System.String,System.String)">
+            <summary>
+            Translate by Google service.
+            Currently, the Google Translate Service is blocked. 
+            <see cref="!:https://developers.google.com/errors/?hl=zh-CN"/>
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Helpers.TermTranslationHelper.dictionary">
+            <summary>
+            This is an English to Chinese dictionary
+            </summary>
+        </member>
+        <member name="M:System.App.Utility.Helpers.TypeHelper.SetPropertyStringValue(System.Object,System.String,System.String)">
+            <summary>
+            Set property value by string. String will be converted to corresponding property type
+            </summary>
+        </member>
+        <member name="M:System.App.Utility.Helpers.TypeHelper.CloneByReflection``2(``0,``1,System.Boolean)">
+            <summary>
+            Clone object according to property names. Properties with same name will be copied.
+            </summary>
+            <typeparam name="T1">destination type</typeparam>
+            <typeparam name="T2">src type</typeparam>
+            <param name="o1">destination object</param>
+            <param name="o2">src object</param>
+            <param name="skipId">whether to skip "Id". When src is an entity object, its "Id" is often not writable</param>
+        </member>
+        <member name="M:System.App.Utility.Helpers.TypeHelper.CompareByReflection``1(``0,``0,System.Boolean)">
+            <summary>
+            Compare two objects by comparing property value.
+            NOTE: Currently only use this method for type with primitive properties.
+            For complex object comparison, use KellermanSoftware.CompareNETObjects
+            </summary>
+            <typeparam name="T">type</typeparam>
+            <param name="o1">object #1</param>
+            <param name="o2">object #2</param>
+            <param name="skipId">whether to skip "Id". When src or des is an entity object, "Id" should be omited.</param>
+            <returns>true if equal; false unequal</returns>
+        </member>
+        <member name="T:System.App.Utility.Helpers.WorkflowHelper">
+            <summary>
+            Provide serialization and deserialization functions for Activity (System.Activities.Activity).
+            Note: System.Activities.Activity is for WF4 and System.Workflow.ComponentModel.Activity is for WF3 and below.
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.IFILTER_FLAGS.IFILTER_FLAGS_OLE_PROPERTIES">
+            <summary>
+            The caller should use the IPropertySetStorage and IPropertyStorage
+            interfaces to locate additional properties. 
+            When this flag is set, properties available through COM
+            enumerators should not be returned from IFilter. 
+            </summary>
+        </member>
+        <member name="T:System.App.Utility.Parsers.IFILTER_INIT">
+            <summary>
+            Flags controlling the operation of the FileFilter
+            instance.
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.IFILTER_INIT.CANON_PARAGRAPHS">
+            <summary>
+            Paragraph breaks should be marked with the Unicode PARAGRAPH
+            SEPARATOR (0x2029)
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.IFILTER_INIT.HARD_LINE_BREAKS">
+            <summary>
+            Soft returns, such as the newline character in Microsoft Word, should
+            be replaced by hard returnsLINE SEPARATOR (0x2028). Existing hard
+            returns can be doubled. A carriage return (0x000D), line feed (0x000A),
+            or the carriage return and line feed in combination should be considered
+            a hard return. The intent is to enable pattern-expression matches that
+            match against observed line breaks. 
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.IFILTER_INIT.CANON_HYPHENS">
+            <summary>
+            Various word-processing programs have forms of hyphens that are not
+            represented in the host character set, such as optional hyphens
+            (appearing only at the end of a line) and nonbreaking hyphens. This flag
+            indicates that optional hyphens are to be converted to nulls, and
+            non-breaking hyphens are to be converted to normal hyphens (0x2010), or
+            HYPHEN-MINUSES (0x002D). 
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.IFILTER_INIT.CANON_SPACES">
+            <summary>
+            Just as the CANON_HYPHENS flag standardizes hyphens,
+            this one standardizes spaces. All special space characters, such as
+            nonbreaking spaces, are converted to the standard space character
+            (0x0020). 
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.IFILTER_INIT.APPLY_INDEX_ATTRIBUTES">
+            <summary>
+            Indicates that the client wants text split into chunks representing
+            public value-type properties. 
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.IFILTER_INIT.APPLY_CRAWL_ATTRIBUTES">
+            <summary>
+            Indicates that the client wants text split into chunks representing
+            properties determined during the indexing process. 
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.IFILTER_INIT.APPLY_OTHER_ATTRIBUTES">
+            <summary>
+            Any properties not covered by the APPLY_INDEX_ATTRIBUTES
+            and APPLY_CRAWL_ATTRIBUTES flags should be emitted. 
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.IFILTER_INIT.INDEXING_ONLY">
+            <summary>
+            Optimizes IFilter for indexing because the client calls the
+            IFilter::Init method only once and does not call IFilter::BindRegion.
+            This eliminates the possibility of accessing a chunk both before and
+            after accessing another chunk. 
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.IFILTER_INIT.SEARCH_LINKS">
+            <summary>
+            The text extraction process must recursively search all linked
+            objects within the document. If a link is unavailable, the
+            IFilter::GetChunk call that would have obtained the first chunk of the
+            link should return FILTER_E_LINK_UNAVAILABLE. 
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.IFILTER_INIT.FILTER_OWNED_VALUE_OK">
+            <summary>
+            The content indexing process can return property values set by the  filter. 
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.STAT_CHUNK.idChunk">
+            <summary>
+            The chunk identifier. Chunk identifiers must be unique for the
+            current instance of the IFilter interface. 
+            Chunk identifiers must be in ascending order. The order in which
+            chunks are numbered should correspond to the order in which they appear
+            in the source document. Some search engines can take advantage of the
+            proximity of chunks of various properties. If so, the order in which
+            chunks with different properties are emitted will be important to the
+            search engine. 
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.STAT_CHUNK.breakType">
+            <summary>
+            The type of break that separates the previous chunk from the current
+             chunk. Values are from the CHUNK_BREAKTYPE enumeration. 
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.STAT_CHUNK.flags">
+            <summary>
+            Flags indicate whether this chunk contains a text-type or a
+            value-type property. 
+            Flag values are taken from the CHUNKSTATE enumeration. If the CHUNK_TEXT flag is set, 
+            IFilter::GetText should be used to retrieve the contents of the chunk
+            as a series of words. 
+            If the CHUNK_VALUE flag is set, IFilter::GetValue should be used to retrieve 
+            the value and treat it as a single property value. If the filter dictates that the same 
+            content be treated as both text and as a value, the chunk should be emitted twice in two       
+            different chunks, each with one flag set. 
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.STAT_CHUNK.locale">
+            <summary>
+            The language and sublanguage associated with a chunk of text. Chunk locale is used 
+            by document indexers to perform proper word breaking of text. If the chunk is 
+            neither text-type nor a value-type with data type VT_LPWSTR, VT_LPSTR or VT_BSTR, 
+            this field is ignored. 
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.STAT_CHUNK.attribute">
+            <summary>
+            The property to be applied to the chunk. If a filter requires that       the same text 
+            have more than one property, it needs to emit the text once for each       property 
+            in separate chunks. 
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.STAT_CHUNK.idChunkSource">
+            <summary>
+            The ID of the source of a chunk. The value of the idChunkSource     member depends on the nature of the chunk: 
+            If the chunk is a text-type property, the value of the idChunkSource       member must be the same as the value of the idChunk member. 
+            If the chunk is an public value-type property derived from textual       content, the value of the idChunkSource member is the chunk ID for the
+            text-type chunk from which it is derived. 
+            If the filter attributes specify to return only public value-type
+            properties, there is no content chunk from which to derive the current
+            public value-type property. In this case, the value of the
+            idChunkSource member must be set to zero, which is an invalid chunk. 
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.STAT_CHUNK.cwcStartSource">
+            <summary>
+            The offset from which the source text for a derived chunk starts in
+            the source chunk. 
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.STAT_CHUNK.cwcLenSource">
+            <summary>
+            The length in characters of the source text from which the current
+            chunk was derived. 
+            A zero value signifies character-by-character correspondence between
+            the source text and 
+            the derived text. A nonzero value means that no such direct
+            correspondence exists
+            </summary>
+        </member>
+        <member name="T:System.App.Utility.Parsers.CHUNK_BREAKTYPE">
+            <summary>
+            Enumerates the different breaking types that occur between 
+            chunks of text read out by the FileFilter.
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.CHUNK_BREAKTYPE.CHUNK_NO_BREAK">
+            <summary>
+            No break is placed between the current chunk and the previous chunk.
+            The chunks are glued together. 
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.CHUNK_BREAKTYPE.CHUNK_EOW">
+            <summary>
+            A word break is placed between this chunk and the previous chunk that
+            had the same attribute. 
+            Use of CHUNK_EOW should be minimized because the choice of word
+            breaks is language-dependent, 
+            so determining word breaks is best left to the search engine. 
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.CHUNK_BREAKTYPE.CHUNK_EOS">
+            <summary>
+            A sentence break is placed between this chunk and the previous chunk
+            that had the same attribute. 
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.CHUNK_BREAKTYPE.CHUNK_EOP">
+            <summary>
+            A paragraph break is placed between this chunk and the previous chunk
+            that had the same attribute.
+            </summary>     
+        </member>
+        <member name="F:System.App.Utility.Parsers.CHUNK_BREAKTYPE.CHUNK_EOC">
+            <summary>
+            A chapter break is placed between this chunk and the previous chunk
+            that had the same attribute. 
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.CHUNKSTATE.CHUNK_TEXT">
+            <summary>
+            The current chunk is a text-type property.
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.CHUNKSTATE.CHUNK_VALUE">
+            <summary>
+            The current chunk is a value-type property. 
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.CHUNKSTATE.CHUNK_FILTER_OWNED_VALUE">
+            <summary>
+            Reserved
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.IFilterReturnCode.S_OK">
+            <summary>
+            Success
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.IFilterReturnCode.E_ACCESSDENIED">
+            <summary>
+            The function was denied access to the filter file. 
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.IFilterReturnCode.E_HANDLE">
+            <summary>
+            The function encountered an invalid handle,
+            probably due to a low-memory situation. 
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.IFilterReturnCode.E_INVALIDARG">
+            <summary>
+            The function received an invalid parameter.
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.IFilterReturnCode.E_OUTOFMEMORY">
+            <summary>
+            Out of memory
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.IFilterReturnCode.E_NOTIMPL">
+            <summary>
+            Not implemented
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.IFilterReturnCode.E_FAIL">
+            <summary>
+            Unknown error
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.IFilterReturnCode.FILTER_E_PASSWORD">
+            <summary>
+            File not filtered due to password protection
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.IFilterReturnCode.FILTER_E_UNKNOWNFORMAT">
+            <summary>
+            The document format is not recognised by the filter
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.IFilterReturnCode.FILTER_E_NO_TEXT">
+            <summary>
+            No text in current chunk
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.IFilterReturnCode.FILTER_E_END_OF_CHUNKS">
+            <summary>
+            No more chunks of text available in object
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.IFilterReturnCode.FILTER_E_NO_MORE_TEXT">
+            <summary>
+            No more text available in chunk
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.IFilterReturnCode.FILTER_E_NO_MORE_VALUES">
+            <summary>
+            No more property values available in chunk
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.IFilterReturnCode.FILTER_E_ACCESS">
+            <summary>
+            Unable to access object
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.IFilterReturnCode.FILTER_W_MONIKER_CLIPPED">
+            <summary>
+            Moniker doesn't cover entire region
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.IFilterReturnCode.FILTER_E_EMBEDDING_UNAVAILABLE">
+            <summary>
+            Unable to bind IFilter for embedded object
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.IFilterReturnCode.FILTER_E_LINK_UNAVAILABLE">
+            <summary>
+            Unable to bind IFilter for linked object
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.IFilterReturnCode.FILTER_S_LAST_TEXT">
+            <summary>
+             This is the last text in the current chunk
+            </summary>
+        </member>
+        <member name="F:System.App.Utility.Parsers.IFilterReturnCode.FILTER_S_LAST_VALUES">
+            <summary>
+            This is the last value in the current chunk
+            </summary>
+        </member>
+        <member name="M:System.App.Utility.Parsers.IFilter.Init(System.App.Utility.Parsers.IFILTER_INIT,System.Int32,System.IntPtr,System.App.Utility.Parsers.IFILTER_FLAGS@)">
+            <summary>
+            The IFilter::Init method initializes a filtering session.
+            </summary>
+        </member>
+        <member name="M:System.App.Utility.Parsers.IFilter.GetChunk(System.App.Utility.Parsers.STAT_CHUNK@)">
+            <summary>
+            The IFilter::GetChunk method positions the filter at the beginning
+            of the next chunk, 
+            or at the first chunk if this is the first call to the GetChunk
+            method, and returns a description of the current chunk. 
+            </summary>
+        </member>
+        <member name="M:System.App.Utility.Parsers.IFilter.GetText(System.UInt32@,System.Char[])">
+            <summary>
+            The IFilter::GetText method retrieves text (text-type properties)
+            from the current chunk, 
+            which must have a CHUNKSTATE enumeration value of CHUNK_TEXT.
+            </summary>
+        </member>
+        <member name="M:System.App.Utility.Parsers.IFilter.GetValue(System.IntPtr@)">
+            <summary>
+            The IFilter::GetValue method retrieves a value (public
+            value-type property) from a chunk, 
+            which must have a CHUNKSTATE enumeration value of CHUNK_VALUE.
+            </summary>
+        </member>
+        <member name="M:System.App.Utility.Parsers.IFilter.BindRegion(System.App.Utility.Parsers.FILTERREGION@,System.Guid@,System.Object@)">
+            <summary>
+            The IFilter::BindRegion method retrieves an interface representing
+            the specified portion of the object. 
+            Currently reserved for future use.
+            </summary>
+        </member>
+        <member name="T:System.App.Utility.Parsers.ExcelOperator">
+            <summary>
+            An excel file parser
+            Originally written by Wu Fan, modified by zys later.
+            </summary>
+        </member>
+        <member name="M:System.App.Utility.Parsers.ExcelOperator.#ctor(System.String,System.Int32,System.Boolean)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="path"></param>
+            <param name="sheet">Index starts from 1. Get 1st sheet by default</param>
+            <param name="firstRowAsHeader">For the case of FirstRowAsHeader</param>
+        </member>
+        <member name="T:System.App.Utility.Parsers.FilterLoader">
+            <summary>
+            FilterLoader finds the dll and ClassID of the COM object responsible  
+            for filtering a specific file extension. 
+            It then loads that dll, creates the appropriate COM object and returns 
+            a pointer to an IFilter instance
+            </summary>
+        </member>
+        <member name="M:System.App.Utility.Parsers.FilterLoader.LoadIFilter(System.String)">
+            <summary>
+            finds an IFilter implementation for a file type
+            </summary>
+            <param name="ext">The extension of the file</param>
+            <returns>an IFilter instance used to retreive text from that file type</returns>
+        </member>
+        <member name="T:System.App.Utility.Parsers.FilterReader">
+             <summary>
+             Implements a TextReader that reads from an IFilter. 
+             Use this class to extract text from non-plain text files, such as .doc, .ppt, etc.
+             </summary>
+             <remarks>
+            TextReader reader=new FilterReader(fileName);
+            using (reader)
+            {
+               text=reader.ReadToEnd();
+            }
+             </remarks>
+        </member>
+        <member name="M:System.App.Utility.Parsers.FilterReader.GetText(System.String)">
+            <summary>
+            Get plain text content from file, e.g. for indexing
+            </summary>
+        </member>
+        <member name="T:System.App.Utility.Parsers.TsvOperator">
+            <summary>
+            Parse Tab Separated Value file and get a list of object.
+            Require the tsv has a header row, and the header names are the same with object properties
+            </summary>
+        </member>
+        <member name="M:System.App.Utility.Parsers.TsvOperator.GetDict(System.String,System.Reflection.Assembly)">
+            <summary>
+            Load a tsv file from embeded resource and parse its content into a dictionary object(require the tsv have 2 columns)
+            </summary>
+            <returns></returns>
+            <remarks>Requires tsv has two columns</remarks>
+        </member>
+        <member name="M:System.App.Utility.Parsers.WordOperator.ExtractTextFromFile(System.String)">
+            <summary>
+            Extract Text From a word document
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+            <remarks>This method is not tested yet</remarks>
+        </member>
+    </members>
+</doc>

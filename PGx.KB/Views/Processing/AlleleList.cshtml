@@ -1,0 +1,4 @@
+﻿@model List<string>
+
+<div class="col-md-6">Allele A @Html.DropDownList("HaplotypeA",new SelectList(Model),"Unselected")</div>
+<div class="col-md-6">Allele B @Html.DropDownList("HaplotypeB",new SelectList(Model),"Unselected")</div>

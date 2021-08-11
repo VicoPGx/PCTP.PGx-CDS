@@ -1,0 +1,682 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PGx_KBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="PGx_KBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="RAW_DATA_FILE" EntityType="PGx_KBModel.RAW_DATA_FILE" />
+    <EntitySet Name="DefinitionFile" EntityType="PGx_KBModel.DefinitionFile" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+    <EntitySet Name="VariantLocus" EntityType="PGx_KBModel.VariantLocus" />
+    <AssociationSet Name="DefinitionFileVariantLocus" Association="PGx_KBModel.DefinitionFileVariantLocus">
+      <End Role="DefinitionFile" EntitySet="DefinitionFile" />
+      <End Role="VariantLocus" EntitySet="VariantLocus" />
+    </AssociationSet>
+    <EntitySet Name="NamedAllele" EntityType="PGx_KBModel.NamedAllele" />
+    <EntitySet Name="NamedAlleleDefinition" EntityType="PGx_KBModel.NamedAlleleDefinition" />
+    <AssociationSet Name="VariantLocusAlleleDefinition" Association="PGx_KBModel.VariantLocusAlleleDefinition">
+      <End Role="VariantLocus" EntitySet="VariantLocus" />
+      <End Role="AlleleDefinition" EntitySet="NamedAlleleDefinition" />
+    </AssociationSet>
+    <AssociationSet Name="DefinitionFileNamedAllele" Association="PGx_KBModel.DefinitionFileNamedAllele">
+      <End Role="DefinitionFile" EntitySet="DefinitionFile" />
+      <End Role="NamedAllele" EntitySet="NamedAllele" />
+    </AssociationSet>
+    <AssociationSet Name="NamedAlleleNamedAlleleDefinition" Association="PGx_KBModel.NamedAlleleNamedAlleleDefinition">
+      <End Role="NamedAllele" EntitySet="NamedAllele" />
+      <End Role="NamedAlleleDefinition" EntitySet="NamedAlleleDefinition" />
+    </AssociationSet>
+    <EntitySet Name="DefinitionExemption" EntityType="PGx_KBModel.DefinitionExemption" />
+    <AssociationSet Name="DefinitionExemptionVariantLocus" Association="PGx_KBModel.DefinitionExemptionVariantLocus">
+      <End Role="DefinitionExemption" EntitySet="DefinitionExemption" />
+      <End Role="VariantLocus" EntitySet="VariantLocus" />
+    </AssociationSet>
+    <EntitySet Name="PopulationFrequency" EntityType="PGx_KBModel.PopulationFrequency" />
+    <AssociationSet Name="NamedAllelePopulationFrequency" Association="PGx_KBModel.NamedAllelePopulationFrequency">
+      <End Role="NamedAllele" EntitySet="NamedAllele" />
+      <End Role="PopulationFrequency" EntitySet="PopulationFrequency" />
+    </AssociationSet>
+    <EntitySet Name="PGxGuideline" EntityType="PGx_KBModel.PGxGuideline" />
+    <EntitySet Name="RelatedGene" EntityType="PGx_KBModel.RelatedGene" />
+    <EntitySet Name="DosingGuidence" EntityType="PGx_KBModel.DosingGuidence" />
+    <EntitySet Name="Literature" EntityType="PGx_KBModel.Literature" />
+    <EntitySet Name="GeneCall" EntityType="PGx_KBModel.GeneCall" />
+    <EntitySet Name="DiplotypeMatch" EntityType="PGx_KBModel.DiplotypeMatch" />
+    <EntitySet Name="HaplotypeMatch" EntityType="PGx_KBModel.HaplotypeMatch" />
+    <AssociationSet Name="GeneCallDiplotypeMatch" Association="PGx_KBModel.GeneCallDiplotypeMatch">
+      <End Role="GeneCall" EntitySet="GeneCall" />
+      <End Role="DiplotypeMatch" EntitySet="DiplotypeMatch" />
+    </AssociationSet>
+    <AssociationSet Name="GeneCallHaplotypeMatch" Association="PGx_KBModel.GeneCallHaplotypeMatch">
+      <End Role="GeneCall" EntitySet="GeneCall" />
+      <End Role="HaplotypeMatch" EntitySet="HaplotypeMatch" />
+    </AssociationSet>
+    <EntitySet Name="Variant" EntityType="PGx_KBModel.Variant" />
+    <AssociationSet Name="GeneCallVariant1" Association="PGx_KBModel.GeneCallVariant1">
+      <End Role="GeneCall" EntitySet="GeneCall" />
+      <End Role="Variant" EntitySet="Variant" />
+    </AssociationSet>
+    <EntitySet Name="VarOfInterest" EntityType="PGx_KBModel.VarOfInterest" />
+    <AssociationSet Name="GeneCallVarOfInterest" Association="PGx_KBModel.GeneCallVarOfInterest">
+      <End Role="GeneCall" EntitySet="GeneCall" />
+      <End Role="VarOfInterest" EntitySet="VarOfInterest" />
+    </AssociationSet>
+    <AssociationSet Name="PGxGuidelineDosingGuidence" Association="PGx_KBModel.PGxGuidelineDosingGuidence">
+      <End Role="PGxGuideline" EntitySet="PGxGuideline" />
+      <End Role="DosingGuidence" EntitySet="DosingGuidence" />
+    </AssociationSet>
+    <AssociationSet Name="PGxGuidelineLiterature" Association="PGx_KBModel.PGxGuidelineLiterature">
+      <End Role="PGxGuideline" EntitySet="PGxGuideline" />
+      <End Role="Literature" EntitySet="Literature" />
+    </AssociationSet>
+    <AssociationSet Name="PGxGuidelineRelatedGene" Association="PGx_KBModel.PGxGuidelineRelatedGene">
+      <End Role="PGxGuideline" EntitySet="PGxGuideline" />
+      <End Role="RelatedGene" EntitySet="RelatedGene" />
+    </AssociationSet>
+    <EntitySet Name="NamedPhenotype" EntityType="PGx_KBModel.NamedPhenotype" />
+    <AssociationSet Name="DefinitionFilePhenotypeMap" Association="PGx_KBModel.DefinitionFilePhenotypeMap">
+      <End Role="DefinitionFile" EntitySet="DefinitionFile" />
+      <End Role="PhenotypeMap" EntitySet="NamedPhenotype" />
+    </AssociationSet>
+    <EntitySet Name="PhenotypeDef" EntityType="PGx_KBModel.PhenotypeDef" />
+    <AssociationSet Name="NamedPhenotypePhenotypeDef" Association="PGx_KBModel.NamedPhenotypePhenotypeDef">
+      <End Role="NamedPhenotype" EntitySet="NamedPhenotype" />
+      <End Role="PhenotypeDef" EntitySet="PhenotypeDef" />
+    </AssociationSet>
+    <EntitySet Name="PhenotypePopFreq" EntityType="PGx_KBModel.PhenotypePopFreq" />
+    <AssociationSet Name="PhenotypePopFreqNamedPhenotype" Association="PGx_KBModel.PhenotypePopFreqNamedPhenotype">
+      <End Role="PhenotypePopFreq" EntitySet="PhenotypePopFreq" />
+      <End Role="NamedPhenotype" EntitySet="NamedPhenotype" />
+    </AssociationSet>
+    <AssociationSet Name="PGxGuidelineDefinitionFile" Association="PGx_KBModel.PGxGuidelineDefinitionFile">
+      <End Role="PGxGuideline" EntitySet="PGxGuideline" />
+      <End Role="DefinitionFile" EntitySet="DefinitionFile" />
+    </AssociationSet>
+    <EntitySet Name="Patient" EntityType="PGx_KBModel.Patient" />
+    <EntitySet Name="DiplotypeResult" EntityType="PGx_KBModel.DiplotypeResult" />
+    <AssociationSet Name="RAW_DATA_FILEDiplotypeResult" Association="PGx_KBModel.RAW_DATA_FILEDiplotypeResult">
+      <End Role="RAW_DATA_FILE" EntitySet="RAW_DATA_FILE" />
+      <End Role="DiplotypeResult" EntitySet="DiplotypeResult" />
+    </AssociationSet>
+    <AssociationSet Name="RAW_DATA_FILEGeneCall" Association="PGx_KBModel.RAW_DATA_FILEGeneCall">
+      <End Role="RAW_DATA_FILE" EntitySet="RAW_DATA_FILE" />
+      <End Role="GeneCall" EntitySet="GeneCall" />
+    </AssociationSet>
+    <EntitySet Name="ClinicalRelevance" EntityType="PGx_KBModel.ClinicalRelevance" />
+    <EntitySet Name="RecommendationPhenotype" EntityType="PGx_KBModel.RecommendationPhenotype" />
+    <AssociationSet Name="DosingGuidenceRecommendationPhenotype" Association="PGx_KBModel.DosingGuidenceRecommendationPhenotype">
+      <End Role="DosingGuidence" EntitySet="DosingGuidence" />
+      <End Role="RecommendationPhenotype" EntitySet="RecommendationPhenotype" />
+    </AssociationSet>
+    <EntitySet Name="EFTest" EntityType="PGx_KBModel.EFTest" />
+  </EntityContainer>
+  <EntityType Name="RAW_DATA_FILE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="PatientName" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="SampleCode" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="FILE_PATH" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="TYPE" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="DESCRIPTION" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="DateTime" Name="TimeStamp" Nullable="true" Precision="3" />
+    <Property Type="String" Name="Method" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="Laboratory" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="Boolean" Name="Sex" Nullable="true" />
+    <Property Type="String" Name="PatientID" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="FileType" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="DiplotypeResult" Relationship="PGx_KBModel.RAW_DATA_FILEDiplotypeResult" FromRole="RAW_DATA_FILE" ToRole="DiplotypeResult" />
+    <NavigationProperty Name="GeneCall" Relationship="PGx_KBModel.RAW_DATA_FILEGeneCall" FromRole="RAW_DATA_FILE" ToRole="GeneCall" />
+  </EntityType>
+  <EntityType Name="DefinitionFile" a:TypeAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="FormatVersion" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="DateTime" Name="ModificationDate" Nullable="false" Precision="3" />
+    <Property Type="String" Name="GeneSymbol" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="Orientation" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="Chromosome" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="GenomeBuild" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="RefSeqChromosome" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="RefSeqGene" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="RefSeqProtein" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="Populations" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="VariantLocus" Relationship="PGx_KBModel.DefinitionFileVariantLocus" FromRole="DefinitionFile" ToRole="VariantLocus" />
+    <NavigationProperty Name="NamedAllele" Relationship="PGx_KBModel.DefinitionFileNamedAllele" FromRole="DefinitionFile" ToRole="NamedAllele" />
+    <Property Type="String" Name="GeneName" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="PhenotypeMap" Relationship="PGx_KBModel.DefinitionFilePhenotypeMap" FromRole="DefinitionFile" ToRole="PhenotypeMap" />
+    <Property Type="String" Name="NamedFunctions" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="PGxGuideline" Relationship="PGx_KBModel.PGxGuidelineDefinitionFile" FromRole="DefinitionFile" ToRole="PGxGuideline" />
+    <Property Type="String" Name="AlleleFrequencyTable" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="FunctionTable" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="AlleleDefinitionTable" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="DiplotypePhenotypeTable" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="IsAvailable" Nullable="true" />
+  </EntityType>
+  <EntityType Name="VariantLocus">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Chromosome" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="Int32" Name="Position" Nullable="false" />
+    <Property Type="String" Name="Rsid" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="ChromosomeHgvsName" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="GeneHgvsName" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="ProteinNote" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="ResourceNote" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="Type" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="ReferenceRepeat" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="DefinitionFile" Relationship="PGx_KBModel.DefinitionFileVariantLocus" FromRole="VariantLocus" ToRole="DefinitionFile" />
+    <Property Type="Int32" Name="DefinitionFileID" Nullable="true" />
+    <NavigationProperty Name="AlleleDefinition" Relationship="PGx_KBModel.VariantLocusAlleleDefinition" FromRole="VariantLocus" ToRole="AlleleDefinition" />
+    <Property Type="String" Name="Alleles" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="DefinitionExemption" Relationship="PGx_KBModel.DefinitionExemptionVariantLocus" FromRole="VariantLocus" ToRole="DefinitionExemption" />
+    <Property Type="Int32" Name="DefinitionExemptionID" Nullable="true" />
+    <Property Type="String" Name="TranscriptName" Nullable="true" />
+  </EntityType>
+  <Association Name="DefinitionFileVariantLocus">
+    <End Type="PGx_KBModel.DefinitionFile" Role="DefinitionFile" Multiplicity="0..1" />
+    <End Type="PGx_KBModel.VariantLocus" Role="VariantLocus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DefinitionFile">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="VariantLocus">
+        <PropertyRef Name="DefinitionFileID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="NamedAllele">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="M_Id" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="M_Function" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="DefinitionFile" Relationship="PGx_KBModel.DefinitionFileNamedAllele" FromRole="NamedAllele" ToRole="DefinitionFile" />
+    <Property Type="Int32" Name="DefinitionFileID" Nullable="true" />
+    <NavigationProperty Name="NamedAlleleDefinition" Relationship="PGx_KBModel.NamedAlleleNamedAlleleDefinition" FromRole="NamedAllele" ToRole="NamedAlleleDefinition" />
+    <Property Type="Boolean" Name="IsRefAllele" />
+    <NavigationProperty Name="PopulationFrequency" Relationship="PGx_KBModel.NamedAllelePopulationFrequency" FromRole="NamedAllele" ToRole="PopulationFrequency" />
+    <Property Type="Double" Name="ActivityValue" Nullable="true" />
+  </EntityType>
+  <EntityType Name="NamedAlleleDefinition">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Allele" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="VariantLocus" Relationship="PGx_KBModel.VariantLocusAlleleDefinition" FromRole="AlleleDefinition" ToRole="VariantLocus" />
+    <Property Type="Int32" Name="VariantLocusID" Nullable="true" />
+    <NavigationProperty Name="NamedAllele" Relationship="PGx_KBModel.NamedAlleleNamedAlleleDefinition" FromRole="NamedAlleleDefinition" ToRole="NamedAllele" />
+    <Property Type="Int32" Name="NamedAlleleID" Nullable="true" />
+  </EntityType>
+  <Association Name="VariantLocusAlleleDefinition">
+    <End Type="PGx_KBModel.VariantLocus" Role="VariantLocus" Multiplicity="0..1" />
+    <End Type="PGx_KBModel.NamedAlleleDefinition" Role="AlleleDefinition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VariantLocus">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="AlleleDefinition">
+        <PropertyRef Name="VariantLocusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DefinitionFileNamedAllele">
+    <End Type="PGx_KBModel.DefinitionFile" Role="DefinitionFile" Multiplicity="0..1" />
+    <End Type="PGx_KBModel.NamedAllele" Role="NamedAllele" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DefinitionFile">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="NamedAllele">
+        <PropertyRef Name="DefinitionFileID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="NamedAlleleNamedAlleleDefinition">
+    <End Type="PGx_KBModel.NamedAllele" Role="NamedAllele" Multiplicity="0..1" />
+    <End Type="PGx_KBModel.NamedAlleleDefinition" Role="NamedAlleleDefinition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NamedAllele">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="NamedAlleleDefinition">
+        <PropertyRef Name="NamedAlleleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="DefinitionExemption">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Gene" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="Boolean" Name="AllHits" Nullable="false" />
+    <Property Type="Boolean" Name="AssumeReference" Nullable="false" />
+    <NavigationProperty Name="ExtraPositions" Relationship="PGx_KBModel.DefinitionExemptionVariantLocus" FromRole="DefinitionExemption" ToRole="VariantLocus" />
+    <Property Type="String" Name="IgnoredAlleles" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="IgnoredAllelesLc" Unicode="true" FixedLength="false" MaxLength="Max" />
+    <Property Type="DateTime" Name="ModificationTime" Nullable="true" Precision="3" />
+  </EntityType>
+  <Association Name="DefinitionExemptionVariantLocus">
+    <End Type="PGx_KBModel.DefinitionExemption" Role="DefinitionExemption" Multiplicity="0..1" />
+    <End Type="PGx_KBModel.VariantLocus" Role="VariantLocus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DefinitionExemption">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="VariantLocus">
+        <PropertyRef Name="DefinitionExemptionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="PopulationFrequency">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Population" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="NamedAllele" Relationship="PGx_KBModel.NamedAllelePopulationFrequency" FromRole="PopulationFrequency" ToRole="NamedAllele" />
+    <Property Type="Int32" Name="NamedAlleleID" Nullable="false" />
+    <Property Type="Decimal" Name="Frequency" Nullable="true" />
+  </EntityType>
+  <Association Name="NamedAllelePopulationFrequency">
+    <End Type="PGx_KBModel.NamedAllele" Role="NamedAllele" Multiplicity="1" />
+    <End Type="PGx_KBModel.PopulationFrequency" Role="PopulationFrequency" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NamedAllele">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PopulationFrequency">
+        <PropertyRef Name="NamedAlleleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="PGxGuideline">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="M_id" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="Source" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="Summary" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="DosingGuidence" Relationship="PGx_KBModel.PGxGuidelineDosingGuidence" FromRole="PGxGuideline" ToRole="DosingGuidence" />
+    <NavigationProperty Name="Literature" Relationship="PGx_KBModel.PGxGuidelineLiterature" FromRole="PGxGuideline" ToRole="Literature" />
+    <NavigationProperty Name="RelatedGene" Relationship="PGx_KBModel.PGxGuidelineRelatedGene" FromRole="PGxGuideline" ToRole="RelatedGene" />
+    <Property Type="String" Name="GenesInStr" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="Chemical" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="Int32" Name="ChemicalDictID" Nullable="true" />
+    <NavigationProperty Name="DefinitionFile" Relationship="PGx_KBModel.PGxGuidelineDefinitionFile" FromRole="PGxGuideline" ToRole="DefinitionFile" />
+    <Property Type="String" Name="ClinicalImplication" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="IsAvailable" Nullable="true" />
+  </EntityType>
+  <EntityType Name="RelatedGene">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="M_id" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="Symbol" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="PGxGuideline" Relationship="PGx_KBModel.PGxGuidelineRelatedGene" FromRole="RelatedGene" ToRole="PGxGuideline" />
+  </EntityType>
+  <EntityType Name="DosingGuidence">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="Phenotype" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="Strength" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="RxChange" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="Implication" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="Recommendation" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="PGxGuideline" Relationship="PGx_KBModel.PGxGuidelineDosingGuidence" FromRole="DosingGuidence" ToRole="PGxGuideline" />
+    <Property Type="Int32" Name="PGxGuidelineID" Nullable="false" />
+    <Property Type="Int32" Name="Proportion" Nullable="true" />
+    <Property Type="String" Name="Additional" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="Alternative" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="Boolean" Name="Contraindicated" Nullable="true" />
+    <Property Type="Int32" Name="ProportionMax" Nullable="true" />
+    <Property Type="String" Name="Frequency" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="ImpactLevel" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="RecommendationPhenotype" Relationship="PGx_KBModel.DosingGuidenceRecommendationPhenotype" FromRole="DosingGuidence" ToRole="RecommendationPhenotype" />
+  </EntityType>
+  <EntityType Name="Literature">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="M_title" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="M_journal" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="Int32" Name="M_year" Nullable="true" />
+    <Property Type="String" Name="M_pmid" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="M_authors" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="PGxGuideline" Relationship="PGx_KBModel.PGxGuidelineLiterature" FromRole="Literature" ToRole="PGxGuideline" />
+    <Property Type="Int32" Name="PGxGuidelineID" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GeneCall">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="AlleleDefinitionVersion" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="Chromosome" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="Gene" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="Boolean" Name="IsPhased" Nullable="true" />
+    <NavigationProperty Name="DiplotypeMatch" Relationship="PGx_KBModel.GeneCallDiplotypeMatch" FromRole="GeneCall" ToRole="DiplotypeMatch" />
+    <NavigationProperty Name="HaplotypeMatch" Relationship="PGx_KBModel.GeneCallHaplotypeMatch" FromRole="GeneCall" ToRole="HaplotypeMatch" />
+    <Property Type="String" Name="UncallableHaplotypes" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="IgnoredHaplotypes" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Variants" Relationship="PGx_KBModel.GeneCallVariant1" FromRole="GeneCall" ToRole="Variant" />
+    <NavigationProperty Name="VarOfInterest" Relationship="PGx_KBModel.GeneCallVarOfInterest" FromRole="GeneCall" ToRole="VarOfInterest" />
+    <Property Type="Int32" Name="FileId" Nullable="true" />
+    <Property Type="String" Name="TimeStamp" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="Boolean" Name="IsVcfCall" Nullable="true" />
+    <NavigationProperty Name="RAW_DATA_FILE" Relationship="PGx_KBModel.RAW_DATA_FILEGeneCall" FromRole="GeneCall" ToRole="RAW_DATA_FILE" />
+    <Property Type="Int32" Name="RAW_DATA_FILEID" Nullable="false" />
+    <Property Type="String" Name="HaplotypeA" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="HaplotypeB" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="Diplotype" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="Phenotype" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="DiplotypeMatch">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="Int32" Name="Score" Nullable="true" />
+    <NavigationProperty Name="GeneCall" Relationship="PGx_KBModel.GeneCallDiplotypeMatch" FromRole="DiplotypeMatch" ToRole="GeneCall" />
+    <Property Type="Int32" Name="GeneCallID" Nullable="false" />
+    <Property Type="String" Name="Phenotype" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="HaplotypeMatch">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="M_function" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="GeneCall" Relationship="PGx_KBModel.GeneCallHaplotypeMatch" FromRole="HaplotypeMatch" ToRole="GeneCall" />
+    <Property Type="String" Name="Sequences" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="Int32" Name="GeneCallID" Nullable="false" />
+  </EntityType>
+  <Association Name="GeneCallDiplotypeMatch">
+    <End Type="PGx_KBModel.GeneCall" Role="GeneCall" Multiplicity="1" />
+    <End Type="PGx_KBModel.DiplotypeMatch" Role="DiplotypeMatch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GeneCall">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DiplotypeMatch">
+        <PropertyRef Name="GeneCallID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GeneCallHaplotypeMatch">
+    <End Type="PGx_KBModel.GeneCall" Role="GeneCall" Multiplicity="1" />
+    <End Type="PGx_KBModel.HaplotypeMatch" Role="HaplotypeMatch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GeneCall">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="HaplotypeMatch">
+        <PropertyRef Name="GeneCallID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Variant">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="Position" Nullable="false" />
+    <Property Type="String" Name="Rsid" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="VcfCall" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="Boolean" Name="IsPhased" Nullable="true" />
+    <Property Type="Int32" Name="VcfPosition" Nullable="true" />
+    <Property Type="String" Name="VcfAlleles" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="GeneCall" Relationship="PGx_KBModel.GeneCallVariant1" FromRole="Variant" ToRole="GeneCall" />
+    <Property Type="Int32" Name="GeneCallID" Nullable="false" />
+  </EntityType>
+  <Association Name="GeneCallVariant1">
+    <End Type="PGx_KBModel.GeneCall" Role="GeneCall" Multiplicity="1" />
+    <End Type="PGx_KBModel.Variant" Role="Variant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GeneCall">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Variant">
+        <PropertyRef Name="GeneCallID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="VarOfInterest">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="GeneCall" Relationship="PGx_KBModel.GeneCallVarOfInterest" FromRole="VarOfInterest" ToRole="GeneCall" />
+    <Property Type="Int32" Name="Position" Nullable="false" />
+    <Property Type="String" Name="Rsid" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="VcfCall" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="Boolean" Name="IsPhased" Nullable="true" />
+    <Property Type="Int32" Name="VcfPosition" Nullable="true" />
+    <Property Type="String" Name="VcfAlleles" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="Int32" Name="GeneCallID" Nullable="false" />
+  </EntityType>
+  <Association Name="GeneCallVarOfInterest">
+    <End Type="PGx_KBModel.GeneCall" Role="GeneCall" Multiplicity="1" />
+    <End Type="PGx_KBModel.VarOfInterest" Role="VarOfInterest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GeneCall">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="VarOfInterest">
+        <PropertyRef Name="GeneCallID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PGxGuidelineDosingGuidence">
+    <End Type="PGx_KBModel.PGxGuideline" Role="PGxGuideline" Multiplicity="1" />
+    <End Type="PGx_KBModel.DosingGuidence" Role="DosingGuidence" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PGxGuideline">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DosingGuidence">
+        <PropertyRef Name="PGxGuidelineID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PGxGuidelineLiterature">
+    <End Type="PGx_KBModel.PGxGuideline" Role="PGxGuideline" Multiplicity="1" />
+    <End Type="PGx_KBModel.Literature" Role="Literature" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PGxGuideline">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Literature">
+        <PropertyRef Name="PGxGuidelineID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PGxGuidelineRelatedGene">
+    <End Type="PGx_KBModel.PGxGuideline" Role="PGxGuideline" Multiplicity="*" />
+    <End Type="PGx_KBModel.RelatedGene" Role="RelatedGene" Multiplicity="*" />
+  </Association>
+  <EntityType Name="NamedPhenotype">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Symbol" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="Phenotype" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="Description" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="DefinitionFile" Relationship="PGx_KBModel.DefinitionFilePhenotypeMap" FromRole="PhenotypeMap" ToRole="DefinitionFile" />
+    <Property Type="Int32" Name="DefinitionFileID" Nullable="false" />
+    <NavigationProperty Name="PhenotypeDef" Relationship="PGx_KBModel.NamedPhenotypePhenotypeDef" FromRole="NamedPhenotype" ToRole="PhenotypeDef" />
+    <Property Type="String" Name="GenotypeList" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="PhenotypePopFreq" Relationship="PGx_KBModel.PhenotypePopFreqNamedPhenotype" FromRole="NamedPhenotype" ToRole="PhenotypePopFreq" />
+    <Property Type="String" Name="ActivityScore" Nullable="true" />
+  </EntityType>
+  <Association Name="DefinitionFilePhenotypeMap">
+    <End Type="PGx_KBModel.DefinitionFile" Role="DefinitionFile" Multiplicity="1" />
+    <End Type="PGx_KBModel.NamedPhenotype" Role="PhenotypeMap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DefinitionFile">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PhenotypeMap">
+        <PropertyRef Name="DefinitionFileID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="PhenotypeDef">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="NamedPhenotype" Relationship="PGx_KBModel.NamedPhenotypePhenotypeDef" FromRole="PhenotypeDef" ToRole="NamedPhenotype" />
+    <Property Type="Int32" Name="NamedPhenotypeID" Nullable="false" />
+    <Property Type="String" Name="Genotype" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="FunctionA" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="FunctionB" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="GeneSymbol" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="Phenotype" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <Association Name="NamedPhenotypePhenotypeDef">
+    <End Type="PGx_KBModel.NamedPhenotype" Role="NamedPhenotype" Multiplicity="1" />
+    <End Type="PGx_KBModel.PhenotypeDef" Role="PhenotypeDef" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NamedPhenotype">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PhenotypeDef">
+        <PropertyRef Name="NamedPhenotypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="PhenotypePopFreq">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Population" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="Decimal" Name="Frequency" Nullable="true" Precision="18" Scale="3" />
+    <NavigationProperty Name="NamedPhenotype" Relationship="PGx_KBModel.PhenotypePopFreqNamedPhenotype" FromRole="PhenotypePopFreq" ToRole="NamedPhenotype" />
+    <Property Type="Int32" Name="NamedPhenotypeID" Nullable="false" />
+  </EntityType>
+  <Association Name="PhenotypePopFreqNamedPhenotype">
+    <End Type="PGx_KBModel.PhenotypePopFreq" Role="PhenotypePopFreq" Multiplicity="*" />
+    <End Type="PGx_KBModel.NamedPhenotype" Role="NamedPhenotype" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="NamedPhenotype">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PhenotypePopFreq">
+        <PropertyRef Name="NamedPhenotypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PGxGuidelineDefinitionFile">
+    <End Type="PGx_KBModel.PGxGuideline" Role="PGxGuideline" Multiplicity="*" />
+    <End Type="PGx_KBModel.DefinitionFile" Role="DefinitionFile" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Patient">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="PatientID" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="Boolean" Name="Sex" Nullable="true" />
+    <Property Type="Int32" Name="Age" Nullable="true" />
+    <Property Type="String" Name="Race" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="Decimal" Name="Weight" Nullable="true" Precision="18" Scale="1" />
+    <Property Type="Int32" Name="Height" Nullable="true" />
+    <Property Type="DateTime" Name="BirthDay" Nullable="true" Precision="3" />
+    <Property Type="String" Name="Nation" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="DateTime" Name="TimeStamp" Nullable="true" Precision="3" />
+  </EntityType>
+  <EntityType Name="DiplotypeResult">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="GeneSymbol" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="Diplotype" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="PHenotype" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="AlleleA" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="AlleleB" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="RAW_DATA_FILE" Relationship="PGx_KBModel.RAW_DATA_FILEDiplotypeResult" FromRole="DiplotypeResult" ToRole="RAW_DATA_FILE" />
+    <Property Type="Int32" Name="RAW_DATA_FILEID" Nullable="false" />
+  </EntityType>
+  <Association Name="RAW_DATA_FILEDiplotypeResult">
+    <End Type="PGx_KBModel.RAW_DATA_FILE" Role="RAW_DATA_FILE" Multiplicity="1" />
+    <End Type="PGx_KBModel.DiplotypeResult" Role="DiplotypeResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RAW_DATA_FILE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DiplotypeResult">
+        <PropertyRef Name="RAW_DATA_FILEID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RAW_DATA_FILEGeneCall">
+    <End Type="PGx_KBModel.RAW_DATA_FILE" Role="RAW_DATA_FILE" Multiplicity="1" />
+    <End Type="PGx_KBModel.GeneCall" Role="GeneCall" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RAW_DATA_FILE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GeneCall">
+        <PropertyRef Name="RAW_DATA_FILEID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ClinicalRelevance">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Level" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="Description" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="Example" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="Combination" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="RecommendationPhenotype">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Gene" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="Phenotype" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="DosingGuidence" Relationship="PGx_KBModel.DosingGuidenceRecommendationPhenotype" FromRole="RecommendationPhenotype" ToRole="DosingGuidence" />
+    <Property Type="Int32" Name="DosingGuidenceID" Nullable="false" />
+  </EntityType>
+  <Association Name="DosingGuidenceRecommendationPhenotype">
+    <End Type="PGx_KBModel.DosingGuidence" Role="DosingGuidence" Multiplicity="1" />
+    <End Type="PGx_KBModel.RecommendationPhenotype" Role="RecommendationPhenotype" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DosingGuidence">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RecommendationPhenotype">
+        <PropertyRef Name="DosingGuidenceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="EFTest">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Property1" Nullable="false" />
+  </EntityType>
+</Schema>

@@ -1,0 +1,166 @@
+﻿@using PGx.Model.Entities
+@model PGx.KB.Models.PreTestAlertServiceModel
+<script type="text/javascript">
+
+    $(function () {
+
+        $("#pre_override_dialog").dialog({
+            autoOpen: false,
+            modal: true,
+            width: 800,
+            height: 200,
+            buttons: {
+                'Next': function () {
+                    debugger;
+                    //validate if reason is selected
+                    var reason = $("#pre_override_reason").val();
+                    if (reason == "Unselected" || reason == "") {
+                        alert("Please select a override reason!");
+                        return;
+                    }
+                    var preOverrideDrug = $("#pre_alert_drug").val();
+                    $('#pre_alert_dialog').html('');
+                    $('#pre_override_dialog').dialog('close');
+                    $('#pre_alert_dialog').dialog('close');
+
+                    var submitReady = submitDrugs(preOverrideDrug, "");
+                    if (submitReady == true)
+                        $("#form_order_entry").submit();
+                },
+                'Cancel': function () {
+                    debugger;
+                    $('#pre_override_dialog').dialog('close');
+                }
+            }
+        });
+    });
+    // 基于准备好的dom，初始化echarts实例
+    loadAllPies();
+
+    function loadPie(population, gppf) {
+        debugger;
+
+        var geneName = '';
+        var arrayArr = [];
+        arrayArr[0] = ['Phenotype', 'Frequency in Population', 'Risk Phenotype', 'Evidence Level', 'Clinical Impact'];
+        geneName = gppf.Symbol;
+        var ppf = gppf.PopulationPhenotypeFrequency;
+        for (var po in ppf) {
+            if (ppf[po].Population != population)
+                continue;
+            var pf = ppf[po].PhenotypeFrequencyList;
+            for (var ph in pf) {
+                var dataArray = [];
+                dataArray.push(pf[ph].Phenotype, pf[ph].Frequency, pf[ph].Risk, ph.EvidenceLevel, pf[ph].ImpactLevel)
+                arrayArr.push(dataArray);
+            }
+        }
+        var canvaId = "main" + geneName;
+        debugger;
+        $("#population_div").after('<div id="' + canvaId + '" name="forCanvas" class="col-md-6" style="width: 100%;height:300px; clear:both" ></div>')
+        var myChart = echarts.init(document.getElementById(canvaId));
+        debugger;
+        var option = {
+            dataset: {
+                //dimensions: ['Phenotype', 'Frequency in Population', 'Risk Phenotype', 'Evidence Level', 'Clinical Impact'],
+                dimensions: ['Phenotype', 'Frequency in Population', 'Risk Phenotype'],
+                source: arrayArr
+            },
+            title: {
+                text: geneName + " phenotype frequency:",
+                left: 'left'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: function (params) {
+                    debugger;
+                    return params.dimensionNames[0] + ':' + params.value[0] + '<br/>' + 'Frequency: ' + params.value[1] + '% <br/>' + 'High risk: ' + params.value[2];
+                }
+            },
+            series: [
+                {
+                    type: 'pie',
+                    radius: '50%',
+                    center: ['50%', '50%'],
+                    label: {
+                        formatter: '{x|{b}: {@@Frequency in Population}%}',
+                        rich: {
+                            x: {
+                                fontSize: 14
+                            }
+                        }
+                    },
+                    encode: {
+                        itemName: 'Phenotype',
+                        value: 'Frequency in Population',
+                        toolTip: [0, 1]
+                    },
+                }
+            ]
+        };
+        myChart.setOption(option);
+    }
+
+    function loadAllPies() {
+        debugger;
+        var gppf = JSON.parse($("#pop_fre_json").val());
+        for (var g in gppf) {
+            loadPie("East Asian", gppf[g])
+        }
+    }
+    function populationSelect() {
+        var population = $('#population_list').find("option:selected").text();
+        $("div[name='forCanvas']").remove();
+        debugger;
+        var gppf = JSON.parse($("#pop_fre_json").val());
+        for (var g in gppf) {
+            loadPie(population, gppf[g])
+        }
+    }
+</script>
+
+
+<input id="pre_alert_drug" name="pre_alert_drug" type="hidden" value="@Model.Chemical" />
+<input id="pop_fre_json" name="popFreJson" type="hidden" value="@Model.FreJson"/>
+
+
+<div class="panel panel-primary" style="margin-bottom: 0px">
+    <div class="panel-body" style="background-color: rgba(255,0,0,0.5); padding: 5px">
+        <p style="margin-bottom:0px">
+            <b>WARNING: </b>The drug response of <b>@Model.Chemical</b> is greatly affected by the genotype of <b>@Model.Gene</b>. However, the related gene testing result of <b>@Model.GeneNull</b> is currently absent in the health information system!
+        </p>
+    </div>
+    <div class="panel-body" style="background-color: rgba(255,255,0,0.5); padding: 5px; margin-bottom: 0px">
+           <b>CLINICAL RELEVANCE: </b>@Model.Implication Please consult a clinical pharmacist for more information.
+    </div>
+</div>
+<div class="panel panel-info" style="margin-bottom: 0px">
+    <div class="panel-body" style="padding: 5px">
+        <div id="population_div" style="float: right"><label>Race: </label> @Html.DropDownList("population", new SelectList(Model.GenePopPhenoFre.FirstOrDefault().Populations, "East Asian"), new { id = "population_list", onchange = "populationSelect()" })</div>
+    </div>
+</div>
+<div class="panel panel-info" style="margin-bottom: 0px">
+    <div class="panel-heading">
+        <h3 class="panel-title">Guidelines
+        </h3>
+    </div>
+    @if (Model.Guidelines == null)
+    {
+        <p>There is not yet a guideline literature for @Model.Chemical in the KnowledgeBase up to now, this knowledge will be uptated later. </p> 
+    }
+    else
+    {
+        <ul class="list-group" style="margin-bottom: 0px">
+
+            @foreach (var citation in Model.Guidelines)
+            {
+                var href = "https://pubmed.ncbi.nlm.nih.gov/" + citation.M_pmid;
+                <li class="list-group-item"><a href="@href">@citation.M_title</a> [PMID:@citation.M_pmid] <em>@citation.M_journal</em>. @citation.M_year</li> 
+            }
+        </ul>  
+    }
+</div>
+<div id="pre_override_dialog" title="Pre-Test Alert Override Reason">
+    <label>Select A Reason To Override Alert</label>
+    @Html.DropDownList("pre_override_reason", new SelectList(new List<string>() { "Unselected", "Patient currently receiving medication without reaction", "Patient has the related PGx testing results not documented in CPTP", "Other" }), "Unselected", new { id = "pre_override_reason" })
+</div>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<UnitTable>
+  <Units>
+    <Unit code="1" name="Meter" symbol="m" plural="Meters" alias ="米"/>
+    <Unit code="2" name="Kilometer" symbol="km" plural="Kilometers" alias="千米"/>
+    <Unit code="3" name="Centimeter" symbol="cm" plural="Centimeters" alias="厘米"/>
+    <Unit code="4" name="Milimeter" symbol="mm" plural="Milimeters" alias="毫米"/>
+    <Unit code="5" name="Mile" symbol="mi." plural="Miles" alias="英里"/>
+    <Unit code="6" name="Yards" symbol="yrd" plural="Yards" alias="码"/>
+    <Unit code="7" name="Foot" symbol="ft" plural="Feet" alias="英寸"/>
+    <Unit code="8" name="Inch" symbol="in" plural="Inches" alias="英尺"/>
+
+    <Unit code="11" name="Kilogram" symbol="Kg" plural="Kilograms" alias="千克"/>
+    <Unit code="12" name="Gram" symbol="g" plural="Grams" alias="克"/>
+    <Unit code="13" name="Miligram" symbol="mg" plural="Miligrams" alias="毫克"/>
+    <Unit code="14" name="Pound" symbol="lb" plural="Pounds" alias="磅"/>
+    <Unit code="15" name="Ounce" symbol="oz" plural="Ounces" alias="盎司"/>
+
+    <Unit code="21" name="Liter" symbol="l" plural="Liters" alias="升"/>
+    <Unit code="22" name="Milliliter" symbol="ml" plural="Milliliters" alias="毫升"/>
+    <Unit code="23" name="USGallon" symbol="gallon (US)" plural="PUSGallon" alias="加仑"/>
+    <Unit code="24" name="Deciliter" symbol="dl" plural="Deciliters" alias="分升"/>
+
+  </Units>
+  <Conversions>
+    <Linear srcCode="1" destCode="2" factor="1e-3"/>
+    <Linear srcCode="1" destCode="3" factor="1e2"/>
+    <Linear srcCode="1" destCode="4" factor="1e3"/>
+    <Linear srcCode="1" destCode="5" factor="0.621371e-3"/>
+    <Linear srcCode="1" destCode="6" factor="1.093613"/>
+    <Linear srcCode="1" destCode="7" factor="3.280839"/>
+    <Linear srcCode="1" destCode="8" factor="39.37"/>
+
+    <Linear srcCode="2" destCode="3" factor="1e-5"/>
+    <Linear srcCode="2" destCode="4" factor="1e-6"/>
+    <Linear srcCode="2" destCode="5" factor="0.621371"/>
+    <Linear srcCode="2" destCode="6" factor="1.093613e3"/>
+    <Linear srcCode="2" destCode="7" factor="3.280839e3" />
+    <Linear srcCode="2" destCode="8" factor="3.937e4"/>
+
+    <Linear srcCode="3" destCode="4" factor="1e-1"/>
+    <Linear srcCode="3" destCode="5" factor="0.621371e-5"/>
+    <Linear srcCode="3" destCode="6" factor="1.093613e-2"/>
+    <Linear srcCode="3" destCode="7" factor="3.280839e-2" />
+    <Linear srcCode="3" destCode="8" factor="3.937e-1"/>
+    
+    <Linear srcCode="4" destCode="5" factor="0.621371e-6"/>
+    <Linear srcCode="4" destCode="6" factor="1.093613e-3"/>
+    <Linear srcCode="4" destCode="7" factor="3.280839e-3" />
+    <Linear srcCode="4" destCode="8" factor="3.937e-2"/>
+
+    <Linear srcCode="5" destCode="6" factor="1760" />
+    <Linear srcCode="5" destCode="7" factor="5280" />
+    <Linear srcCode="5" destCode="8" factor="63360" />
+    
+    <Linear srcCode="6" destCode="7" factor="3" />
+    <Linear srcCode="6" destCode="8" factor="48" />
+
+    <Linear srcCode="7" destCode="8" factor="12" />
+
+    <Linear srcCode="11" destCode="12" factor="1e3"/>
+    <Linear srcCode="11" destCode="13" factor="1e6"/>
+    <Linear srcCode="11" destCode="14" factor="2.204622"/>
+    <Linear srcCode="11" destCode="15" factor="35.273962"/>
+
+    <Linear srcCode="12" destCode="13" factor="1e3"/>
+    <Linear srcCode="12" destCode="14" factor="2.204622e3"/>
+    <Linear srcCode="12" destCode="15" factor="35.273962e3"/>
+
+    <Linear srcCode="13" destCode="14" factor="2.204622e6"/>
+    <Linear srcCode="13" destCode="15" factor="35.273962e6"/>
+
+    <Linear srcCode="15" destCode="14" factor="16"/>
+
+    <Linear srcCode="21" destCode="22" factor="1000"/>
+    <Linear srcCode="21" destCode="23" deltha="0.264172"/>
+    <Linear srcCode="21" destCode="24" factor="10"/>
+
+    <Linear srcCode="22" destCode="23" deltha="0.000264172"/>
+    <Linear srcCode="22" destCode="24" factor="0.01"/>
+  </Conversions>
+</UnitTable>

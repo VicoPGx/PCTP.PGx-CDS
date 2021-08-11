@@ -1,0 +1,73 @@
+﻿@using Resource = PGx.Model.Resources.Resource;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style type="text/css">
+    div1 {
+        position: relative;
+        width: 600px;
+        height: 500px;
+        border: 1px solid #008800;
+    }
+
+    div2 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -150px 0 0 -200px;
+        width: 400px;
+        height: 300px;
+        border: 1px solid #008800;
+    }
+</style>
+<h2 style="text-align: center">Pharmacogenomics Clinical Translation Platform</h2>
+<div class="jumbotron">
+    <p>
+        Pharmacogenomics clinical decision support (PGx-CDS) is an important tool to incorporate PGx information into existing clinical workflows and facilitate PGx clinical translation.
+           Pharmacogenomics Clinical Translation Platform (PCTP) is developed for the clinical implementation of PGx in routine care practice. The PCTP can represent, store and manage the primary PGx knowledge in a structured and computable format, the PCTP can be used as a PGx ancillary system to provide various PGx-CDS services and simplify the work of integrating PGx into electronic health records.
+    </p>
+</div>
+<div class="row">
+    <div class="col-sm-6 col-md-3">
+        <div class="thumbnail">
+            <a class="thumbnail" href="/Processing/GenomicRM">
+                <img src="/Content/images/first/sampledata.jpg" style="width: 300px; height: 300px" alt="Data Repository"></a>
+            <div class="caption">
+                <h3 style="text-align: center">Genomic Data</h3>
+                <p style="text-align: center">...</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-3">
+        <div class="thumbnail">
+            <a href="/PGxKnowledgeBase/GenomicKM" class="thumbnail">
+                <img src="/Content/images/first/genomicKB.jpg" style="width: 300px; height: 300px" alt="Genomic KB"></a>
+            <div class="caption">
+                <h3 style="text-align: center">Genomic Knowledge</h3>
+                <p style="text-align: center">...</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-3">
+        <div class="thumbnail">
+            <a href="/PGxKnowledgeBase/TherapeuticKM" class="thumbnail">
+                <img src="/Content/images/first/therapeutic.jpg" style="width: 300px; height: 300px" alt="Therapeutic KB">
+            </a>
+            <div class="caption">
+                <h3 style="text-align: center">Therapeutic Knowledge</h3>
+                <p style="text-align: center">...</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-3">
+        <div class="thumbnail">
+            <a href="/ApplicationInEhrDemo/ApplicationDemo" class="thumbnail">
+                <img src="/Content/images/first/Demo4.jpg" style="width: 300px; height: 300px" alt="Application Demo" /></a>
+            <div class="caption">
+                <h3 style="text-align: center">Application Demo</h3>
+                <p style="text-align: center">...</p>
+            </div>
+        </div>
+    </div>
+</div>

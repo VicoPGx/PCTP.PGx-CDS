@@ -1,0 +1,114 @@
+﻿@using PGx.KB.Vcf.Haplotype.Model
+@using PGx.Model.Entities
+@model PGx.KB.Models.ReportViewModel
+<div>
+    @{
+        var context = new PGx_KBEntities();
+        var dosingGuideline = Model.DosingGuidance.PGxGuideline;
+        }
+
+    <fieldset>
+        <legend>@Model.DosingGuidance.PGxGuideline.Chemical.Substring(0, 1).ToUpper()@dosingGuideline.Chemical.Substring(1)-@Model.DosingGuidance.PGxGuideline.GenesInStr</legend>
+        <div class="panel panel-primary" style="margin-bottom: 0px">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    Summary
+                </h3>
+            </div>
+            <div class="panel-body">
+                <p>@Model.DosingGuidance.PGxGuideline.ClinicalImplication</p>
+            </div>
+        </div>
+        <div class="panel panel-primary" style="margin-bottom: 0px">
+            <div class="panel-heading">
+                <h3 class="panel-title">Genotype & Phenotype
+                </h3>
+            </div>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Gene</th>
+                        <th>Diplotype</th>
+                        <th>Phenotype</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var call in Model.CallList)
+                    {
+                        <tr>
+                            <td>@call.Gene</td>
+                            <td>@call.Diplotype</td>
+                            <td>@call.Phenotype</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="panel panel-primary" style="margin-bottom: 0px">
+            <div class="panel-heading">
+                <h3 class="panel-title">Clinical implication
+                </h3>
+            </div>
+            <div class="panel-body">
+              <p>@Model.DosingGuidance.Implication</p>
+                </div>
+    
+        </div>
+
+        <div class="panel panel-primary" style="margin-bottom: 0px">
+            <div class="panel-heading">
+                <h3 class="panel-title">Recommendation</h3>
+            </div>
+            <table class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>Risk</th>
+                        <th>Evidence</th>
+                        <th>Detail</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        @if (Model.DosingGuidance.RxChange == "Yes")
+                        {
+                            <td>
+                                <img src="/Content/images/Red.png" alt="Red" /></td>
+                        }
+                        else
+                        {
+                            <td>
+                                <img src="/Content/images/green.png" alt="Green" /></td>
+                        }
+                        <td>@Model.DosingGuidance.Strength</td>
+                        <td>@Model.DosingGuidance.Recommendation</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Guidelines
+                </h3>
+            </div>
+            @if (dosingGuideline.Literature == null)
+            {
+                <p>There is not yet a reference for @dosingGuideline.Chemical in the KnowledgeBase up to now, this knowledge will be uptated later. </p> 
+            }
+            else
+            {
+                <ul class="list-group" style="margin-bottom: 0px">
+
+                    @foreach (var citation in dosingGuideline.Literature)
+                    {
+                        var href = "https://pubmed.ncbi.nlm.nih.gov/" + citation.M_pmid;
+                        <li class="list-group-item"><a href="@href">@citation.M_title</a>[PMID:@citation.M_pmid]<em>@citation.M_journal</em>.@citation.M_year</li> 
+
+                    }
+                </ul>  
+            }
+        </div>
+         
+    </fieldset>
+</div>
+

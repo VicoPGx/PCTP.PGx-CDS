@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1164a010b30148069a17060a35bfaba9" Name="关系图1" ZoomLevel="80">
+        <EntityTypeShape EntityType="PGx_KBModel.RAW_DATA_FILE" Width="1.5" PointX="23" PointY="6.625" />
+        <EntityTypeShape EntityType="PGx_KBModel.DefinitionFile" Width="2.125" PointX="1.875" PointY="0.625" />
+        <EntityTypeShape EntityType="PGx_KBModel.VariantLocus" Width="1.5" PointX="5" PointY="1.375" />
+        <AssociationConnector Association="PGx_KBModel.DefinitionFileVariantLocus" />
+        <EntityTypeShape EntityType="PGx_KBModel.NamedAllele" Width="1.5" PointX="5" PointY="6.5" />
+        <EntityTypeShape EntityType="PGx_KBModel.NamedAlleleDefinition" Width="1.5" PointX="7" PointY="4.5" />
+        <AssociationConnector Association="PGx_KBModel.VariantLocusAlleleDefinition" />
+        <AssociationConnector Association="PGx_KBModel.DefinitionFileNamedAllele" />
+        <AssociationConnector Association="PGx_KBModel.NamedAlleleNamedAlleleDefinition" />
+        <EntityTypeShape EntityType="PGx_KBModel.DefinitionExemption" Width="1.5" PointX="7" PointY="1.5" />
+        <AssociationConnector Association="PGx_KBModel.DefinitionExemptionVariantLocus" />
+        <EntityTypeShape EntityType="PGx_KBModel.PopulationFrequency" Width="2.125" PointX="5.125" PointY="10" />
+        <AssociationConnector Association="PGx_KBModel.NamedAllelePopulationFrequency" />
+        <EntityTypeShape EntityType="PGx_KBModel.PGxGuideline" Width="1.5" PointX="13.625" PointY="2.25" />
+        <EntityTypeShape EntityType="PGx_KBModel.RelatedGene" Width="1.5" PointX="10.375" PointY="4.25" />
+        <EntityTypeShape EntityType="PGx_KBModel.DosingGuidence" Width="1.75" PointX="16" PointY="3.25" />
+        <EntityTypeShape EntityType="PGx_KBModel.Literature" Width="1.5" PointX="10.25" PointY="1.375" />
+        <EntityTypeShape EntityType="PGx_KBModel.GeneCall" Width="1.5" PointX="23" PointY="1.375" />
+        <EntityTypeShape EntityType="PGx_KBModel.DiplotypeMatch" Width="1.5" PointX="25.25" PointY="0.5" />
+        <EntityTypeShape EntityType="PGx_KBModel.HaplotypeMatch" Width="1.5" PointX="25.125" PointY="3.5" />
+        <AssociationConnector Association="PGx_KBModel.GeneCallDiplotypeMatch" />
+        <AssociationConnector Association="PGx_KBModel.GeneCallHaplotypeMatch" />
+        <EntityTypeShape EntityType="PGx_KBModel.Variant" Width="1.5" PointX="20.625" PointY="1.125" />
+        <AssociationConnector Association="PGx_KBModel.GeneCallVariant1" />
+        <EntityTypeShape EntityType="PGx_KBModel.VarOfInterest" Width="1.5" PointX="20.625" PointY="4.5" />
+        <AssociationConnector Association="PGx_KBModel.GeneCallVarOfInterest" />
+        <AssociationConnector Association="PGx_KBModel.PGxGuidelineDosingGuidence" />
+        <AssociationConnector Association="PGx_KBModel.PGxGuidelineLiterature" />
+        <AssociationConnector Association="PGx_KBModel.PGxGuidelineRelatedGene" />
+        <EntityTypeShape EntityType="PGx_KBModel.NamedPhenotype" Width="1.5" PointX="0.5" PointY="7.125" />
+        <AssociationConnector Association="PGx_KBModel.DefinitionFilePhenotypeMap" />
+        <EntityTypeShape EntityType="PGx_KBModel.PhenotypeDef" Width="1.5" PointX="0.5" PointY="10.875" />
+        <AssociationConnector Association="PGx_KBModel.NamedPhenotypePhenotypeDef" />
+        <EntityTypeShape EntityType="PGx_KBModel.PhenotypePopFreq" Width="1.5" PointX="2.75" PointY="9.625" />
+        <AssociationConnector Association="PGx_KBModel.PhenotypePopFreqNamedPhenotype" />
+        <AssociationConnector Association="PGx_KBModel.PGxGuidelineDefinitionFile" />
+        <EntityTypeShape EntityType="PGx_KBModel.Patient" Width="1.5" PointX="19.125" PointY="8.5" />
+        <EntityTypeShape EntityType="PGx_KBModel.DiplotypeResult" Width="1.5" PointX="25.125" PointY="5.875" />
+        <AssociationConnector Association="PGx_KBModel.RAW_DATA_FILEDiplotypeResult" />
+        <AssociationConnector Association="PGx_KBModel.RAW_DATA_FILEGeneCall" />
+        <EntityTypeShape EntityType="PGx_KBModel.ClinicalRelevance" Width="1.5" PointX="15.375" PointY="8.75" />
+        <EntityTypeShape EntityType="PGx_KBModel.RecommendationPhenotype" Width="1.5" PointX="16.125" PointY="0.625" />
+        <AssociationConnector Association="PGx_KBModel.DosingGuidenceRecommendationPhenotype" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,68 @@
+﻿@*@model List<PGx.Model.Entities.DosingGuidence>
+@{
+    ViewBag.Title = "DosingGuidence";
+}
+<script>
+    //$( function() {
+    //    $( "#accordion" ).accordion({ heightStyle: "content", header: "h3", collapsible: true });
+    //} );
+    function dosingEdit(id) {
+        debugger;
+        $.ajax({
+        url:'@Url.Action("DosingEdit","PGxKnowledgeBase")',
+        data:{id:id},
+        type:'Get',
+        async:false,
+        cache:false,
+        timeout:10000
+    }).done(function (data){
+        $('#dosing').html('');
+        $('#dosing').html(data);
+    });
+    }
+
+    function genotypeGenerate() {
+        debugger;
+        var arry = new Array();
+        $('.phe_list option:selected').each(function () {
+            debugger;
+            var phe = $(this).text()
+            arry.push(phe);
+        });
+        var phenotypes = arry.join(",")
+        $.ajax({
+            url: '@Url.Action("GenerateGenotype","PGxKnowledgeBase")',
+            data: { phe: phenotypes },
+            type: 'Get',
+            async: false,
+            cache: false,
+            timeout: 10000
+        }).done(function (data) {
+
+            $('#dosing1').html('');
+            $('#dosing2').html('')
+            $('#dosing1').html(data);
+            $('#dosing2').html(data)
+        });
+
+    }
+</script>
+
+<h2>DosingGuidence</h2>
+
+ <table class="grid">
+     <tr>
+         <th>Name</th>
+         <th>Edit</th>
+
+     </tr>
+    @foreach (var g in Model)
+    {
+         <tr>
+             <td>@g.Name</td>
+             <td><a onclick="dosingEdit(@g.ID)">Edit</a></td>
+         </tr>
+    }
+</table>
+<div id="dosing1"></div>
+<div id="dosing"></div>*@

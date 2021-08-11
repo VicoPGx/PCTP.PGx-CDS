@@ -1,0 +1,702 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PGx_KBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="PGx_KBModelStoreContainer">
+    <EntitySet Name="Chemicals" EntityType="PGx_KBModel.Store.Chemicals" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="chemicalsPGKBs" EntityType="PGx_KBModel.Store.chemicalsPGKBs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ClinicalAnns" EntityType="PGx_KBModel.Store.ClinicalAnns" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ClinicalAnnMetadatas" EntityType="PGx_KBModel.Store.ClinicalAnnMetadatas" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="clinicalVariants" EntityType="PGx_KBModel.Store.clinicalVariants" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DiplotypeDefinitions" EntityType="PGx_KBModel.Store.DiplotypeDefinitions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DiplotypePhenotypeSets" EntityType="PGx_KBModel.Store.DiplotypePhenotypeSets" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Diplotypes" EntityType="PGx_KBModel.Store.Diplotypes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DrugLabels" EntityType="PGx_KBModel.Store.DrugLabels" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DrugLabelsByGenes" EntityType="PGx_KBModel.Store.DrugLabelsByGenes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Drugs" EntityType="PGx_KBModel.Store.Drugs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="drugsPGKBs" EntityType="PGx_KBModel.Store.drugsPGKBs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Genes" EntityType="PGx_KBModel.Store.Genes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="genesPGKBs" EntityType="PGx_KBModel.Store.genesPGKBs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HaplotypeDefinitions" EntityType="PGx_KBModel.Store.HaplotypeDefinitions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Haplotypes" EntityType="PGx_KBModel.Store.Haplotypes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="occurrences" EntityType="PGx_KBModel.Store.occurrences" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PhenotypeEntitySets" EntityType="PGx_KBModel.Store.PhenotypeEntitySets" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Phenotypes" EntityType="PGx_KBModel.Store.Phenotypes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="phenotypesDiseasePGKBs" EntityType="PGx_KBModel.Store.phenotypesDiseasePGKBs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Recomendations" EntityType="PGx_KBModel.Store.Recomendations" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RecommendationEntitySets" EntityType="PGx_KBModel.Store.RecommendationEntitySets" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Relationships" EntityType="PGx_KBModel.Store.Relationships" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SampleResultSets" EntityType="PGx_KBModel.Store.SampleResultSets" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="study_parameters" EntityType="PGx_KBModel.Store.study_parameters" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="var_drug_ann" EntityType="PGx_KBModel.Store.var_drug_ann" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="var_fa_ann" EntityType="PGx_KBModel.Store.var_fa_ann" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="var_pheno_ann" EntityType="PGx_KBModel.Store.var_pheno_ann" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="variantsPGKBs" EntityType="PGx_KBModel.Store.variantsPGKBs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Varients" EntityType="PGx_KBModel.Store.Varients" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ChemicalGene" EntityType="PGx_KBModel.Store.ChemicalGene" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HaplotypeVarient" EntityType="PGx_KBModel.Store.HaplotypeVarient" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_ChemicalDrug" Association="PGx_KBModel.Store.FK_ChemicalDrug">
+      <End Role="Chemicals" EntitySet="Chemicals" />
+      <End Role="Drugs" EntitySet="Drugs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RecomendationChemical" Association="PGx_KBModel.Store.FK_RecomendationChemical">
+      <End Role="Chemicals" EntitySet="Chemicals" />
+      <End Role="Recomendations" EntitySet="Recomendations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DiplotypeHaplotype1" Association="PGx_KBModel.Store.FK_DiplotypeHaplotype1">
+      <End Role="Haplotypes" EntitySet="Haplotypes" />
+      <End Role="Diplotypes" EntitySet="Diplotypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DiplotypeHaplotype2" Association="PGx_KBModel.Store.FK_DiplotypeHaplotype2">
+      <End Role="Haplotypes" EntitySet="Haplotypes" />
+      <End Role="Diplotypes" EntitySet="Diplotypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DiplotypePhenotype" Association="PGx_KBModel.Store.FK_DiplotypePhenotype">
+      <End Role="Phenotypes" EntitySet="Phenotypes" />
+      <End Role="Diplotypes" EntitySet="Diplotypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GeneDiplotype" Association="PGx_KBModel.Store.FK_GeneDiplotype">
+      <End Role="Genes" EntitySet="Genes" />
+      <End Role="Diplotypes" EntitySet="Diplotypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GenePhenotype" Association="PGx_KBModel.Store.FK_GenePhenotype">
+      <End Role="Genes" EntitySet="Genes" />
+      <End Role="Phenotypes" EntitySet="Phenotypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HaplotypeGene" Association="PGx_KBModel.Store.FK_HaplotypeGene">
+      <End Role="Genes" EntitySet="Genes" />
+      <End Role="Haplotypes" EntitySet="Haplotypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PhenotypeRecomendation" Association="PGx_KBModel.Store.FK_PhenotypeRecomendation">
+      <End Role="Phenotypes" EntitySet="Phenotypes" />
+      <End Role="Recomendations" EntitySet="Recomendations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChemicalGene_Chemicals" Association="PGx_KBModel.Store.FK_ChemicalGene_Chemicals">
+      <End Role="Chemicals" EntitySet="Chemicals" />
+      <End Role="ChemicalGene" EntitySet="ChemicalGene" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChemicalGene_Genes" Association="PGx_KBModel.Store.FK_ChemicalGene_Genes">
+      <End Role="Genes" EntitySet="Genes" />
+      <End Role="ChemicalGene" EntitySet="ChemicalGene" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HaplotypeVarient_Haplotypes" Association="PGx_KBModel.Store.FK_HaplotypeVarient_Haplotypes">
+      <End Role="Haplotypes" EntitySet="Haplotypes" />
+      <End Role="HaplotypeVarient" EntitySet="HaplotypeVarient" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HaplotypeVarient_Varients" Association="PGx_KBModel.Store.FK_HaplotypeVarient_Varients">
+      <End Role="Varients" EntitySet="Varients" />
+      <End Role="HaplotypeVarient" EntitySet="HaplotypeVarient" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Chemicals">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ChemicalName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ChemicalNameCN" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="chemicalsPGKBs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PharmGKB_Accession_Id" Type="varchar(max)" Nullable="true" />
+    <Property Name="Name" Type="varchar(max)" Nullable="true" />
+    <Property Name="Generic_Names" Type="varchar(max)" Nullable="true" />
+    <Property Name="Trade_Names" Type="varchar(max)" Nullable="true" />
+    <Property Name="Brand_Mixtures" Type="varchar(max)" Nullable="true" />
+    <Property Name="Type" Type="varchar(max)" Nullable="true" />
+    <Property Name="Cross_references" Type="varchar(max)" Nullable="true" />
+    <Property Name="SMILES" Type="varchar(max)" Nullable="true" />
+    <Property Name="InChI" Type="varchar(max)" Nullable="true" />
+    <Property Name="Dosing_Guideline" Type="varchar(max)" Nullable="true" />
+    <Property Name="External_Vocabulary" Type="varchar(max)" Nullable="true" />
+    <Property Name="Clinical_Annotation_Count" Type="varchar(max)" Nullable="true" />
+    <Property Name="Variant_Annotation_Count" Type="varchar(max)" Nullable="true" />
+    <Property Name="Pathway_Count" Type="varchar(max)" Nullable="true" />
+    <Property Name="VIP_Count" Type="varchar(max)" Nullable="true" />
+    <Property Name="Dosing_Guideline_Sources" Type="varchar(max)" Nullable="true" />
+    <Property Name="Top_Clinical_Annotation_Level" Type="varchar(max)" Nullable="true" />
+    <Property Name="Top_FDA_Label_Testing_Level" Type="varchar(max)" Nullable="true" />
+    <Property Name="Top_Any_Drug_Label_Testing_Level" Type="varchar(max)" Nullable="true" />
+    <Property Name="Label_Has_Dosing_Info" Type="varchar(max)" Nullable="true" />
+    <Property Name="Has_Rx_Annotation" Type="varchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="ClinicalAnns">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Genotype_Phenotype_ID" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="Genotype" Type="varchar(max)" Nullable="true" />
+    <Property Name="Clinical_Phenotype" Type="varchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="ClinicalAnnMetadatas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Clinical_Annotation_ID" Type="varchar(max)" Nullable="true" />
+    <Property Name="Location" Type="varchar(max)" Nullable="true" />
+    <Property Name="Gene" Type="varchar(max)" Nullable="true" />
+    <Property Name="Level_of_Evidence" Type="varchar(max)" Nullable="true" />
+    <Property Name="Clinical_Annotation_Types" Type="varchar(max)" Nullable="true" />
+    <Property Name="Genotype_Phenotype_IDs" Type="varchar(max)" Nullable="true" />
+    <Property Name="Annotation_Text" Type="varchar(max)" Nullable="true" />
+    <Property Name="Variant_Annotations_IDs" Type="varchar(max)" Nullable="true" />
+    <Property Name="Variant_Annotations" Type="varchar(max)" Nullable="true" />
+    <Property Name="Literature_IDs" Type="varchar(max)" Nullable="true" />
+    <Property Name="Evidence_Count" Type="varchar(max)" Nullable="true" />
+    <Property Name="Related_Chemicals" Type="varchar(max)" Nullable="true" />
+    <Property Name="Related_Diseases" Type="varchar(max)" Nullable="true" />
+    <Property Name="Race" Type="varchar(max)" Nullable="true" />
+    <Property Name="Chromosome" Type="varchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="clinicalVariants">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="variant" Type="varchar(max)" Nullable="true" />
+    <Property Name="gene" Type="varchar(max)" Nullable="true" />
+    <Property Name="type" Type="varchar(max)" Nullable="true" />
+    <Property Name="level_of_evidence" Type="varchar(max)" Nullable="true" />
+    <Property Name="chemicals" Type="varchar(max)" Nullable="true" />
+    <Property Name="phenotypes" Type="varchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="DiplotypeDefinitions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GeneSymbol" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="RsId" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="HaplotypeA" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="HaplotypeB" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ScoreA" Type="int" Nullable="true" />
+    <Property Name="ScoreB" Type="int" Nullable="true" />
+    <Property Name="ScoreSum" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="DiplotypePhenotypeSets">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DiplotypeSymbol" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AlleleA" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AlleleB" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PhenotypeName" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="PhenotypeId" Type="int" Nullable="true" />
+    <Property Name="GeneSymbol" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ActivityScore" Type="float" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Diplotypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DiplotypeSymbol" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Phenotype_Id" Type="int" Nullable="true" />
+    <Property Name="Gene_Id" Type="int" Nullable="true" />
+    <Property Name="Haplotype1_Id" Type="int" Nullable="true" />
+    <Property Name="Haplotype2_Id" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="DrugLabels">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PharmGKB_ID" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="Name" Type="varchar" Nullable="true" MaxLength="1024" />
+    <Property Name="Source" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="Biomarker_Flag" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="Testing_Level" Type="varchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="DrugLabelsByGenes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Gene_ID" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="Gene_Symbol" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="Label_IDs" Type="varchar(max)" Nullable="true" />
+    <Property Name="Label_Names" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Drugs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DrugName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DrugCode" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EMRId" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Chemical_Id" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="drugsPGKBs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PharmGKB_Accession_Id" Type="varchar(max)" Nullable="true" />
+    <Property Name="Name" Type="varchar(max)" Nullable="true" />
+    <Property Name="Generic_Names" Type="varchar(max)" Nullable="true" />
+    <Property Name="Trade_Names" Type="varchar(max)" Nullable="true" />
+    <Property Name="Brand_Mixtures" Type="varchar(max)" Nullable="true" />
+    <Property Name="Type" Type="varchar(max)" Nullable="true" />
+    <Property Name="Cross_references" Type="varchar(max)" Nullable="true" />
+    <Property Name="SMILES" Type="varchar(max)" Nullable="true" />
+    <Property Name="InChI" Type="varchar(max)" Nullable="true" />
+    <Property Name="Dosing_Guideline" Type="varchar(max)" Nullable="true" />
+    <Property Name="External_Vocabulary" Type="varchar(max)" Nullable="true" />
+    <Property Name="Clinical_Annotation_Count" Type="varchar(max)" Nullable="true" />
+    <Property Name="Variant_Annotation_Count" Type="varchar(max)" Nullable="true" />
+    <Property Name="Pathway_Count" Type="varchar(max)" Nullable="true" />
+    <Property Name="VIP_Count" Type="varchar(max)" Nullable="true" />
+    <Property Name="Dosing_Guideline_Sources" Type="varchar(max)" Nullable="true" />
+    <Property Name="Top_Clinical_Annotation_Level" Type="varchar(max)" Nullable="true" />
+    <Property Name="Top_FDA_Label_Testing_Level" Type="varchar(max)" Nullable="true" />
+    <Property Name="Top_Any_Drug_Label_Testing_Level" Type="varchar(max)" Nullable="true" />
+    <Property Name="Label_Has_Dosing_Info" Type="varchar(max)" Nullable="true" />
+    <Property Name="Has_Rx_Annotation" Type="varchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Genes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GeneSymbol" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="genesPGKBs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PharmGKB_Accession_Id" Type="varchar(max)" Nullable="true" />
+    <Property Name="NCBI_Gene_ID" Type="varchar(max)" Nullable="true" />
+    <Property Name="HGNC_ID" Type="varchar(max)" Nullable="true" />
+    <Property Name="Ensembl_Id" Type="varchar(max)" Nullable="true" />
+    <Property Name="Name" Type="varchar(max)" Nullable="true" />
+    <Property Name="Symbol" Type="varchar(max)" Nullable="true" />
+    <Property Name="Alternate_Names" Type="varchar(max)" Nullable="true" />
+    <Property Name="Alternate_Symbols" Type="varchar(max)" Nullable="true" />
+    <Property Name="Is_VIP" Type="varchar(max)" Nullable="true" />
+    <Property Name="Has_Variant_Annotation" Type="varchar(max)" Nullable="true" />
+    <Property Name="Cross_references" Type="varchar(max)" Nullable="true" />
+    <Property Name="Has_CPIC_Dosing_Guideline" Type="varchar(max)" Nullable="true" />
+    <Property Name="Chromosome" Type="varchar(max)" Nullable="true" />
+    <Property Name="Chromosomal_Start_GRCh37_p13" Type="varchar(max)" Nullable="true" />
+    <Property Name="Chromosomal_Stop_GRCh37_p13" Type="varchar(max)" Nullable="true" />
+    <Property Name="Chromosomal_Start_GRCh38_p7" Type="varchar(max)" Nullable="true" />
+    <Property Name="Chromosomal_Stop_GRCh38_p7" Type="varchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="HaplotypeDefinitions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Allel" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="GeneSymbol" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CommonName" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ProteinRef" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ChromosomeRef" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="GeneRef" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="RsId" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="BaseVar" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsReference" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Score" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Haplotypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HaplotypeSymbol" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="GeneSymbol" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Category" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ClinicalFlag" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Gene_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="occurrences">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Source_Type" Type="varchar(max)" Nullable="true" />
+    <Property Name="Source_ID" Type="varchar(max)" Nullable="true" />
+    <Property Name="Source_Name" Type="varchar(max)" Nullable="true" />
+    <Property Name="Object_Type" Type="varchar(max)" Nullable="true" />
+    <Property Name="Object_ID" Type="varchar(max)" Nullable="true" />
+    <Property Name="Object_Name" Type="varchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="PhenotypeEntitySets">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PhenotypeSymbol" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="GeneSymbol" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Genotype" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Examples" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ActivityScore" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="IsNormal" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Phenotypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PhenotypeSymbol" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PhenotypeSymbolCN" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Genotype" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="GenotypeCN" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ActivityScore" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Normal" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Gene_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="phenotypesDiseasePGKBs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PharmGKB_Accession_Id" Type="varchar(max)" Nullable="true" />
+    <Property Name="Name" Type="varchar(max)" Nullable="true" />
+    <Property Name="Alternate_Names" Type="varchar(max)" Nullable="true" />
+    <Property Name="Cross_references" Type="varchar(max)" Nullable="true" />
+    <Property Name="External_Vocabulary" Type="varchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Recomendations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Implication" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ImplicationCN" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="DosingRecomendation" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="DosingRecomendationCN" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Level" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Chemical_Id" Type="int" Nullable="false" />
+    <Property Name="Phenotype_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RecommendationEntitySets">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Chemical" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ChemicalId" Type="int" Nullable="true" />
+    <Property Name="GeneSymbol" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Phenotype" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="PhenotypeName" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Implication" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Recommendation" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Level" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="PeopleGroup" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Note" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Relationships">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Entity1_id" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="Entity1_name" Type="varchar(max)" Nullable="true" />
+    <Property Name="Entity1_type" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="Entity2_id" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="Entity2_name" Type="varchar(max)" Nullable="true" />
+    <Property Name="Entity2_type" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="Evidence" Type="varchar(max)" Nullable="true" />
+    <Property Name="Association" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="PK" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="PD" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="PMIDs" Type="varchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="SampleResultSets">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SampleId" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="SampleAddress" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="GeneSymbol" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="HaplotypeA" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="HaplotypeB" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="GenotypeResult" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="PhenotypeResult" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="VariantsRsIdA" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="VariantsRsIdB" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="study_parameters">
+    <Key>
+      <PropertyRef Name="Study_Parameters_ID" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Study_Parameters_ID" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Study_Type" Type="varchar(max)" Nullable="true" />
+    <Property Name="Study_Cases" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="Study_Controls" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="Characteristics" Type="varchar(max)" Nullable="true" />
+    <Property Name="Characteristics_Type" Type="varchar(max)" Nullable="true" />
+    <Property Name="Frequency_In_Cases" Type="varchar(max)" Nullable="true" />
+    <Property Name="Allele_Of_Frequency_In_Cases" Type="varchar(max)" Nullable="true" />
+    <Property Name="Frequency_In_Controls" Type="varchar(max)" Nullable="true" />
+    <Property Name="Allele_Of_Frequency_In_Controls" Type="varchar(max)" Nullable="true" />
+    <Property Name="P_Value_Operator" Type="varchar(max)" Nullable="true" />
+    <Property Name="P_Value" Type="varchar(max)" Nullable="true" />
+    <Property Name="Ratio_Stat_Type" Type="varchar(max)" Nullable="true" />
+    <Property Name="Ratio_Stat" Type="varchar(max)" Nullable="true" />
+    <Property Name="Confidence_Interval_Start" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="Confidence_Interval_Stop" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="Race" Type="varchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="var_drug_ann">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Annotation_ID" Type="int" Nullable="true" />
+    <Property Name="Variant" Type="varchar(max)" Nullable="true" />
+    <Property Name="Gene" Type="varchar(max)" Nullable="true" />
+    <Property Name="Chemical" Type="varchar(max)" Nullable="true" />
+    <Property Name="Literature_ID" Type="varchar(max)" Nullable="true" />
+    <Property Name="Phenotype_Category" Type="varchar(max)" Nullable="true" />
+    <Property Name="Significance" Type="varchar(max)" Nullable="true" />
+    <Property Name="Notes" Type="varchar(max)" Nullable="true" />
+    <Property Name="Sentence" Type="varchar(max)" Nullable="true" />
+    <Property Name="StudyParameters" Type="varchar(max)" Nullable="true" />
+    <Property Name="Alleles" Type="varchar(max)" Nullable="true" />
+    <Property Name="Chromosome" Type="varchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="var_fa_ann">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Annotation_ID" Type="bigint" Nullable="true" />
+    <Property Name="Variant" Type="varchar(max)" Nullable="true" />
+    <Property Name="Gene" Type="varchar(max)" Nullable="true" />
+    <Property Name="Chemical" Type="varchar(max)" Nullable="true" />
+    <Property Name="Literature_ID" Type="varchar(max)" Nullable="true" />
+    <Property Name="Phenotype_Category" Type="varchar(max)" Nullable="true" />
+    <Property Name="Significance" Type="varchar(max)" Nullable="true" />
+    <Property Name="Notes" Type="varchar(max)" Nullable="true" />
+    <Property Name="Sentence" Type="varchar(max)" Nullable="true" />
+    <Property Name="StudyParameters" Type="varchar(max)" Nullable="true" />
+    <Property Name="Alleles" Type="varchar(max)" Nullable="true" />
+    <Property Name="Chromosome" Type="varchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="var_pheno_ann">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Annotation_ID" Type="bigint" Nullable="true" />
+    <Property Name="Variant" Type="varchar(max)" Nullable="true" />
+    <Property Name="Gene" Type="varchar(max)" Nullable="true" />
+    <Property Name="Chemical" Type="varchar(max)" Nullable="true" />
+    <Property Name="Literature_ID" Type="varchar(max)" Nullable="true" />
+    <Property Name="Phenotype_Category" Type="varchar(max)" Nullable="true" />
+    <Property Name="Significance" Type="varchar(max)" Nullable="true" />
+    <Property Name="Notes" Type="varchar(max)" Nullable="true" />
+    <Property Name="Sentence" Type="varchar(max)" Nullable="true" />
+    <Property Name="StudyParameters" Type="varchar(max)" Nullable="true" />
+    <Property Name="Alleles" Type="varchar(max)" Nullable="true" />
+    <Property Name="Chromosome" Type="varchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="variantsPGKBs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Variant_ID" Type="varchar(max)" Nullable="true" />
+    <Property Name="Variant_Name" Type="varchar(max)" Nullable="true" />
+    <Property Name="Variant_Symbol" Type="varchar(max)" Nullable="true" />
+    <Property Name="Gene_IDs" Type="varchar(max)" Nullable="true" />
+    <Property Name="Gene_Symbols" Type="varchar(max)" Nullable="true" />
+    <Property Name="Location" Type="varchar(max)" Nullable="true" />
+    <Property Name="VA_count" Type="varchar(max)" Nullable="true" />
+    <Property Name="CA_count" Type="varchar(max)" Nullable="true" />
+    <Property Name="Level_1_2_CA_count" Type="varchar(max)" Nullable="true" />
+    <Property Name="DG_count" Type="varchar(max)" Nullable="true" />
+    <Property Name="Haplotype" Type="varchar(max)" Nullable="true" />
+    <Property Name="Synonyms" Type="varchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Varients">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VarientSymbol" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ChemicalGene">
+    <Key>
+      <PropertyRef Name="Chemicals_Id" />
+      <PropertyRef Name="Genes_Id" />
+    </Key>
+    <Property Name="Chemicals_Id" Type="int" Nullable="false" />
+    <Property Name="Genes_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HaplotypeVarient">
+    <Key>
+      <PropertyRef Name="Haplotypes_Id" />
+      <PropertyRef Name="Varients_Id" />
+    </Key>
+    <Property Name="Haplotypes_Id" Type="int" Nullable="false" />
+    <Property Name="Varients_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ChemicalDrug">
+    <End Role="Chemicals" Type="PGx_KBModel.Store.Chemicals" Multiplicity="0..1" />
+    <End Role="Drugs" Type="PGx_KBModel.Store.Drugs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Chemicals">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Drugs">
+        <PropertyRef Name="Chemical_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RecomendationChemical">
+    <End Role="Chemicals" Type="PGx_KBModel.Store.Chemicals" Multiplicity="1" />
+    <End Role="Recomendations" Type="PGx_KBModel.Store.Recomendations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Chemicals">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Recomendations">
+        <PropertyRef Name="Chemical_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DiplotypeHaplotype1">
+    <End Role="Haplotypes" Type="PGx_KBModel.Store.Haplotypes" Multiplicity="0..1" />
+    <End Role="Diplotypes" Type="PGx_KBModel.Store.Diplotypes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Haplotypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Diplotypes">
+        <PropertyRef Name="Haplotype1_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DiplotypeHaplotype2">
+    <End Role="Haplotypes" Type="PGx_KBModel.Store.Haplotypes" Multiplicity="0..1" />
+    <End Role="Diplotypes" Type="PGx_KBModel.Store.Diplotypes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Haplotypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Diplotypes">
+        <PropertyRef Name="Haplotype2_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DiplotypePhenotype">
+    <End Role="Phenotypes" Type="PGx_KBModel.Store.Phenotypes" Multiplicity="0..1" />
+    <End Role="Diplotypes" Type="PGx_KBModel.Store.Diplotypes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Phenotypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Diplotypes">
+        <PropertyRef Name="Phenotype_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GeneDiplotype">
+    <End Role="Genes" Type="PGx_KBModel.Store.Genes" Multiplicity="0..1" />
+    <End Role="Diplotypes" Type="PGx_KBModel.Store.Diplotypes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Genes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Diplotypes">
+        <PropertyRef Name="Gene_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GenePhenotype">
+    <End Role="Genes" Type="PGx_KBModel.Store.Genes" Multiplicity="1" />
+    <End Role="Phenotypes" Type="PGx_KBModel.Store.Phenotypes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Genes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Phenotypes">
+        <PropertyRef Name="Gene_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HaplotypeGene">
+    <End Role="Genes" Type="PGx_KBModel.Store.Genes" Multiplicity="1" />
+    <End Role="Haplotypes" Type="PGx_KBModel.Store.Haplotypes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Genes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Haplotypes">
+        <PropertyRef Name="Gene_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PhenotypeRecomendation">
+    <End Role="Phenotypes" Type="PGx_KBModel.Store.Phenotypes" Multiplicity="1" />
+    <End Role="Recomendations" Type="PGx_KBModel.Store.Recomendations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Phenotypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Recomendations">
+        <PropertyRef Name="Phenotype_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChemicalGene_Chemicals">
+    <End Role="Chemicals" Type="PGx_KBModel.Store.Chemicals" Multiplicity="1" />
+    <End Role="ChemicalGene" Type="PGx_KBModel.Store.ChemicalGene" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Chemicals">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ChemicalGene">
+        <PropertyRef Name="Chemicals_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChemicalGene_Genes">
+    <End Role="ChemicalGene" Type="PGx_KBModel.Store.ChemicalGene" Multiplicity="*" />
+    <End Role="Genes" Type="PGx_KBModel.Store.Genes" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Genes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ChemicalGene">
+        <PropertyRef Name="Genes_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HaplotypeVarient_Haplotypes">
+    <End Role="Haplotypes" Type="PGx_KBModel.Store.Haplotypes" Multiplicity="1" />
+    <End Role="HaplotypeVarient" Type="PGx_KBModel.Store.HaplotypeVarient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Haplotypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HaplotypeVarient">
+        <PropertyRef Name="Haplotypes_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HaplotypeVarient_Varients">
+    <End Role="HaplotypeVarient" Type="PGx_KBModel.Store.HaplotypeVarient" Multiplicity="*" />
+    <End Role="Varients" Type="PGx_KBModel.Store.Varients" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Varients">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HaplotypeVarient">
+        <PropertyRef Name="Varients_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

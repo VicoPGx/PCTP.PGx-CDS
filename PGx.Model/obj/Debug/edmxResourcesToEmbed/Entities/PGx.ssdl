@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CPGxModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Chemical_DICT">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Chinese_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="English_Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Gene_DICT">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“CPGx.dbo.Genotype”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="Genotype">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Haplotype" />
+      <PropertyRef Name="Genotype" />
+      <PropertyRef Name="Gene_Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Haplotype" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Genotype" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Gene_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6013: 表/视图“CPGx.dbo.PGxTest_Data”未定义主键，并且无法推断有效的主键。已排除了此表/视图。若要使用实体，将需要检查您的架构、添加正确的键并取消对实体的注释。
+        <EntityType Name="PGxTest_Data">
+          <Property Name="TEST_DATA_ID" Type="float" />
+          <Property Name="PATIENT_ID" Type="nvarchar" MaxLength="255" />
+          <Property Name="VISIT_ID" Type="float" />
+          <Property Name="TEST_ID" Type="nvarchar" MaxLength="255" />
+          <Property Name="TEST_ITEM_NO" Type="float" />
+          <Property Name="TEST_ITEM_NAME" Type="nvarchar" MaxLength="255" />
+          <Property Name="TEST_ITEM_CODE" Type="float" />
+          <Property Name="RESULT" Type="nvarchar" MaxLength="255" />
+          <Property Name="UNITS" Type="nvarchar" MaxLength="255" />
+          <Property Name="ABNORMAL_INDICATOR" Type="nvarchar" MaxLength="255" />
+          <Property Name="NORMAL_REFERENCE_VALUES" Type="nvarchar" MaxLength="255" />
+          <Property Name="INSTRUMENT_ID" Type="nvarchar" MaxLength="255" />
+          <Property Name="RESULT_DATE_TIME" Type="datetime" />
+          <Property Name="TEST_DATA_FLAG" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+  <EntityType Name="Phenotype">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Gene_Id" Type="int" Nullable="false" />
+    <Property Name="Phenotype" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Genotype_A" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Genotype_B" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Recommendation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Gene_Id" Type="int" Nullable="false" />
+    <Property Name="Phenotype" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Drug_Id" Type="int" Nullable="false" />
+    <Property Name="Implication" Type="nvarchar(max)" />
+    <Property Name="Recommendation" Type="nvarchar(max)" />
+    <Property Name="Classification" Type="nvarchar(max)" />
+    <Property Name="Comment" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityContainer Name="CPGxModelStoreContainer">
+    <EntitySet Name="Chemical_DICT" EntityType="Self.Chemical_DICT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Gene_DICT" EntityType="Self.Gene_DICT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Phenotype" EntityType="Self.Phenotype" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Recommendation" EntityType="Self.Recommendation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Genotype" EntityType="Self.Genotype" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[Genotype].[Id] AS [Id], 
+[Genotype].[Haplotype] AS [Haplotype], 
+[Genotype].[Genotype] AS [Genotype], 
+[Genotype].[Gene_Id] AS [Gene_Id]
+FROM [dbo].[Genotype] AS [Genotype]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

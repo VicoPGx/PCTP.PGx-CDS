@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KB_PGxModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityType Name="Chemical">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ChemicalName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ChemicalNameCN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Recomendation" Relationship="KB_PGxModel.RecomendationChemical" FromRole="Chemical" ToRole="Recomendation" />
+    <NavigationProperty Name="Gene" Relationship="KB_PGxModel.ChemicalGene" FromRole="Chemical" ToRole="Gene" />
+    <NavigationProperty Name="Drug" Relationship="KB_PGxModel.ChemicalDrug" FromRole="Chemical" ToRole="Drug" />
+  </EntityType>
+  <EntityType Name="Diplotype">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DiplotypeSymbol" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Haplotype" Relationship="KB_PGxModel.DiplotypeHaplotype" FromRole="Diplotype" ToRole="Haplotype" />
+    <NavigationProperty Name="Phenotype" Relationship="KB_PGxModel.DiplotypePhenotype" FromRole="Diplotype" ToRole="Phenotype" />
+    <NavigationProperty Name="Gene" Relationship="KB_PGxModel.GeneDiplotype" FromRole="Diplotype" ToRole="Gene" />
+  </EntityType>
+  <EntityType Name="Gene">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GeneSymbol" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Chemical" Relationship="KB_PGxModel.ChemicalGene" FromRole="Gene" ToRole="Chemical" />
+    <NavigationProperty Name="Haplotype" Relationship="KB_PGxModel.HaplotypeGene" FromRole="Gene" ToRole="Haplotype" />
+    <NavigationProperty Name="Phenotype" Relationship="KB_PGxModel.GenePhenotype" FromRole="Gene" ToRole="Phenotype" />
+    <NavigationProperty Name="Diplotype" Relationship="KB_PGxModel.GeneDiplotype" FromRole="Gene" ToRole="Diplotype" />
+  </EntityType>
+  <EntityType Name="Haplotype">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HaplotypeName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="HaplotypeSymbol" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Category" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Diplotype" Relationship="KB_PGxModel.DiplotypeHaplotype" FromRole="Haplotype" ToRole="Diplotype" />
+    <NavigationProperty Name="Varient" Relationship="KB_PGxModel.HaplotypeVarient" FromRole="Haplotype" ToRole="Varient" />
+    <NavigationProperty Name="Gene" Relationship="KB_PGxModel.HaplotypeGene" FromRole="Haplotype" ToRole="Gene" />
+  </EntityType>
+  <EntityType Name="Phenotype">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PhenotypeSymbol" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PhenotypeSymbolCN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Genotype" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GenotypeCN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ActivityScore" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Recomendation" Relationship="KB_PGxModel.RecomendationPhenotype" FromRole="Phenotype" ToRole="Recomendation" />
+    <NavigationProperty Name="Diplotype" Relationship="KB_PGxModel.DiplotypePhenotype" FromRole="Phenotype" ToRole="Diplotype" />
+    <Property Name="Normal" Type="String" Nullable="false" />
+    <NavigationProperty Name="Gene" Relationship="KB_PGxModel.GenePhenotype" FromRole="Phenotype" ToRole="Gene" />
+  </EntityType>
+  <EntityType Name="Recomendation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Implication" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ImplicationCN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DosingRecomendation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DosingRecomendationCN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Level" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Phenotype" Relationship="KB_PGxModel.RecomendationPhenotype" FromRole="Recomendation" ToRole="Phenotype" />
+    <NavigationProperty Name="Chemical" Relationship="KB_PGxModel.RecomendationChemical" FromRole="Recomendation" ToRole="Chemical" />
+  </EntityType>
+  <EntityType Name="Varient">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VarientSymbol" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Haplotype" Relationship="KB_PGxModel.HaplotypeVarient" FromRole="Varient" ToRole="Haplotype" />
+  </EntityType>
+  <EntityContainer Name="PGxMFContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Chemicals" EntityType="KB_PGxModel.Chemical" />
+    <EntitySet Name="Diplotypes" EntityType="Self.Diplotype" />
+    <EntitySet Name="Genes" EntityType="KB_PGxModel.Gene" />
+    <EntitySet Name="Haplotypes" EntityType="KB_PGxModel.Haplotype" />
+    <EntitySet Name="Phenotypes" EntityType="Self.Phenotype" />
+    <EntitySet Name="Recomendations" EntityType="Self.Recomendation" />
+    <EntitySet Name="Varients" EntityType="Self.Varient" />
+    <AssociationSet Name="RecomendationPhenotype" Association="KB_PGxModel.RecomendationPhenotype">
+      <End Role="Recomendation" EntitySet="Recomendations" />
+      <End Role="Phenotype" EntitySet="Phenotypes" />
+    </AssociationSet>
+    <AssociationSet Name="DiplotypeHaplotype" Association="KB_PGxModel.DiplotypeHaplotype">
+      <End Role="Diplotype" EntitySet="Diplotypes" />
+      <End Role="Haplotype" EntitySet="Haplotypes" />
+    </AssociationSet>
+    <AssociationSet Name="RecomendationChemical" Association="KB_PGxModel.RecomendationChemical">
+      <End Role="Recomendation" EntitySet="Recomendations" />
+      <End Role="Chemical" EntitySet="Chemicals" />
+    </AssociationSet>
+    <AssociationSet Name="HaplotypeVarient" Association="KB_PGxModel.HaplotypeVarient">
+      <End Role="Haplotype" EntitySet="Haplotypes" />
+      <End Role="Varient" EntitySet="Varients" />
+    </AssociationSet>
+    <AssociationSet Name="DiplotypePhenotype" Association="KB_PGxModel.DiplotypePhenotype">
+      <End Role="Diplotype" EntitySet="Diplotypes" />
+      <End Role="Phenotype" EntitySet="Phenotypes" />
+    </AssociationSet>
+    <AssociationSet Name="ChemicalGene" Association="KB_PGxModel.ChemicalGene">
+      <End Role="Chemical" EntitySet="Chemicals" />
+      <End Role="Gene" EntitySet="Genes" />
+    </AssociationSet>
+    <AssociationSet Name="HaplotypeGene" Association="KB_PGxModel.HaplotypeGene">
+      <End Role="Haplotype" EntitySet="Haplotypes" />
+      <End Role="Gene" EntitySet="Genes" />
+    </AssociationSet>
+    <AssociationSet Name="GenePhenotype" Association="KB_PGxModel.GenePhenotype">
+      <End Role="Gene" EntitySet="Genes" />
+      <End Role="Phenotype" EntitySet="Phenotypes" />
+    </AssociationSet>
+    <EntitySet Name="Drugs" EntityType="KB_PGxModel.Drug" />
+    <AssociationSet Name="ChemicalDrug" Association="KB_PGxModel.ChemicalDrug">
+      <End Role="Chemical" EntitySet="Chemicals" />
+      <End Role="Drug" EntitySet="Drugs" />
+    </AssociationSet>
+    <AssociationSet Name="GeneDiplotype" Association="KB_PGxModel.GeneDiplotype">
+      <End Role="Gene" EntitySet="Genes" />
+      <End Role="Diplotype" EntitySet="Diplotypes" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="RecomendationPhenotype">
+    <End Type="KB_PGxModel.Recomendation" Role="Recomendation" Multiplicity="*" />
+    <End Type="KB_PGxModel.Phenotype" Role="Phenotype" Multiplicity="*" />
+  </Association>
+  <Association Name="DiplotypeHaplotype">
+    <End Type="KB_PGxModel.Diplotype" Role="Diplotype" Multiplicity="*" />
+    <End Type="KB_PGxModel.Haplotype" Role="Haplotype" Multiplicity="*" />
+  </Association>
+  <Association Name="RecomendationChemical">
+    <End Type="KB_PGxModel.Recomendation" Role="Recomendation" Multiplicity="*" />
+    <End Type="KB_PGxModel.Chemical" Role="Chemical" Multiplicity="1" />
+  </Association>
+  <Association Name="HaplotypeVarient">
+    <End Type="KB_PGxModel.Haplotype" Role="Haplotype" Multiplicity="*" />
+    <End Type="KB_PGxModel.Varient" Role="Varient" Multiplicity="*" />
+  </Association>
+  <Association Name="DiplotypePhenotype">
+    <End Type="KB_PGxModel.Diplotype" Role="Diplotype" Multiplicity="*" />
+    <End Type="KB_PGxModel.Phenotype" Role="Phenotype" Multiplicity="1" />
+  </Association>
+  <Association Name="ChemicalGene">
+    <End Type="KB_PGxModel.Chemical" Role="Chemical" Multiplicity="*" />
+    <End Type="KB_PGxModel.Gene" Role="Gene" Multiplicity="*" />
+  </Association>
+  <Association Name="HaplotypeGene">
+    <End Type="KB_PGxModel.Haplotype" Role="Haplotype" Multiplicity="*" />
+    <End Type="KB_PGxModel.Gene" Role="Gene" Multiplicity="1" />
+  </Association>
+  <Association Name="GenePhenotype">
+    <End Type="KB_PGxModel.Gene" Role="Gene" Multiplicity="1" />
+    <End Type="KB_PGxModel.Phenotype" Role="Phenotype" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Drug">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DrugName" Type="String" Nullable="false" />
+    <Property Name="DrugCode" Type="String" Nullable="false" />
+    <Property Name="EMRId" Type="String" Nullable="false" />
+    <NavigationProperty Name="Chemical" Relationship="KB_PGxModel.ChemicalDrug" FromRole="Drug" ToRole="Chemical" />
+  </EntityType>
+  <Association Name="ChemicalDrug">
+    <End Type="KB_PGxModel.Chemical" Role="Chemical" Multiplicity="1" />
+    <End Type="KB_PGxModel.Drug" Role="Drug" Multiplicity="*" />
+  </Association>
+  <Association Name="GeneDiplotype">
+    <End Type="KB_PGxModel.Gene" Role="Gene" Multiplicity="1" />
+    <End Type="KB_PGxModel.Diplotype" Role="Diplotype" Multiplicity="*" />
+  </Association>
+</Schema>

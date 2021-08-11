@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CPGxModelStoreContainer" CdmEntityContainer="CPGxEntities">
+    <EntitySetMapping Name="Chemical_DICT">
+      <EntityTypeMapping TypeName="CPGxModel.Chemical_DICT">
+        <MappingFragment StoreEntitySet="Chemical_DICT">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Chinese_Name" ColumnName="Chinese_Name" />
+          <ScalarProperty Name="English_Name" ColumnName="English_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Gene_DICT">
+      <EntityTypeMapping TypeName="CPGxModel.Gene_DICT">
+        <MappingFragment StoreEntitySet="Gene_DICT">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Phenotype">
+      <EntityTypeMapping TypeName="CPGxModel.Phenotype">
+        <MappingFragment StoreEntitySet="Phenotype">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Gene_Id" ColumnName="Gene_Id" />
+          <ScalarProperty Name="Phenotype1" ColumnName="Phenotype" />
+          <ScalarProperty Name="Genotype_A" ColumnName="Genotype_A" />
+          <ScalarProperty Name="Genotype_B" ColumnName="Genotype_B" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Recommendation">
+      <EntityTypeMapping TypeName="CPGxModel.Recommendation">
+        <MappingFragment StoreEntitySet="Recommendation">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Gene_Id" ColumnName="Gene_Id" />
+          <ScalarProperty Name="Phenotype" ColumnName="Phenotype" />
+          <ScalarProperty Name="Drug_Id" ColumnName="Drug_Id" />
+          <ScalarProperty Name="Implication" ColumnName="Implication" />
+          <ScalarProperty Name="Recommendation1" ColumnName="Recommendation" />
+          <ScalarProperty Name="Classification" ColumnName="Classification" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Genotype">
+      <EntityTypeMapping TypeName="CPGxModel.Genotype">
+        <MappingFragment StoreEntitySet="Genotype">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Haplotype" ColumnName="Haplotype" />
+          <ScalarProperty Name="Genotype1" ColumnName="Genotype" />
+          <ScalarProperty Name="Gene_Id" ColumnName="Gene_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

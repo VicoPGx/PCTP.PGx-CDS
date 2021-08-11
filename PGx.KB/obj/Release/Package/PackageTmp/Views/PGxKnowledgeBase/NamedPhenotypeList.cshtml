@@ -1,0 +1,9 @@
+﻿@model List<string>
+
+<select>
+    <option>Unselected</option>
+    @foreach (var str in Model)
+    {
+        <option>@str</option> 
+    }
+</select>

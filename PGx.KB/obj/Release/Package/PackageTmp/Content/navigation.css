@@ -1,0 +1,45 @@
+﻿.navigation-list
+{
+    float: left;
+    width: 260px;
+}
+    
+.navigation-list h2
+{
+    font-weight: normal;
+    margin-bottom: 0;
+    font-family:黑体;
+}
+    
+.navigation-list ul
+{
+    width: 100%;
+    border-top: 1px solid #ccc;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+    
+.navigation-list li
+{
+    border-bottom: 1px solid #ccc;     
+    list-style-position: inside;         
+    padding: 0;
+    margin: 0;
+    background: #eee;       
+}
+    
+.navigation-list .active
+{
+    background: #fff;
+}
+    
+.navigation-list a
+{
+    text-decoration: none;
+    display: block;        
+    font-size: 13px;
+    color: #3f3f3f;
+    text-shadow: 1px 1px #fff;
+    padding: 2% 4%;        
+}

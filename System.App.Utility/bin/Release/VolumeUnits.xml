@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<UnitTable>
+  <Units>
+    <Unit code="1" name="Liter" symbol="l" plural="Liters" alias="升"/>
+    <Unit code="2" name="Milliliter" symbol="ml" plural="Milliliters" alias="毫升"/>
+    <Unit code="3" name="USGallon" symbol="gallon (US)" plural="PUSGallon" alias="加仑"/>
+    <Unit code="4" name="Deciliter" symbol="dl" plural="Deciliters" alias="分升"/>
+  </Units>
+  <Conversions>
+    <Linear srcCode="1" destCode="2" factor="1000"/>
+    <Linear srcCode="1" destCode="3" deltha="0.264172"/>
+    <Linear srcCode="1" destCode="4" factor="10"/>
+
+    <Linear srcCode="2" destCode="3" deltha="0.000264172"/>
+    <Linear srcCode="2" destCode="4" factor="0.01"/>
+  </Conversions>
+</UnitTable>

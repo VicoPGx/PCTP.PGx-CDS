@@ -1,0 +1,243 @@
+﻿@using PGx.Model.Entities;
+@model PGx.Model.Entities.NamedAllele
+           <script>
+               $(document).ready(function () {
+                   $("#allele-form>div").accordion({ heightStyle: "content", header: "h3", collapsible: true });
+               });
+
+
+
+               function addPopFrequency(id) {
+                   debugger;
+                   var funcs = document.getElementById("Populations").value;
+                   var rows = document.getElementById("pop_frequency").rows.length;
+                   thisId = "row_" + rows;
+                   debugger;
+                   if (funcs) {
+                       var array = ["Unselected"].concat(funcs.split(","));
+                   }
+                       var populationSelect = document.createElement("select");
+                       populationSelect.style.width = "300px";
+                       populationSelect.setAttribute('name', "population");
+
+                       for (var j = 0; j < array.length; j++) {
+                           addSelectOption(populationSelect, array[j], array[j], "");
+                       }
+                       var html = '<tr id="' + thisId + '"><td>' + populationSelect.outerHTML + '</td><td><input type="text" name="frequency_decimal" ></td><td> <img onclick="deletePopFrequency(\'' + thisId + '\');" style="cursor:pointer; position: relative; margin-bottom: -5px" src="/Content/images/trash.png"alt="Delete" /></td></tr>';
+                       $('#'+id+' tr:last').after(html);
+
+               }
+
+               function deletePopFrequency(thisTrId) {
+                   debugger;
+                   var thisRow = document.getElementById(thisTrId);
+                   if (thisRow)
+                       thisRow.parentNode.removeChild(thisRow);
+               }
+
+
+               function saveAllele()
+               {
+                  
+                   var tRows = document.getElementById("position_table").rows;
+                   var obj = {};
+                   var key,ser;
+                   for (var i = 1; i < tRows.length; i++)
+                   {
+                       key=tRows[i].children[0].children[0].value;
+                       obj[key]=tRows[i].children[4].children[0].value
+                   }
+                   debugger;
+                   ser = JSON.stringify(obj);
+                   $("#LocusAlleleJson").val(ser);
+                   var pRows = $("#pop_frequency").find("tr");
+                   var freObj, freArray = [];
+                   for (var i = 1; i < pRows.length; i++)
+                   {
+                       freObj = {};
+                       freObj["Population"] = pRows[i].children[0].children[0].value;
+                      
+                       freObj["Frequency"] = pRows[i].children[1].children[0].value;
+                       if (freObj["Population"] != "Unselected") {
+                           freArray.push(freObj);
+                       }
+                   }
+                   var freStr = JSON.stringify(freArray);
+                   debugger;
+                   $("#AlleleFrequency").val(freStr);
+                   $("#allele-form").ajaxSubmit(function (data) {
+                       debugger;
+                       alert(data);
+                   });
+
+                   geneEdit('@Model.DefinitionFileID');
+                   $('#tabs a[href="#fragment-2"]').click();
+                   return false;
+               }
+           </script>
+
+
+<div>
+    <fieldset style="margin-left:5px">
+        @if (Model.ID == 0)
+        {
+        <legend>New Allele</legend>
+        }
+        else
+        {
+    <legend>@Model.DefinitionFile.GeneSymbol:@Model.Name</legend>
+        }
+    @using (Html.BeginForm("AlleleEdit", "PGxKnowledgeBase", FormMethod.Post, new { id = "allele-form", onsubmit = "return saveAllele();" }))
+    {
+       
+  <div>
+      @if(Model.ID==0)
+      {
+          <input id="ID" type="hidden" name="ID" value="0" /> 
+      }
+      else
+      {
+          @Html.HiddenFor(m=>m.ID)
+      }
+    @Html.HiddenFor(m => m.M_Id)
+    @Html.HiddenFor(m => m.DefinitionFileID)
+    @Html.HiddenFor(m => m.LocusAlleleJson)
+    @Html.HiddenFor(m=>m.AlleleFrequency)
+      <h3>Primary Info</h3>
+      <div>
+          <table class="table" style="margin-bottom:0px">
+              <thead>
+                  <tr>
+                      <th>
+                          Allele name
+                      </th>
+                      <th>Allele function</th>
+                      <th>Activity value</th>
+                      <th>Is reference allele</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td  style="width:25%">
+                          <div>@Html.TextBoxFor(m => m.Name, new { @class="form-control"})</div>
+                      </td>
+                      @{
+                         List<string> funcitionList = new List<string>() { "Unselected" };
+                         var namedFunctions = new PGx_KBEntities().DefinitionFile.Where(x => x.ID == Model.DefinitionFileID).FirstOrDefault().NamedFunctions;
+                         if (string.IsNullOrEmpty(namedFunctions) == false)
+                         {
+                             funcitionList = funcitionList.Concat(namedFunctions.Split(',')).ToList();
+                         } 
+                          }
+                      <td  style="width:25%"><div >@Html.DropDownList("M_function",new SelectList(funcitionList,Model.M_Function), new { @class="form-control"})</div></td>
+                      <td style="width:25%"><div>@Html.TextBoxFor(m => m.ActivityValue, new { @class="form-control"})</div></td>
+                      <td  style="width:25%">    <div>
+       Yes @Html.RadioButtonFor(m => m.IsRefAllele, true)
+       No @Html.RadioButtonFor(m => m.IsRefAllele, false)
+    </div></td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+ <div style="clear:both">
+                <h3>Allele Frequency</h3>
+                <div>
+                    <label>Add New</label> <img onclick="addPopFrequency('pop_frequency');" style="cursor:pointer; position: relative; margin-bottom: -5px" src="/Content/images/add_black.png" alt="Add" />
+                    <table id="pop_frequency" class="table table-hover table-striped" style="margin-bottom:0px">
+                        <tr>
+                            <th>Population</th> 
+                            <th>Frequency</th>
+                            <th>Action</th>
+                        </tr>
+                        @{
+                            List<string> popList=new List<string>{"Unselected"} ;
+                            var populations=new PGx_KBEntities().DefinitionFile.Where(x=>x.ID==Model.DefinitionFileID).FirstOrDefault().Populations;             
+                            if (string.IsNullOrEmpty(populations) == false)
+                            {
+                                popList = popList.Concat(populations.Split(',')).ToList();
+                            }
+                            if (Model.PopulationFrequency.Count > 0)
+                        {
+                            foreach (var p in Model.PopulationFrequency)
+                            {
+                                var tId = "key" + "_" + p.ID.ToString(); 
+                            <tr id="@tId">
+                                <td>@Html.DropDownList("population", new SelectList(popList,p.Population), new { style = "width:300px" })</td>                                                                
+                                <td>@Html.TextBox("frequency_decimal", p.Frequency.ToString())</td>
+                                <td>
+                                     <img onclick="deletePopFrequency('@tId');" style="cursor:pointer; position: relative; margin-bottom: -5px" src="/Content/images/trash.png" alt="Delete" />
+                                </td>
+                            </tr> 
+                            }
+                        }
+                        else
+                        {                          
+                            <tr id="key_0">
+                                <td>@Html.DropDownList("population", new SelectList(popList), new { style = "width:300px" })</td>                            
+                                <td>@Html.TextBox("frequency_decimal", "")</td>
+                                <td>
+                                     <img onclick="deletePopFrequency('key_0');" style="cursor:pointer; position: relative; margin-bottom: -5px" src="/Content/images/trash.png" alt="Delete" />
+                                </td>
+                            </tr>
+                        }
+                        }
+                    </table>
+               </div>
+     </div>
+       
+        <div>
+        <h3>Allele Definition</h3>
+            <div>
+        
+        <div>
+        <table id="position_table" class="grid table table-hover table-striped" style="margin-bottom:0px"  >
+            <tr>
+                <th>Number</th>
+                <th>
+                    Position
+                </th>
+                <th>HGVS-Chromosome name</th>
+                <th>rsId</th>
+                <th>
+                    Allele
+                </th>
+            </tr>
+ 
+            @{
+                var num = 0;
+                var context=new PGx_KBEntities();
+                var definitionFile=context.DefinitionFile.Where(x=>x.ID==Model.DefinitionFileID).FirstOrDefault();
+                var variantLocus=definitionFile.VariantLocus.ToList();
+                foreach (var a in variantLocus)
+                {
+                    num++;
+                    var namedAllele = Model.NamedAlleleDefinition.Where(x => x.VariantLocusID == a.ID).FirstOrDefault();
+                    var selected = namedAllele==null ? "Unselected" : namedAllele.Allele;
+                    if (Model.IsRefAllele == true && (string.IsNullOrEmpty(selected) == true || selected == "Unselected"))
+                    {
+                        selected = a.Alleles.Split(',').ElementAt(0);
+                    }                
+                <tr>
+                    <td>@Html.Hidden("locusId", a.ID)<span>@num</span></td>
+                    <td>@a.DefinitionFile.Chromosome:@a.Position</td>
+                    <td>@a.ChromosomeHgvsName</td>
+                    <td>@a.Rsid</td>
+                    <td>@Html.DropDownList("Allele", new SelectList(a.Alleles.Split(',').ToList(), selected), "Unselected", new { style = "width:120px" })</td>                  
+                </tr>                   
+                }
+             }
+        </table>
+       </div>
+      </div>
+            </div>
+        <div style="margin:3px"><input type="submit" value="Save" />
+            <button type="button" onclick="deleteAllele(@Model.ID,@Model.DefinitionFileID)">Delete</button>
+            <Button type="button" onclick="GeneCancel()" >Cancle</Button>
+
+       </div> 
+    } 
+        </fieldset>
+</div>
+
+        

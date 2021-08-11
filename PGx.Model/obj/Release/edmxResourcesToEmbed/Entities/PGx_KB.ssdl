@@ -1,0 +1,708 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PGx_KBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="PGx_KBModelStoreContainer">
+    <EntitySet Name="RAW_DATA_FILE" EntityType="PGx_KBModel.Store.RAW_DATA_FILE" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DefinitionFile" EntityType="PGx_KBModel.Store.DefinitionFile" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="VariantLocus" EntityType="PGx_KBModel.Store.VariantLocus" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="NamedAllele" EntityType="PGx_KBModel.Store.NamedAllele" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="NamedAlleleDefinition" EntityType="PGx_KBModel.Store.NamedAlleleDefinition" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DefinitionExemption" EntityType="PGx_KBModel.Store.DefinitionExemption" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PopulationFrequency" EntityType="PGx_KBModel.Store.PopulationFrequency" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PGxGuideline" EntityType="PGx_KBModel.Store.PGxGuideline" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RelatedGene" EntityType="PGx_KBModel.Store.RelatedGene" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DosingGuidence" EntityType="PGx_KBModel.Store.DosingGuidence" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Literature" EntityType="PGx_KBModel.Store.Literature" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="GeneCall" EntityType="PGx_KBModel.Store.GeneCall" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DiplotypeMatch" EntityType="PGx_KBModel.Store.DiplotypeMatch" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HaplotypeMatch" EntityType="PGx_KBModel.Store.HaplotypeMatch" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Variant" EntityType="PGx_KBModel.Store.Variant" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="VarOfInterest" EntityType="PGx_KBModel.Store.VarOfInterest" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="NamedPhenotype" EntityType="PGx_KBModel.Store.NamedPhenotype" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PhenotypeDef" EntityType="PGx_KBModel.Store.PhenotypeDef" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PhenotypePopFreq" EntityType="PGx_KBModel.Store.PhenotypePopFreq" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Patient" EntityType="PGx_KBModel.Store.Patient" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DiplotypeResult" EntityType="PGx_KBModel.Store.DiplotypeResult" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ClinicalRelevance" EntityType="PGx_KBModel.Store.ClinicalRelevance" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RecommendationPhenotype" EntityType="PGx_KBModel.Store.RecommendationPhenotype" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EFTest" EntityType="PGx_KBModel.Store.EFTest" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PGxGuidelineRelatedGene" EntityType="PGx_KBModel.Store.PGxGuidelineRelatedGene" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PGxGuidelineDefinitionFile" EntityType="PGx_KBModel.Store.PGxGuidelineDefinitionFile" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="DefinitionFileVariantLocus" Association="PGx_KBModel.Store.DefinitionFileVariantLocus">
+      <End Role="DefinitionFile" EntitySet="DefinitionFile" />
+      <End Role="VariantLocus" EntitySet="VariantLocus" />
+    </AssociationSet>
+    <AssociationSet Name="VariantLocusAlleleDefinition" Association="PGx_KBModel.Store.VariantLocusAlleleDefinition">
+      <End Role="VariantLocus" EntitySet="VariantLocus" />
+      <End Role="AlleleDefinition" EntitySet="NamedAlleleDefinition" />
+    </AssociationSet>
+    <AssociationSet Name="DefinitionFileNamedAllele" Association="PGx_KBModel.Store.DefinitionFileNamedAllele">
+      <End Role="DefinitionFile" EntitySet="DefinitionFile" />
+      <End Role="NamedAllele" EntitySet="NamedAllele" />
+    </AssociationSet>
+    <AssociationSet Name="NamedAlleleNamedAlleleDefinition" Association="PGx_KBModel.Store.NamedAlleleNamedAlleleDefinition">
+      <End Role="NamedAllele" EntitySet="NamedAllele" />
+      <End Role="NamedAlleleDefinition" EntitySet="NamedAlleleDefinition" />
+    </AssociationSet>
+    <AssociationSet Name="DefinitionExemptionVariantLocus" Association="PGx_KBModel.Store.DefinitionExemptionVariantLocus">
+      <End Role="DefinitionExemption" EntitySet="DefinitionExemption" />
+      <End Role="VariantLocus" EntitySet="VariantLocus" />
+    </AssociationSet>
+    <AssociationSet Name="NamedAllelePopulationFrequency" Association="PGx_KBModel.Store.NamedAllelePopulationFrequency">
+      <End Role="NamedAllele" EntitySet="NamedAllele" />
+      <End Role="PopulationFrequency" EntitySet="PopulationFrequency" />
+    </AssociationSet>
+    <AssociationSet Name="GeneCallDiplotypeMatch" Association="PGx_KBModel.Store.GeneCallDiplotypeMatch">
+      <End Role="GeneCall" EntitySet="GeneCall" />
+      <End Role="DiplotypeMatch" EntitySet="DiplotypeMatch" />
+    </AssociationSet>
+    <AssociationSet Name="GeneCallHaplotypeMatch" Association="PGx_KBModel.Store.GeneCallHaplotypeMatch">
+      <End Role="GeneCall" EntitySet="GeneCall" />
+      <End Role="HaplotypeMatch" EntitySet="HaplotypeMatch" />
+    </AssociationSet>
+    <AssociationSet Name="GeneCallVariant1" Association="PGx_KBModel.Store.GeneCallVariant1">
+      <End Role="GeneCall" EntitySet="GeneCall" />
+      <End Role="Variant" EntitySet="Variant" />
+    </AssociationSet>
+    <AssociationSet Name="GeneCallVarOfInterest" Association="PGx_KBModel.Store.GeneCallVarOfInterest">
+      <End Role="GeneCall" EntitySet="GeneCall" />
+      <End Role="VarOfInterest" EntitySet="VarOfInterest" />
+    </AssociationSet>
+    <AssociationSet Name="PGxGuidelineDosingGuidence" Association="PGx_KBModel.Store.PGxGuidelineDosingGuidence">
+      <End Role="PGxGuideline" EntitySet="PGxGuideline" />
+      <End Role="DosingGuidence" EntitySet="DosingGuidence" />
+    </AssociationSet>
+    <AssociationSet Name="PGxGuidelineLiterature" Association="PGx_KBModel.Store.PGxGuidelineLiterature">
+      <End Role="PGxGuideline" EntitySet="PGxGuideline" />
+      <End Role="Literature" EntitySet="Literature" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PGxGuidelineRelatedGene_PGxGuideline" Association="PGx_KBModel.Store.FK_PGxGuidelineRelatedGene_PGxGuideline">
+      <End Role="PGxGuideline" EntitySet="PGxGuideline" />
+      <End Role="PGxGuidelineRelatedGene" EntitySet="PGxGuidelineRelatedGene" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PGxGuidelineRelatedGene_RelatedGene" Association="PGx_KBModel.Store.FK_PGxGuidelineRelatedGene_RelatedGene">
+      <End Role="RelatedGene" EntitySet="RelatedGene" />
+      <End Role="PGxGuidelineRelatedGene" EntitySet="PGxGuidelineRelatedGene" />
+    </AssociationSet>
+    <AssociationSet Name="DefinitionFilePhenotypeMap" Association="PGx_KBModel.Store.DefinitionFilePhenotypeMap">
+      <End Role="DefinitionFile" EntitySet="DefinitionFile" />
+      <End Role="PhenotypeMap" EntitySet="NamedPhenotype" />
+    </AssociationSet>
+    <AssociationSet Name="NamedPhenotypePhenotypeDef" Association="PGx_KBModel.Store.NamedPhenotypePhenotypeDef">
+      <End Role="NamedPhenotype" EntitySet="NamedPhenotype" />
+      <End Role="PhenotypeDef" EntitySet="PhenotypeDef" />
+    </AssociationSet>
+    <AssociationSet Name="PhenotypePopFreqNamedPhenotype" Association="PGx_KBModel.Store.PhenotypePopFreqNamedPhenotype">
+      <End Role="PhenotypePopFreq" EntitySet="PhenotypePopFreq" />
+      <End Role="NamedPhenotype" EntitySet="NamedPhenotype" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PGxGuidelineDefinitionFile_PGxGuideline" Association="PGx_KBModel.Store.FK_PGxGuidelineDefinitionFile_PGxGuideline">
+      <End Role="PGxGuideline" EntitySet="PGxGuideline" />
+      <End Role="PGxGuidelineDefinitionFile" EntitySet="PGxGuidelineDefinitionFile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PGxGuidelineDefinitionFile_DefinitionFile" Association="PGx_KBModel.Store.FK_PGxGuidelineDefinitionFile_DefinitionFile">
+      <End Role="DefinitionFile" EntitySet="DefinitionFile" />
+      <End Role="PGxGuidelineDefinitionFile" EntitySet="PGxGuidelineDefinitionFile" />
+    </AssociationSet>
+    <AssociationSet Name="RAW_DATA_FILEDiplotypeResult" Association="PGx_KBModel.Store.RAW_DATA_FILEDiplotypeResult">
+      <End Role="RAW_DATA_FILE" EntitySet="RAW_DATA_FILE" />
+      <End Role="DiplotypeResult" EntitySet="DiplotypeResult" />
+    </AssociationSet>
+    <AssociationSet Name="RAW_DATA_FILEGeneCall" Association="PGx_KBModel.Store.RAW_DATA_FILEGeneCall">
+      <End Role="RAW_DATA_FILE" EntitySet="RAW_DATA_FILE" />
+      <End Role="GeneCall" EntitySet="GeneCall" />
+    </AssociationSet>
+    <AssociationSet Name="DosingGuidenceRecommendationPhenotype" Association="PGx_KBModel.Store.DosingGuidenceRecommendationPhenotype">
+      <End Role="DosingGuidence" EntitySet="DosingGuidence" />
+      <End Role="RecommendationPhenotype" EntitySet="RecommendationPhenotype" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="RAW_DATA_FILE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PatientName" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="SampleCode" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="FILE_PATH" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="TYPE" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="DESCRIPTION" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="TimeStamp" Type="datetime" Nullable="true" />
+    <Property Name="Method" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Laboratory" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Sex" Type="bit" Nullable="true" />
+    <Property Name="PatientID" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="FileType" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="DefinitionFile">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FormatVersion" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ModificationDate" Type="datetime" Nullable="false" />
+    <Property Name="GeneSymbol" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Orientation" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Chromosome" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="GenomeBuild" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="RefSeqChromosome" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="RefSeqGene" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="RefSeqProtein" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Populations" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="GeneName" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="NamedFunctions" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="AlleleFrequencyTable" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="FunctionTable" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="AlleleDefinitionTable" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="DiplotypePhenotypeTable" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="IsAvailable" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="VariantLocus">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Chromosome" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Position" Type="int" Nullable="false" />
+    <Property Name="Rsid" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ChromosomeHgvsName" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="GeneHgvsName" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ProteinNote" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ResourceNote" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Type" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ReferenceRepeat" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="DefinitionFileID" Type="int" Nullable="true" />
+    <Property Name="Alleles" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="DefinitionExemptionID" Type="int" Nullable="true" />
+    <Property Name="TranscriptName" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="NamedAllele">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="M_Id" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="M_Function" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="DefinitionFileID" Type="int" Nullable="true" />
+    <Property Name="IsRefAllele" Type="bit" Nullable="true" />
+    <Property Name="ActivityValue" Type="float" Nullable="true" />
+  </EntityType>
+  <EntityType Name="NamedAlleleDefinition">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Allele" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="VariantLocusID" Type="int" Nullable="true" />
+    <Property Name="NamedAlleleID" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="DefinitionExemption">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Gene" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AllHits" Type="bit" Nullable="false" />
+    <Property Name="AssumeReference" Type="bit" Nullable="false" />
+    <Property Name="IgnoredAlleles" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="IgnoredAllelesLc" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ModificationTime" Type="datetime" Nullable="true" />
+  </EntityType>
+  <EntityType Name="PopulationFrequency">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Population" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NamedAlleleID" Type="int" Nullable="false" />
+    <Property Name="Frequency" Type="decimal" Nullable="true" />
+  </EntityType>
+  <EntityType Name="PGxGuideline">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="M_id" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Source" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Summary" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="GenesInStr" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Chemical" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ChemicalDictID" Type="int" Nullable="true" />
+    <Property Name="ClinicalImplication" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="IsAvailable" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="RelatedGene">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="M_id" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Symbol" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="DosingGuidence">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Phenotype" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Strength" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="RxChange" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Implication" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Recommendation" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="PGxGuidelineID" Type="int" Nullable="false" />
+    <Property Name="Proportion" Type="int" Nullable="true" />
+    <Property Name="Additional" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Alternative" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Contraindicated" Type="bit" Nullable="true" />
+    <Property Name="ProportionMax" Type="int" Nullable="true" />
+    <Property Name="Frequency" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ImpactLevel" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Literature">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="M_title" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="M_journal" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="M_year" Type="int" Nullable="true" />
+    <Property Name="M_pmid" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="M_authors" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="PGxGuidelineID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GeneCall">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AlleleDefinitionVersion" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Chromosome" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Gene" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="IsPhased" Type="bit" Nullable="true" />
+    <Property Name="UncallableHaplotypes" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="IgnoredHaplotypes" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="FileId" Type="int" Nullable="true" />
+    <Property Name="TimeStamp" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="IsVcfCall" Type="bit" Nullable="true" />
+    <Property Name="RAW_DATA_FILEID" Type="int" Nullable="false" />
+    <Property Name="HaplotypeA" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="HaplotypeB" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Diplotype" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Phenotype" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="DiplotypeMatch">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Score" Type="int" Nullable="true" />
+    <Property Name="GeneCallID" Type="int" Nullable="false" />
+    <Property Name="Phenotype" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="HaplotypeMatch">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="M_function" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Sequences" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="GeneCallID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Variant">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Position" Type="int" Nullable="false" />
+    <Property Name="Rsid" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="VcfCall" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="IsPhased" Type="bit" Nullable="true" />
+    <Property Name="VcfPosition" Type="int" Nullable="true" />
+    <Property Name="VcfAlleles" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="GeneCallID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VarOfInterest">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Position" Type="int" Nullable="false" />
+    <Property Name="Rsid" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="VcfCall" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="IsPhased" Type="bit" Nullable="true" />
+    <Property Name="VcfPosition" Type="int" Nullable="true" />
+    <Property Name="VcfAlleles" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="GeneCallID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NamedPhenotype">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Symbol" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Phenotype" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="DefinitionFileID" Type="int" Nullable="false" />
+    <Property Name="GenotypeList" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ActivityScore" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="PhenotypeDef">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NamedPhenotypeID" Type="int" Nullable="false" />
+    <Property Name="Genotype" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="FunctionA" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="FunctionB" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="GeneSymbol" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Phenotype" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="PhenotypePopFreq">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Population" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Frequency" Type="decimal" Nullable="true" Precision="18" Scale="3" />
+    <Property Name="NamedPhenotypeID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Patient">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PatientID" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Sex" Type="bit" Nullable="true" />
+    <Property Name="Age" Type="int" Nullable="true" />
+    <Property Name="Race" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Weight" Type="decimal" Nullable="true" Precision="18" Scale="1" />
+    <Property Name="Height" Type="int" Nullable="true" />
+    <Property Name="BirthDay" Type="datetime" Nullable="true" />
+    <Property Name="Nation" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="TimeStamp" Type="datetime" Nullable="true" />
+  </EntityType>
+  <EntityType Name="DiplotypeResult">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GeneSymbol" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Diplotype" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="PHenotype" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="AlleleA" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="AlleleB" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="RAW_DATA_FILEID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ClinicalRelevance">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Level" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Example" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Combination" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="RecommendationPhenotype">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Gene" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Phenotype" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="DosingGuidenceID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EFTest">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Property1" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PGxGuidelineRelatedGene">
+    <Key>
+      <PropertyRef Name="PGxGuideline_ID" />
+      <PropertyRef Name="RelatedGene_ID" />
+    </Key>
+    <Property Name="PGxGuideline_ID" Type="int" Nullable="false" />
+    <Property Name="RelatedGene_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PGxGuidelineDefinitionFile">
+    <Key>
+      <PropertyRef Name="PGxGuideline_ID" />
+      <PropertyRef Name="DefinitionFile_ID" />
+    </Key>
+    <Property Name="PGxGuideline_ID" Type="int" Nullable="false" />
+    <Property Name="DefinitionFile_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="DefinitionFileVariantLocus">
+    <End Role="DefinitionFile" Type="PGx_KBModel.Store.DefinitionFile" Multiplicity="0..1" />
+    <End Role="VariantLocus" Type="PGx_KBModel.Store.VariantLocus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DefinitionFile">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="VariantLocus">
+        <PropertyRef Name="DefinitionFileID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="VariantLocusAlleleDefinition">
+    <End Role="VariantLocus" Type="PGx_KBModel.Store.VariantLocus" Multiplicity="0..1" />
+    <End Role="AlleleDefinition" Type="PGx_KBModel.Store.NamedAlleleDefinition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VariantLocus">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="AlleleDefinition">
+        <PropertyRef Name="VariantLocusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DefinitionFileNamedAllele">
+    <End Role="DefinitionFile" Type="PGx_KBModel.Store.DefinitionFile" Multiplicity="0..1" />
+    <End Role="NamedAllele" Type="PGx_KBModel.Store.NamedAllele" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DefinitionFile">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="NamedAllele">
+        <PropertyRef Name="DefinitionFileID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="NamedAlleleNamedAlleleDefinition">
+    <End Role="NamedAllele" Type="PGx_KBModel.Store.NamedAllele" Multiplicity="0..1" />
+    <End Role="NamedAlleleDefinition" Type="PGx_KBModel.Store.NamedAlleleDefinition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NamedAllele">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="NamedAlleleDefinition">
+        <PropertyRef Name="NamedAlleleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DefinitionExemptionVariantLocus">
+    <End Role="DefinitionExemption" Type="PGx_KBModel.Store.DefinitionExemption" Multiplicity="0..1" />
+    <End Role="VariantLocus" Type="PGx_KBModel.Store.VariantLocus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DefinitionExemption">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="VariantLocus">
+        <PropertyRef Name="DefinitionExemptionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="NamedAllelePopulationFrequency">
+    <End Role="NamedAllele" Type="PGx_KBModel.Store.NamedAllele" Multiplicity="1" />
+    <End Role="PopulationFrequency" Type="PGx_KBModel.Store.PopulationFrequency" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NamedAllele">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PopulationFrequency">
+        <PropertyRef Name="NamedAlleleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GeneCallDiplotypeMatch">
+    <End Role="GeneCall" Type="PGx_KBModel.Store.GeneCall" Multiplicity="1" />
+    <End Role="DiplotypeMatch" Type="PGx_KBModel.Store.DiplotypeMatch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GeneCall">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DiplotypeMatch">
+        <PropertyRef Name="GeneCallID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GeneCallHaplotypeMatch">
+    <End Role="GeneCall" Type="PGx_KBModel.Store.GeneCall" Multiplicity="1" />
+    <End Role="HaplotypeMatch" Type="PGx_KBModel.Store.HaplotypeMatch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GeneCall">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="HaplotypeMatch">
+        <PropertyRef Name="GeneCallID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GeneCallVariant1">
+    <End Role="GeneCall" Type="PGx_KBModel.Store.GeneCall" Multiplicity="1" />
+    <End Role="Variant" Type="PGx_KBModel.Store.Variant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GeneCall">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Variant">
+        <PropertyRef Name="GeneCallID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GeneCallVarOfInterest">
+    <End Role="GeneCall" Type="PGx_KBModel.Store.GeneCall" Multiplicity="1" />
+    <End Role="VarOfInterest" Type="PGx_KBModel.Store.VarOfInterest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GeneCall">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="VarOfInterest">
+        <PropertyRef Name="GeneCallID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PGxGuidelineDosingGuidence">
+    <End Role="PGxGuideline" Type="PGx_KBModel.Store.PGxGuideline" Multiplicity="1" />
+    <End Role="DosingGuidence" Type="PGx_KBModel.Store.DosingGuidence" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PGxGuideline">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DosingGuidence">
+        <PropertyRef Name="PGxGuidelineID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PGxGuidelineLiterature">
+    <End Role="PGxGuideline" Type="PGx_KBModel.Store.PGxGuideline" Multiplicity="1" />
+    <End Role="Literature" Type="PGx_KBModel.Store.Literature" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PGxGuideline">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Literature">
+        <PropertyRef Name="PGxGuidelineID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DefinitionFilePhenotypeMap">
+    <End Role="DefinitionFile" Type="PGx_KBModel.Store.DefinitionFile" Multiplicity="1" />
+    <End Role="PhenotypeMap" Type="PGx_KBModel.Store.NamedPhenotype" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DefinitionFile">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PhenotypeMap">
+        <PropertyRef Name="DefinitionFileID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="NamedPhenotypePhenotypeDef">
+    <End Role="NamedPhenotype" Type="PGx_KBModel.Store.NamedPhenotype" Multiplicity="1" />
+    <End Role="PhenotypeDef" Type="PGx_KBModel.Store.PhenotypeDef" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NamedPhenotype">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PhenotypeDef">
+        <PropertyRef Name="NamedPhenotypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PhenotypePopFreqNamedPhenotype">
+    <End Role="PhenotypePopFreq" Type="PGx_KBModel.Store.PhenotypePopFreq" Multiplicity="*" />
+    <End Role="NamedPhenotype" Type="PGx_KBModel.Store.NamedPhenotype" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="NamedPhenotype">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PhenotypePopFreq">
+        <PropertyRef Name="NamedPhenotypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RAW_DATA_FILEDiplotypeResult">
+    <End Role="RAW_DATA_FILE" Type="PGx_KBModel.Store.RAW_DATA_FILE" Multiplicity="1" />
+    <End Role="DiplotypeResult" Type="PGx_KBModel.Store.DiplotypeResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RAW_DATA_FILE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DiplotypeResult">
+        <PropertyRef Name="RAW_DATA_FILEID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RAW_DATA_FILEGeneCall">
+    <End Role="RAW_DATA_FILE" Type="PGx_KBModel.Store.RAW_DATA_FILE" Multiplicity="1" />
+    <End Role="GeneCall" Type="PGx_KBModel.Store.GeneCall" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RAW_DATA_FILE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GeneCall">
+        <PropertyRef Name="RAW_DATA_FILEID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DosingGuidenceRecommendationPhenotype">
+    <End Role="DosingGuidence" Type="PGx_KBModel.Store.DosingGuidence" Multiplicity="1" />
+    <End Role="RecommendationPhenotype" Type="PGx_KBModel.Store.RecommendationPhenotype" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DosingGuidence">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RecommendationPhenotype">
+        <PropertyRef Name="DosingGuidenceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PGxGuidelineRelatedGene_PGxGuideline">
+    <End Role="PGxGuideline" Type="PGx_KBModel.Store.PGxGuideline" Multiplicity="1" />
+    <End Role="PGxGuidelineRelatedGene" Type="PGx_KBModel.Store.PGxGuidelineRelatedGene" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PGxGuideline">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PGxGuidelineRelatedGene">
+        <PropertyRef Name="PGxGuideline_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PGxGuidelineRelatedGene_RelatedGene">
+    <End Role="PGxGuidelineRelatedGene" Type="PGx_KBModel.Store.PGxGuidelineRelatedGene" Multiplicity="*" />
+    <End Role="RelatedGene" Type="PGx_KBModel.Store.RelatedGene" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="RelatedGene">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PGxGuidelineRelatedGene">
+        <PropertyRef Name="RelatedGene_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PGxGuidelineDefinitionFile_PGxGuideline">
+    <End Role="PGxGuideline" Type="PGx_KBModel.Store.PGxGuideline" Multiplicity="1" />
+    <End Role="PGxGuidelineDefinitionFile" Type="PGx_KBModel.Store.PGxGuidelineDefinitionFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PGxGuideline">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PGxGuidelineDefinitionFile">
+        <PropertyRef Name="PGxGuideline_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PGxGuidelineDefinitionFile_DefinitionFile">
+    <End Role="PGxGuidelineDefinitionFile" Type="PGx_KBModel.Store.PGxGuidelineDefinitionFile" Multiplicity="*" />
+    <End Role="DefinitionFile" Type="PGx_KBModel.Store.DefinitionFile" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="DefinitionFile">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PGxGuidelineDefinitionFile">
+        <PropertyRef Name="DefinitionFile_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

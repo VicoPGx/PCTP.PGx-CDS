@@ -1,0 +1,67 @@
+﻿@model List<PGx.Model.Entities.RAW_DATA_FILE>
+@{
+    ViewBag.Title = "CpoeDemo";
+}
+
+<script>
+    $(function () {
+        $.ajax({
+            url: '@Url.Action("DefaultExample", "ApplicationInEhrDemo")',
+            type: 'Get',
+        }).done(function (data) {
+            chemicalList(data);
+        });
+    })
+    function chemicalList(patientId) {
+        debugger;
+        $.ajax({
+            url: '@Url.Action("ApplicationDemoPartial", "ApplicationInEhrDemo")',
+            data: { patientId: patientId },
+            type: 'Get',
+        }).done(function (data) {
+            $("#prescribe_drug").html(data);
+        });
+    }
+</script>
+
+<div class="page-header">
+    <h1>Application Demo
+            <small>Pharmacogenomics alert demonstration</small>
+    </h1>
+
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <div id="patient_list" class=" panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Patient selection</h3>
+            </div>
+            <div class="panel-body">
+                <div style="font-style: italic">
+                    Available patient examples for selection and demostration. 
+                </div>
+            </div>
+            <table class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>Patients</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var c in Model)
+                    {
+                        <tr>
+                            <td>@c.PatientName</td>
+                            <td><a href="#" onclick="chemicalList('@c.PatientID')">Select</a></td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+    <div id="prescribe_drug" class="col-md-9"></div>
+</div>
+

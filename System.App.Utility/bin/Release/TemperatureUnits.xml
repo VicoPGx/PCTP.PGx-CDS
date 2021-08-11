@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<UnitTable>
+  <Units>
+    <Unit code="1" name="Celsius" symbol="ºC" plural="PCelsius"/>
+    <Unit code="2" name="Kelvin" symbol="K" plural="PKelvin"/>
+    <Unit code="3" name="Fahrenheit" symbol="ºF" plural="PFahrenheit"/>
+  </Units>
+  <Conversions>
+    <Linear srcCode="1" destCode="2" deltha="-273"/>
+    <Linear srcCode="1" destCode="3" factor="1.8" deltha="32"/>
+
+    <Linear srcCode="2" destCode="3" factor="1.8"  deltha="523.4"/>
+  </Conversions>
+</UnitTable>

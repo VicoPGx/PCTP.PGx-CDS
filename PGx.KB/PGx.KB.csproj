@@ -1,0 +1,564 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1469919A-87E2-4F67-8942-CA24767D4E6A}</ProjectGuid>
+    <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PGx.KB</RootNamespace>
+    <AssemblyName>PGx.KB</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <MvcProjectUpgradeChecked>true</MvcProjectUpgradeChecked>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UseGlobalApplicationHostFile />
+    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FileHelpers">
+      <HintPath>..\packages\FileHelpers-3.3.0\Build\PreviousVersion\3.1.5\FileHelpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.2.0.1.0\lib\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.1.0.20105.408\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.3.0.20105.1\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Providers">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.1.1\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.1.0.20105.408\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.1.0.20105.408\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.1.0.20105.408\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.1.0.20105.408\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\Util\PathUtils.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ApplicationInEhrDemoController.cs" />
+    <Compile Include="Controllers\MarketController.cs" />
+    <Compile Include="Controllers\PGxKnowledgeBaseController.cs" />
+    <Compile Include="Controllers\ProcessingController.cs" />
+    <Compile Include="Controllers\AjaxHandlerController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="HtmlHelpers\PagingHelpers.cs" />
+    <Compile Include="Infrastructure\Abstract\IAuthProvider.cs" />
+    <Compile Include="Infrastructure\Concret\FormsAuthProvider.cs" />
+    <Compile Include="Infrastructure\Logger.cs" />
+    <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
+    <Compile Include="Models\ChemicalListViewModel.cs" />
+    <Compile Include="Models\DrugPrescribeDemoModel.cs" />
+    <Compile Include="Models\JQueryDataTableParamModel.cs" />
+    <Compile Include="Models\JQueryDataTableResultModel.cs" />
+    <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\ModelsForView.cs" />
+    <Compile Include="Models\PagingInfo.cs" />
+    <Compile Include="Models\PGxKnowledgeModel.cs" />
+    <Compile Include="Models\PGxServiceModels.cs" />
+    <Compile Include="Models\RecommPheno.cs" />
+    <Compile Include="Models\SiteSession.cs" />
+    <Compile Include="services\IPgxCdsService.cs" />
+    <Compile Include="services\ITransmitGeneticDataToPgtaService.cs" />
+    <Compile Include="services\PgxCdsService.svc.cs">
+      <DependentUpon>PgxCdsService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="services\TransmitGeneticDataToPgtaService.svc.cs">
+      <DependentUpon>TransmitGeneticDataToPgtaService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Vcf\Definition\Model\DiplotypePhenotype.cs" />
+    <Compile Include="Vcf\Definition\Model\GenePhenotype.cs" />
+    <Compile Include="Vcf\Definition\PhenotypeMap.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vcf\Haplotype\DefinitionReader.cs" />
+    <Compile Include="Vcf\Haplotype\DiplotypeMatcher.cs" />
+    <Compile Include="Vcf\Haplotype\Metadata.cs" />
+    <Compile Include="Vcf\Haplotype\Model\Result.cs" />
+    <Compile Include="Vcf\Haplotype\NamedAlleleMatcher.cs" />
+    <Compile Include="Vcf\Haplotype\ResultBuilder.cs" />
+    <Compile Include="Vcf\model\BaseMetadata.cs" />
+    <Compile Include="Vcf\model\InfoType.cs" />
+    <Compile Include="Vcf\model\ContigMetadata.cs" />
+    <Compile Include="Vcf\model\FormatMetadata.cs" />
+    <Compile Include="Vcf\model\FormatType.cs" />
+    <Compile Include="Vcf\model\IdDescriptionMedatata.cs" />
+    <Compile Include="Vcf\model\IdMetadata.cs" />
+    <Compile Include="Vcf\model\InfoMetadata.cs" />
+    <Compile Include="Vcf\model\ReservedFormatProperty.cs" />
+    <Compile Include="Vcf\model\ReservedInfoProperty.cs" />
+    <Compile Include="Vcf\model\ReservedProperty.cs" />
+    <Compile Include="Vcf\model\SpecialVcfNumber.cs" />
+    <Compile Include="Vcf\model\VcfLineParser.cs" />
+    <Compile Include="Vcf\model\VcfPosition.cs" />
+    <Compile Include="Vcf\model\VcFSample.cs" />
+    <Compile Include="Vcf\PGxParse.cs" />
+    <Compile Include="Vcf\Util\VariantUtils.cs" />
+    <Compile Include="Vcf\VcfLineParserInterface.cs" />
+    <Compile Include="Vcf\VcfReader.cs" />
+    <Compile Include="Vcf\VcfMetadata.cs" />
+    <Compile Include="Vcf\VcfParser.cs" />
+    <Compile Include="Vcf\VcfUtils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\arrow_down.gif" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\datatables.min.css" />
+    <Content Include="Content\datatables.min.js" />
+    <Content Include="Content\dd.css" />
+    <Content Include="Content\favicon_p.ico" />
+    <Content Include="Content\Images\add_black.png" />
+    <Content Include="Content\Images\analysis.png" />
+    <Content Include="Content\Images\DownArrow.png" />
+    <Content Include="Content\Images\edit1.png" />
+    <Content Include="Content\Images\first\Demo1.jpg" />
+    <Content Include="Content\Images\first\demo2.jpg" />
+    <Content Include="Content\Images\first\demo3.png" />
+    <Content Include="Content\Images\first\demo4.jpg" />
+    <Content Include="Content\Images\Flags\Brazil.jpg" />
+    <Content Include="Content\Images\Flags\Brazil.png" />
+    <Content Include="Content\Images\Flags\Canada.jpg" />
+    <Content Include="Content\Images\Flags\Canada.png" />
+    <Content Include="Content\Images\Flags\cn.bmp" />
+    <Content Include="Content\Images\Flags\cn.png" />
+    <Content Include="Content\Images\Flags\Cuba.jpg" />
+    <Content Include="Content\Images\Flags\Cuba.png" />
+    <Content Include="Content\Images\Flags\denmark_flag_128.png" />
+    <Content Include="Content\Images\Flags\denmark_flag_16.png" />
+    <Content Include="Content\Images\Flags\denmark_flag_32.png" />
+    <Content Include="Content\Images\Flags\dk.jpg" />
+    <Content Include="Content\Images\Flags\flag_De.png" />
+    <Content Include="Content\Images\Flags\flag_En.png" />
+    <Content Include="Content\Images\Flags\flag_Ro.png" />
+    <Content Include="Content\Images\Flags\Hangkong.jpg" />
+    <Content Include="Content\Images\Flags\Hangkong.png" />
+    <Content Include="Content\Images\Flags\Mexico.jpg" />
+    <Content Include="Content\Images\Flags\Mexico.png" />
+    <Content Include="Content\Images\Flags\NorthKorea.jpg" />
+    <Content Include="Content\Images\Flags\NorthKorea.png" />
+    <Content Include="Content\Images\Flags\Spain.jpg" />
+    <Content Include="Content\Images\Flags\Spain.png" />
+    <Content Include="Content\Images\Flags\Taiwan.jpg" />
+    <Content Include="Content\Images\Flags\Taiwan.png" />
+    <Content Include="Content\Images\Flags\Timor-Leste.jpg" />
+    <Content Include="Content\Images\Flags\Timor-Leste.png" />
+    <Content Include="Content\Images\Flags\USA.jpg" />
+    <Content Include="Content\Images\Flags\USA.png" />
+    <Content Include="Content\Images\first\genomicKB.jpg" />
+    <Content Include="Content\Images\green.png" />
+    <Content Include="Content\Images\HIT.jpg" />
+    <Content Include="Content\Images\HIT.tif" />
+    <Content Include="Content\Images\first\lanjie1.jpg" />
+    <Content Include="Content\Images\info0.png" />
+    <Content Include="Content\Images\lightbox\close.png" />
+    <Content Include="Content\Images\lightbox\loading.gif" />
+    <Content Include="Content\Images\lightbox\next.png" />
+    <Content Include="Content\Images\lightbox\prev.png" />
+    <Content Include="Content\Images\magnifier.png" />
+    <Content Include="Content\Images\first\sampledata.jpg" />
+    <Content Include="Content\Images\first\therapeutic.jpg" />
+    <Content Include="Content\Images\Red.png" />
+    <Content Include="Content\Images\trash.png" />
+    <Content Include="Content\Images\UpArrow.png" />
+    <Content Include="Content\jquery-3.3.1.min.js" />
+    <Content Include="Content\jquery.dataTables.css" />
+    <Content Include="Content\navbar-fixed-top.css" />
+    <Content Include="Content\scripts\bootstrap-3.3.7.min.js" />
+    <Content Include="Content\scripts\bootstrap.js" />
+    <Content Include="Content\scripts\bootstrap.min.js" />
+    <Content Include="Content\scripts\caserating-checkbox.js" />
+    <Content Include="Content\scripts\controls.js" />
+    <Content Include="Content\scripts\echarts-4.7.0-min.js" />
+    <Content Include="Content\scripts\i18n\jquery.multiselect.br.js" />
+    <Content Include="Content\scripts\i18n\jquery.multiselect.cs.js" />
+    <Content Include="Content\scripts\i18n\jquery.multiselect.de.js" />
+    <Content Include="Content\scripts\i18n\jquery.multiselect.es.js" />
+    <Content Include="Content\scripts\i18n\jquery.multiselect.filter.br.js" />
+    <Content Include="Content\scripts\i18n\jquery.multiselect.filter.cs.js" />
+    <Content Include="Content\scripts\i18n\jquery.multiselect.filter.de.js" />
+    <Content Include="Content\scripts\i18n\jquery.multiselect.filter.es.js" />
+    <Content Include="Content\scripts\i18n\jquery.multiselect.filter.fr.js" />
+    <Content Include="Content\scripts\i18n\jquery.multiselect.filter.it.js" />
+    <Content Include="Content\scripts\i18n\jquery.multiselect.filter.ja.js" />
+    <Content Include="Content\scripts\i18n\jquery.multiselect.filter.pl.js" />
+    <Content Include="Content\scripts\i18n\jquery.multiselect.filter.ru.js" />
+    <Content Include="Content\scripts\i18n\jquery.multiselect.filter.tr.js" />
+    <Content Include="Content\scripts\i18n\jquery.multiselect.filter.zh-cn.js" />
+    <Content Include="Content\scripts\i18n\jquery.multiselect.filter.zh-tw.js" />
+    <Content Include="Content\scripts\i18n\jquery.multiselect.fr.js" />
+    <Content Include="Content\scripts\i18n\jquery.multiselect.it.js" />
+    <Content Include="Content\scripts\i18n\jquery.multiselect.ja.js" />
+    <Content Include="Content\scripts\i18n\jquery.multiselect.pl.js" />
+    <Content Include="Content\scripts\i18n\jquery.multiselect.ru.js" />
+    <Content Include="Content\scripts\i18n\jquery.multiselect.tr.js" />
+    <Content Include="Content\scripts\i18n\jquery.multiselect.zh-cn.js" />
+    <Content Include="Content\scripts\i18n\jquery.multiselect.zh-cn.min.js" />
+    <Content Include="Content\scripts\i18n\jquery.multiselect.zh-tw.js" />
+    <Content Include="Content\scripts\jquery-1.10.2.js" />
+    <Content Include="Content\scripts\jquery-1.10.2.min.js" />
+    <Content Include="Content\scripts\jquery-ui-1.10.4.custom.js" />
+    <Content Include="Content\scripts\jquery-ui-1.10.4.custom.min.js" />
+    <Content Include="Content\scripts\jquery-ui-1.10.4.js" />
+    <Content Include="Content\scripts\jquery-ui-datepicker-zh-CN.js" />
+    <Content Include="Content\scripts\jquery-ui-timepicker-addon.js" />
+    <Content Include="Content\scripts\jquery-ui-timepicker-zh-CN.js" />
+    <Content Include="Content\scripts\jquery-ui.js" />
+    <Content Include="Content\scripts\jquery.auto-geocoder.js" />
+    <Content Include="Content\scripts\jquery.blockUI.js" />
+    <Content Include="Content\scripts\jquery.cookie.js" />
+    <Content Include="Content\scripts\jquery.dataTables.columnFilter.js" />
+    <Content Include="Content\scripts\jquery.dataTables.custom.js" />
+    <Content Include="Content\scripts\jquery.dataTables.editable.js" />
+    <Content Include="Content\scripts\jquery.dataTables.js" />
+    <Content Include="Content\scripts\jquery.dataTables.yadcf.js" />
+    <Content Include="Content\scripts\jquery.dd.min.js" />
+    <Content Include="Content\scripts\jquery.editable-select.js" />
+    <Content Include="Content\scripts\jquery.ezmark.js" />
+    <Content Include="Content\scripts\jquery.form.js" />
+    <Content Include="Content\scripts\jquery.gzoom.js" />
+    <Content Include="Content\scripts\jquery.highcharts.exporting.js" />
+    <Content Include="Content\scripts\jquery.highcharts.js" />
+    <Content Include="Content\scripts\jquery.highchartTable.js" />
+    <Content Include="Content\scripts\jquery.hotkeys.js" />
+    <Content Include="Content\scripts\jquery.jeditable.js" />
+    <Content Include="Content\scripts\jquery.jstree.js" />
+    <Content Include="Content\scripts\jquery.magnific-popup.js" />
+    <Content Include="Content\scripts\jquery.mockjax.js" />
+    <Content Include="Content\scripts\jquery.multiselect.filter.js" />
+    <Content Include="Content\scripts\jquery.multiselect.js" />
+    <Content Include="Content\scripts\jquery.numeric.js" />
+    <Content Include="Content\scripts\jquery.pagination.js" />
+    <Content Include="Content\scripts\jquery.smartWizard-2.0.js" />
+    <Content Include="Content\scripts\jquery.steps.js" />
+    <Content Include="Content\scripts\jquery.steps.min.js" />
+    <Content Include="Content\scripts\jquery.stepy.js" />
+    <Content Include="Content\scripts\jquery.tablednd.js" />
+    <Content Include="Content\scripts\jquery.tree.js" />
+    <Content Include="Content\scripts\jquery.ui.spinner.js" />
+    <Content Include="Content\scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Content\scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Content\scripts\jquery.validate.js" />
+    <Content Include="Content\scripts\jquery.xmldom.js" />
+    <Content Include="Content\scripts\json2.js" />
+    <Content Include="Content\scripts\lightbox.js" />
+    <Content Include="Content\scripts\MicrosoftAjax.debug.js" />
+    <Content Include="Content\scripts\MicrosoftAjax.js" />
+    <Content Include="Content\scripts\MicrosoftMvcAjax.debug.js" />
+    <Content Include="Content\scripts\MicrosoftMvcAjax.js" />
+    <Content Include="Content\scripts\MicrosoftMvcValidation.debug.js" />
+    <Content Include="Content\scripts\MicrosoftMvcValidation.js" />
+    <Content Include="Content\scripts\modernizr-1.7.js" />
+    <Content Include="Content\scripts\mvpready-admin.js" />
+    <Content Include="Content\scripts\mvpready-core.js" />
+    <Content Include="Content\scripts\objectDiff.js" />
+    <Content Include="Content\scripts\qunit-1.11.0.js" />
+    <Content Include="Content\scripts\QUnit.html" />
+    <Content Include="Content\scripts\QUnit.js" />
+    <Content Include="Content\scripts\sisyphus.js" />
+    <Content Include="Content\scripts\spin.js" />
+    <Content Include="Content\scripts\tree.jquery.js" />
+    <Content Include="Content\scripts\ueditor.all.js" />
+    <Content Include="Content\scripts\ueditor.config.js" />
+    <Content Include="Content\scripts\utility.edit.ontology.js" />
+    <Content Include="Content\scripts\utility.edit.plan.js" />
+    <Content Include="Content\scripts\utility.edit.rule.js" />
+    <Content Include="Content\scripts\utility.js" />
+    <Content Include="Content\navigation.css" />
+    <Content Include="Content\styles\bootstrap-3.3.7.min.css" />
+    <Content Include="Content\styles\images\anchor.gif" />
+    <Content Include="Content\styles\images\animated-overlay.gif" />
+    <Content Include="Content\styles\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="Content\styles\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="Content\styles\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\styles\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\styles\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="Content\styles\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="Content\styles\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\styles\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\styles\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\styles\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\styles\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\styles\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="Content\styles\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="Content\styles\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\styles\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="Content\styles\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\styles\images\ui-icons_228ef1_256x240.png" />
+    <Content Include="Content\styles\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\styles\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\styles\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\styles\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\styles\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="Content\styles\images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="Content\styles\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\styles\jquery-ui-1.10.4.custom.css" />
+    <Content Include="Content\styles\jquery-ui-1.10.4.custom.min.css" />
+    <Content Include="Content\styles\jquery-ui.theme.css" />
+    <Content Include="Content\styles\jquery.multiselect.css" />
+    <Content Include="Content\styles\jquery.steps.css" />
+    <Content Include="Content\styles\jquery.ui.theme.css" />
+    <Content Include="Content\styles\lightbox.css" />
+    <Content Include="Content\styles\navigation.css" />
+    <Content Include="Content\styles\pagination.css" />
+    <Content Include="Content\styles\spin.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\scripts\line" />
+    <Content Include="Content\scripts\minimize.bat" />
+    <None Include="Properties\PublishProfiles\PGx.KB.Publish.pubxml" />
+    <None Include="Scripts\jquery-1.7.1.intellisense.js" />
+    <Content Include="Scripts\Chart.js" />
+    <Content Include="Scripts\jquery-1.7.1.js" />
+    <Content Include="Scripts\jquery-1.7.1.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.8.20.js" />
+    <Content Include="Scripts\jquery-ui-1.8.20.min.js" />
+    <Content Include="Scripts\jquery.mousewheel.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\UtilityDef.js" />
+    <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="services\PgxCdsService.svc" />
+    <Content Include="services\TransmitGeneticDataToPgtaService.svc" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\MicrosoftAjax.js" />
+    <Content Include="Scripts\MicrosoftAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Processing\VCFProcessing.cshtml" />
+    <Content Include="Views\Processing\UploadFile.cshtml" />
+    <Content Include="Views\PGxKnowledgeBase\GuidelineEdit.cshtml" />
+    <Content Include="Views\PGxKnowledgeBase\DrugList.cshtml" />
+    <Content Include="Views\PGxKnowledgeBase\DosingEdit.cshtml" />
+    <Content Include="Views\PGxKnowledgeBase\GenotypesPartial.cshtml" />
+    <Content Include="Views\PGxKnowledgeBase\GeneList.cshtml" />
+    <Content Include="Views\PGxKnowledgeBase\GeneEdit.cshtml" />
+    <Content Include="Views\PGxKnowledgeBase\VariantEdit.cshtml" />
+    <Content Include="Views\PGxKnowledgeBase\AlleleEdit.cshtml" />
+    <Content Include="Views\PGxKnowledgeBase\PhenotypeEdit.cshtml" />
+    <Content Include="Views\PGxKnowledgeBase\NamedPhenotypeList.cshtml" />
+    <Content Include="Views\PGxKnowledgeBase\AddRowPartial.cshtml" />
+    <Content Include="Views\Processing\DiplotypeCalls.cshtml" />
+    <Content Include="Views\Processing\AddSampleDiplotype.cshtml" />
+    <Content Include="Views\Processing\ReportView.cshtml" />
+    <Content Include="Views\Processing\RecommendationReportView.cshtml" />
+    <Content Include="Views\ApplicationInEhrDemo\ApplicationDemo.cshtml" />
+    <Content Include="Views\ApplicationInEhrDemo\ApplicationDemoPartial.cshtml" />
+    <Content Include="Views\ApplicationInEhrDemo\PostTestAlertView.cshtml" />
+    <Content Include="Views\ApplicationInEhrDemo\PreTestAlertView.cshtml" />
+    <Content Include="Views\ApplicationInEhrDemo\PostTestAlertWarfarinView.cshtml" />
+    <Content Include="Views\Processing\AlleleList.cshtml" />
+    <Content Include="Views\ApplicationInEhrDemo\SubmissionContinue.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PGx.Model\PGx.Model.csproj">
+      <Project>{6c2a4f77-5c67-408d-9a4c-ca2da6b70ad4}</Project>
+      <Name>PGx.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\System.App.Utility\System.App.Utility.csproj">
+      <Project>{29772442-d82c-4d0a-a80d-231af5318ac2}</Project>
+      <Name>System.App.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>26951</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:2291/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

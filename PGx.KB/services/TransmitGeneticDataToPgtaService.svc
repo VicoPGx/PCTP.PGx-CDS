@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="PGx.KB.services.TransmitGeneticDataToPgtaService" CodeBehind="TransmitGeneticDataToPgtaService.svc.cs" %>

@@ -1,0 +1,697 @@
+﻿@model PGx.Model.Entities.DefinitionFile
+<style>
+    .box
+    {
+        
+        padding: 5px;
+        position: relative;
+        border: 1px rgba(200,200,200,0.5) solid;
+        border-radius: 6px;
+        margin-bottom: 10px;
+    }
+
+        .box::before
+        {
+            content: attr(content);
+            position: absolute;
+            left: 20%;
+            transform: translateX(-50%);
+            -webkit-transform: translate(-50%,-50%);
+            padding: 0 5px;
+            background-color: #fff;
+        }
+
+    .labelWidth
+    {
+        width:300px
+    }
+</style>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#tabs").tabs();
+        $("#prim-info>div").accordion({ heightStyle: "content", header: "h3", collapsible: true });
+        $("#allele_table").dataTable({
+            "bJQueryUI": true,
+            "sAjaxSource": "/AjaxHandler/AlleleSelectTableAjaxHandler",
+            "bServerSide": true,
+            "bProcessing": false,
+            "bAutoWidth": false,
+            "bSort": false,
+            "bRetrive": false,
+            "fnServerParams": function (aoData) {
+                aoData.push(
+                            { "name": "GeneId", "value": "@Model.ID" });
+            },
+            "aoColumns": [
+            {
+                "fnRender": function (oObj) {
+                    return "<span>" + oObj.aData["0"] + "</span>";
+                }
+            },
+            {
+                "fnRender": function (oObj) {
+                    return "<span>" + oObj.aData["1"] + "</span>";
+                }
+            },
+            {
+                "fnRender": function (oObj) {
+                    var ln = '<a href="#" onclick="alleleEdit(' + oObj.aData["2"] + ')">Edit </a>';
+                    return ln;
+                }
+            }
+            ]
+        })
+
+        $("#pheno_table").dataTable({
+            "bJQueryUI": true,
+            "sAjaxSource": "/AjaxHandler/PhenotypeSelectTableAjaxHandler",
+            "bServerSide": true,
+            "bProcessing": false,
+            "bAutoWidth": false,
+            "bSort": false,
+            "bRetrive": false,
+            "fnServerParams": function (aoData) {
+                aoData.push(
+                            { "name": "GeneId", "value": "@Model.ID" });
+            },
+            "aoColumns": [
+            {
+                "fnRender": function (oObj) {
+                    return "<span>" + oObj.aData["0"] + "</span>";
+                }
+            },
+            {
+                "fnRender": function (oObj) {
+                    return "<span>" + oObj.aData["1"] + "</span>";
+                }
+            },
+            {
+                "fnRender": function (oObj) {
+                    return "<span>" + oObj.aData["2"] + "</span>";
+                }
+            },
+            {
+                "fnRender": function (oObj) {
+                    var ln = '<a href="#" onclick="editPhenotype(\'' + oObj.aData["3"] + '\',\'' + oObj.aData["4"] + '\')">Edit </a>';
+                    return ln;
+                }
+            }
+            ]
+        })
+
+        $("#locus_table").dataTable({
+            "bJQueryUI": true,
+            "sAjaxSource": "/AjaxHandler/VariantSelectTableAjaxHandler",
+            "bServerSide": true,
+            "bProcessing": false,
+            "bAutoWidth": false,
+            "bSort": false,
+            "bRetrive": false,
+            "fnServerParams": function (aoData) {
+                aoData.push(
+                            { "name": "GeneId", "value": "@Model.ID" });
+            },
+            "aoColumns": [
+            {
+                "fnRender": function (oObj) {
+                    return "<span>" + oObj.aData["0"] + "</span>";
+                }
+            },
+            {
+                "fnRender": function (oObj) {
+                    return "<span>" + oObj.aData["1"] + "</span>";
+                }
+            },
+
+            {
+                "fnRender": function (oObj) {
+                    var ln = '<a href="#" onclick="variantEdit(' + oObj.aData["2"] + ','+oObj.aData["3"]+')">Edit </a>';
+                    return ln;
+                }
+            }
+            ]
+        })
+
+    });
+
+    function addInput(term, parentId, inputName) {
+        if (!term) term = '';
+        var area = document.getElementById(parentId);
+        if (area) {
+            var newDiv = document.createElement("div");
+            newDiv.innerHTML = '<input name="' + inputName + '" style="margin:3px; width: 300px;" type="text" value = "' + term + '"/><img onclick="deleteInput(this,\'' + parentId + '\');" style="cursor:pointer; position: relative; margin-bottom: 0px" src="/Content/images/trash.png" alt="Delete" />';
+            area.appendChild(newDiv);
+        }
+    }
+
+    function deleteInput(thisEle, parentId) {
+        var area = document.getElementById(parentId);
+        if (area) {
+            area.removeChild(thisEle.parentNode);
+        }
+    }
+
+    function primInfoSub() {
+        debugger;
+    }
+
+    function addSelectOption(combo, value, text, selectedValue) {
+        if (!combo || combo.outerHTML.toLowerCase().startWith("<select") === false)
+            return;
+        var option = document.createElement("option");
+        option.value = value;
+        option.text = text;
+        if (selectedValue && selectedValue.toLowerCase() === value.toLowerCase())
+            option.setAttribute("selected", "selected");
+        try {
+            combo.add(option, null);
+        }
+        catch (error) {
+            combo.add(option);
+        }
+    }
+    function delVariant(id) {
+        $.blockUI({ message: $('#delete_question'), css: { width: '275px' } });
+        $('#delete_yes').click(function () {
+        $.ajax({
+            url: '@Url.Action("DeleteVariant", "PGxKnowledgeBase")',
+                 data: { id: id },
+                 type: 'Get',
+                 async: false,
+                 cache: false,
+                 timeout: 10000
+             }).done(function (data) {              
+                 geneEdit(@Model.ID);
+                 $.unblockUI();
+                 alert(data);
+                 $("#tabs a[href='#fragment-1']").click();
+             });
+    });
+    $('#delete_no').click(function () {
+        $.unblockUI();
+    });
+    }
+
+    function deleteGene(id) {
+        debugger;
+        $.blockUI({ message: $('#delete_question'), css: { width: '275px' } });
+        $('#delete_yes').click(function () {
+        $.ajax({
+            url: '@Url.Action("DeleteGene", "PGxKnowledgeBase")',
+            data: { id: id },
+            type: 'Get',
+            async: false,
+            cache: false,
+            timeout: 10000
+        }).done(function (data) {
+            $.unblockUI();
+            alert(data);
+           window.location.replace("/PGxKnowledgeBase/GenomicKM")
+        });
+        });
+        $('#delete_no').click(function () {
+            $.unblockUI();
+        });
+    }
+
+    function GeneCancel() {
+        window.location.replace("/PGxKnowledgeBase/GenomicKM")
+    }
+
+    function deleteAllele(id, fileID) {
+        debugger;
+        $.blockUI({ message: $('#delete_question'), css: { width: '275px' } });
+        $('#delete_yes').click(function () {
+        $.ajax({
+            url: '@Url.Action("DeleteAllele", "PGxKnowledgeBase")',
+            data: { id: id },
+            type: 'Get',
+            async: false,
+            cache: false,
+            timeout: 10000
+        }).done(function (data) {
+            $.unblockUI();
+            $('#allele-edit').html('');
+            geneEdit(fileID);
+            
+            alert(data);
+            $("#tabs a[href='#fragment-2']").click();
+        });
+        });
+        $('#delete_no').click(function () {
+            $.unblockUI();
+        });
+    }
+
+    function DeletePhenotype(id, geneId) {
+        debugger;
+        $.blockUI({ message: $('#delete_question'), css: { width: '275px' } });
+        $('#delete_yes').click(function () {
+            $.ajax({
+                url: '@Url.Action("DeletePhenotype", "PGxKnowledgeBase")',
+            data: { id: id },
+            type: 'Get',
+            async: false,
+            cache: false,
+            timeout: 10000
+        }).done(function (data) {
+            $.unblockUI();
+            $('#pheno-edit').html('');
+            geneEdit(geneId);
+            alert(data);
+            $("#tabs a[href='#fragment-3']").click();
+        });
+        });
+    $('#delete_no').click(function () {
+        $.unblockUI();
+    });
+    }
+
+    function saveGene(geneId) {
+        debugger;
+        var funcInputArr = document.getElementsByName("function_name");
+        var funcArr = new Array();
+        for (var i = 0; i < funcInputArr.length; i++) {
+            funcArr[i] = funcInputArr[i].value;
+        }
+        
+        $("#NamedFunctions").attr("value", funcArr.join(","));
+
+        var populationInputArr = document.getElementsByName("population_name");
+        var populationArr = new Array();
+        for (var i = 0; i < populationInputArr.length; i++) {
+            populationArr[i] = populationInputArr[i].value;
+        }
+        $("#Populations").attr("value", populationArr.join(","));
+
+        $('#prim-info').ajaxSubmit(function (data) {
+            debugger;
+            alert(data);
+        });
+       // window.location.replace("/PGxKnowledgeBase/GenomicKM")
+        geneEdit(geneId);
+        $('#tabs a[href="#fragment-0"]').click();
+        return false;
+    }
+    function extractAlleleDefinition(id) {
+        debugger;
+        $.blockUI({ message: $('#question'), css: { width: '275px' } });
+        $('#yes').click(function () {
+            $.blockUI({ message: "<h1>Extraction in progress...</h1>" });
+            $.ajax({
+                url: '@Url.Action("AlleleDefinitionTableExtraction", "Market")',
+                data: { id: id },
+                type: 'Get'
+            }).done(function (data) {
+                debugger;
+                $.unblockUI();
+                geneEdit('@Model.ID');
+                $('#tabs a[href="#fragment-1"]').click();
+            })
+        });
+        $('#no').click(function () {
+            $.unblockUI();
+        });
+    };
+
+
+    function extractFrequency(id) {
+        debugger;
+        $.blockUI({ message: $('#question'), css: { width: '275px' } });
+        $('#yes').click(function () {
+            $.blockUI({ message: "<h1>Extraction in progress...</h1>" });
+            $.ajax({
+                url: '@Url.Action("FrequencyExcelProcess", "Market")',
+                data: { id: id },
+                type: 'Get'
+            }).done(function (data) {
+                debugger;
+                //window.location.replace("/Processing/DiplotypeCalls/" + id)
+                $.unblockUI();
+            })
+        });
+        $('#no').click(function () {
+            $.unblockUI();
+        });
+    };
+
+    function extractAlleleFunctionality(id) {
+        debugger;
+        $.blockUI({ message: $('#question'), css: { width: '275px' } });
+        $('#yes').click(function () {
+            $.blockUI({ message: "<h1>Extraction in progress...</h1>" });
+            $.ajax({
+                url: '@Url.Action("AlleleFunctionalityTableExtraction", "Market")',
+                data: { id: id },
+                type: 'Get'
+            }).done(function (data) {
+                debugger;
+                $.unblockUI();
+                geneEdit('@Model.ID');
+                $('#tabs a[href="#fragment-2"]').click();
+            })
+        });
+        $('#no').click(function () {
+            $.unblockUI();
+        });
+    };
+
+    function deleteFilePath(id,pathType)
+    {
+        $.ajax({
+            url: '/PGxKnowledgeBase/DeleteFilePath/',
+            data: { id: id, pathType: pathType },
+            type: 'Get'
+        }).done(function (data) {
+            alert(data)
+            // window.location.replace("/PGxKnowledgeBase/GenomicKM")
+            geneEdit(id);
+        });
+    }
+    
+
+</script>
+@{ string geneSymbol;
+   if (string.IsNullOrEmpty(Model.GeneSymbol) == false)
+   {
+       geneSymbol = Model.GeneSymbol;
+   }
+   else
+   {
+       geneSymbol = "New Gene";
+   }
+    <h2>@geneSymbol</h2>
+}
+
+<div id="tabs">
+    <ul>
+        <li><a href="#fragment-0"><span>Gene</span></a></li>
+        <li><a href="#fragment-1"><span>Variants</span></a></li>
+        <li><a href="#fragment-2"><span>Alleles</span></a></li>
+        <li><a href="#fragment-3"><span>Phenotypes</span></a></li>
+
+    </ul>
+    <div id="fragment-0">
+        @using (Html.BeginForm("GeneEdit", "PGxKnowledgeBase", FormMethod.Post, new { id = "prim-info", onsubmit = "return saveGene("+@Model.ID+");" }))
+        {
+            @Html.HiddenFor(m => m.Notes)
+            @Html.HiddenFor(m => m.ID)
+            @Html.HiddenFor(m => m.NamedFunctions)
+            @Html.HiddenFor(m=>m.Populations)
+            <div>
+                <h3>Primary Info</h3>
+                <div>
+                        <div class="editor-field">
+                       <label class="labelWidth">Gene Name</label>
+                           @Html.TextBox("GeneName", Model.GeneName, new { style = "width:300px" })                       
+                            </div>
+
+
+                        <div class="editor-field">
+                        <label class="labelWidth">Gene Symbol</label>
+                        @Html.TextBoxFor(m => m.GeneSymbol, new { style = "width:300px" })
+                        </div>
+
+
+                        <div class="editor-field">
+                        <label class="labelWidth">Genome Build</label>                     
+                            @Html.TextBoxFor(m => m.GenomeBuild, new { style = "width:300px" })
+                        </div>
+
+                         <div class="editor-field">
+                        <label class="labelWidth">Chromsome</label>
+                            @Html.TextBoxFor(m => m.Chromosome, new { style = "width:300px" })
+                        </div>
+
+
+                   </div>
+                </div>
+                        <div>
+                <h3>Reference Sequence</h3>
+                  <div >
+                       <div class="editor-field">
+                        <label class="labelWidth">Chromosome Ref-Sequence</label>
+                            @Html.TextBoxFor(m => m.RefSeqChromosome, new { style = "width:300px" })
+                        </div>
+
+                        <div class="editor-field">
+                        <label class="labelWidth">Gene Ref-Sequence</label>
+                            @Html.TextBoxFor(m => m.RefSeqGene, new { style = "width:300px" })
+                        </div>
+
+                        <div class="editor-field">
+                        <label class="labelWidth">Protein Ref-Sequence</label>
+                            @Html.TextBoxFor(m => m.RefSeqProtein, new { style = "width:300px" })
+                        </div>
+
+                        <div class="editor-field">
+                        <label class="labelWidth">Orientation to Chromosome</label>
+                            @Html.TextBoxFor(m => m.Orientation, new { style = "width:300px" })
+                        </div>
+
+                   </div>
+                </div>
+                        <div>
+                            <H3>Defined Allele Functions</H3>
+                        <div id="allele_function">
+                            <p><img onclick="addInput('','allele_function','function_name');" style="cursor: pointer; position: relative;" src="/Content/images/add_black.png" alt="Add" />
+                            <a href="#" onclick="addInput('','allele_function','function_name')">Add Allele Function</a></p>
+                                @{if (Model.NamedFunctions != null)
+                                  {
+                                      string[] functions = Model.NamedFunctions.Split(',');
+                                      foreach (var f in functions)
+                                      {<div>
+                                          @Html.TextBox("function_name", f, new { style = "margin:3px; width: 300px;" })<img onclick="deleteInput(this,'allele_function');" style="cursor: pointer; position: relative; margin-bottom: 0px" src="/Content/images/trash.png" alt="Delete" />
+                                      </div>
+                                      }
+                                  }
+                                  else
+                                  {
+                                    <div>
+                                        @Html.TextBox("function_name", null, new { style = "margin:3px; width: 300px;" })<img onclick="deleteInput(this,'allele_function');" style="cursor: pointer; position: relative; margin-bottom: 0px" src="/Content/images/trash.png" alt="Delete" />
+                                    </div>
+                                  }
+                                }
+                            </div>
+                        </div>
+                                  <div>
+                            <H3>Populations</H3>
+                        <div id="populationList">
+                            <p><img onclick="addInput('','populationList','population_name');" style="cursor: pointer; position: relative;" src="/Content/images/add_black.png" alt="Add" />
+                            <a href="#" onclick="addInput('','populationList','population_name')">Add population</a></p>
+                                @{if (Model.Populations != null)
+                                  {
+                                      string[] populations = Model.Populations.Split(',');
+                                      foreach (var f in populations)
+                                      {<div>
+                                          @Html.TextBox("population_name", f, new { style = "margin:3px; width: 300px;" })<img onclick="deleteInput(this,'populationList');" style="cursor: pointer; position: relative; margin-bottom: 0px" src="/Content/images/trash.png" alt="Delete" />
+                                      </div>
+                                      }
+                                  }
+                                  else
+                                  {
+                                    <div>
+                                        @Html.TextBox("population_name", null, new { style = "margin:3px; width: 300px;" })<img onclick="deleteInput(this,'populationList');" style="cursor: pointer; position: relative; margin-bottom: 0px" src="/Content/images/trash.png" alt="Delete" />
+                                    </div>
+                                  }
+                                }
+                            </div>
+                        </div>
+
+            <div>
+                <h3>Uploading Translational Table</h3>
+                <div>
+                    <div class="box" content="Allele Definition Table" >
+                        <div class="editor-field" style="margin-top:20px">
+                            <input id="allele_definitionFile" type="file" name="AlleleDefinitionFile" style="display:none;" accept=".xlsx" onchange="document.getElementById('allele_definitionPath').innerText=this.value.substring(this.value.lastIndexOf('\\')+1)" />
+                            </div><input type="button" value="Select a File" onclick="document.getElementById('allele_definitionFile').click();"  />
+
+                       
+                        @if (string.IsNullOrEmpty(Model.AlleleDefinitionTable) == false)
+                        {
+                            var str = Model.AlleleDefinitionTable;
+                            var tableStr = str.Substring(str.LastIndexOf("-") + 1);
+                            
+                             <p id="allele_definitionPath" style="display:inline">@tableStr</p>
+                            <img onclick="window.open('@Model.AlleleDefinitionTable')" style="cursor:pointer; position: relative;display:inline" src="/Content/images/DownArrow.png" alt="Download"/>
+                            <img onclick="deleteFilePath('@Model.ID','definition')" style="cursor:pointer; position: relative;display:inline" src="/Content/images/remove.png" alt="Delete"/>
+                            <div>
+                                <br />
+                               <p> <span style="font-style:italic">Warning: uploading a new file will override the existing file!</span></p>
+                            <img onclick="extractAlleleDefinition('@Model.ID');" onmouseover="this.style.cursor='pointer';" src="@Url.Content("~/Content/images/analysis.png")" alt="Extract Allele Definition" title="Extract Allele Definition"/>
+                            <span onclick="extractAlleleDefinition('@Model.ID');" style="text-decoration: underline; color: Blue; cursor: pointer">Extract Allele Definition</span> 
+                        </div>
+                    
+                        }
+                        else
+                        {
+                            <p id="allele_definitionPath" style="display:inline">No file selected</p>
+                        }
+                    </div>
+                     <div class="box" content="Allele Function Table" >
+
+                         <div class="editor-field" style="margin-top:20px">
+                            <input id="allele_functionFile" type="file" name="FunctionFile" style="display:none" accept=".xlsx" onchange="document.getElementById('allele_functionPath').innerText=this.value.substring(this.value.lastIndexOf('\\')+1)" />
+                            </div>
+                             <input type="button" value="Select a File" onclick="document.getElementById('allele_functionFile').click();"/>
+                                                                            
+                        @if (string.IsNullOrEmpty(Model.FunctionTable) == true)
+                        { 
+                             <p id="allele_functionPath" style="display:inline">No file selected</p>
+                        }
+                        else
+                        {
+                            var str = Model.FunctionTable;
+                            var tableStr = str.Substring(str.LastIndexOf("-") + 1);
+                            <p id="allele_functionPath" style="display:inline">@tableStr</p> <img onclick="window.open('@Model.FunctionTable')" style="cursor:pointer; position: relative;display:inline" src="/Content/images/DownArrow.png" alt="Download"/>
+                            <img onclick="deleteFilePath('@Model.ID','function')" style="cursor:pointer; position: relative;display:inline" src="/Content/images/remove.png" alt="Delete"/>
+                            <div> 
+                               <br />
+                               <p> <span style="font-style:italic">Warning: uploading a new file will override the existing file!</span></p>
+                               <img onclick="extractAlleleFunctionality('@Model.ID');" onmouseover="this.style.cursor='pointer';" src="@Url.Content("~/Content/images/analysis.png")" alt="Extract Allele Function" title="Extract Allele Function"/>
+                            <span onclick="extractAlleleFunctionality('@Model.ID');" style="text-decoration: underline; color: Blue; cursor: pointer">Extract Allele-Function Mappings</span> </div>
+                        }
+                    </div>
+                     <div class="box" content="Allele Frequency Table" >
+                     
+                        <div class="editor-field" style="margin-top:20px">
+                          <input id="allele_frequencyFile" type="file" name="FrequencyFile" style="display:none" accept=".xlsx" onchange="document.getElementById('allele_frequencyPath').innerText=this.value.substring(this.value.lastIndexOf('\\')+1)" />
+                            </div><input type="button" value="Select a File" onclick="document.getElementById('allele_frequencyFile').click();"/>
+                            
+                           
+                        
+                        @if (string.IsNullOrEmpty(Model.AlleleFrequencyTable) == false)
+                        {
+                            var str = Model.AlleleFrequencyTable;
+                            var tableStr = str.Substring(str.LastIndexOf("-") + 1);
+                             <p id="allele_frequencyPath" style="display:inline">@tableStr</p>
+                            <img onclick="window.open('@Model.AlleleFrequencyTable')" style="cursor:pointer; position: relative;display:inline" src="/Content/images/DownArrow.png" alt="Download"/>
+                             <img onclick="deleteFilePath('@Model.ID','frequency')" style="cursor:pointer; position: relative;display:inline" src="/Content/images/remove.png" alt="Delete"/>
+                            <div>
+                                <br />
+                               <p> <span style="font-style:italic">Warning: uploading a new file will override the existing file!</span></p>
+                            <img onclick="extractFrequency('@Model.ID');" onmouseover="this.style.cursor='pointer';" src="@Url.Content("~/Content/images/analysis.png")" alt="Extract Allele Frequency" title="Extract Allele Frequency"/>
+                            <span onclick="extractFrequency('@Model.ID');" style="text-decoration: underline; color: Blue; cursor: pointer">Extract Allele Frequency</span> 
+                        </div>
+                        }
+                        else
+                        {
+                             <p id="allele_frequencyPath" style="display:inline">No file selected</p>
+                        }
+       
+                    </div>
+                </div>
+            </div>
+            <br />
+            <p>
+                <input type="submit" value="Save" />
+                <button type="button" onclick="deleteGene(@Model.ID)">Delete</button>
+                <button type="button" onclick="GeneCancel()">Cancel</button>
+                
+            </p>
+
+        }
+        <div id="message0"></div>
+    </div>
+
+    <div id="fragment-1">
+        <fieldset style="border-style: none">
+        @if (Model.ID == 0)
+        {
+            <h4>Please SAVE the Genomic Primary Info first before editing the variants.</h4> 
+        }
+        else
+        {
+            
+                
+                <div style="width:100%;">
+                    <a href="#" onclick="variantEdit('',@Model.ID)">Add new variant</a>
+                    <table id="locus_table" class="table table-hover table-striped" style="margin-bottom:0px">
+                        <thead>
+                            <th>HGVS-Chromosome name</th>                                                    
+                            <th>RsId</th>
+                            <th>Edit</th>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="variant-edit" style="margin-left:5px">
+                </div>
+
+            
+        }
+            </fieldset>
+    </div>
+
+    <div id="fragment-2">
+        <fieldset style="border-style: none">
+        @if (Model.ID == 0)
+        { 
+            <h4>Please SAVE the  Genomic Primary Info first before editing the allele.</h4> 
+        }
+        else
+        {
+
+                <div>
+                    <a href="#" onclick="alleleEdit('',@Model.ID)">Add New Allele</a>
+                    <table id="allele_table" class="table table-hover table-striped" style="margin-bottom:0px">
+                        <thead>
+                            <th>Allele name</th>
+                            <th>Function</th>
+                            <th>Action</th>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="allele-edit" style="margin-left:5px"></div>
+ 
+        }
+           </fieldset>
+    </div>
+    <div id="fragment-3">
+        <fieldset style="border-style: none">
+        @if (Model.ID == 0)
+        {
+            <h4>Please SAVE the  Genomic Primary Info first before editing the phenotype.</h4> 
+        }
+        else
+        {
+  
+                <div>
+                    <a href="#" onclick="editPhenotype('',@Model.ID)">Add New Phenotype</a>
+                    <table id="pheno_table" class="table table-hover table-striped" style="margin-bottom:0px" >
+                        <thead>
+                            <tr>
+                                <th>Gene
+                                </th>
+                                <th>Phenotype
+                                </th>
+                                <th>Description
+                                </th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="pheno-edit"></div>
+
+        }
+
+    </fieldset>
+
+</div>
+<div id="question" style="display: none; cursor: default">
+    <h1>Would you like to contine?</h1>
+    <input type="button" id="yes" value="Yes" />
+    <input type="button" id="no" value="No" />
+</div>
+
+    <div id="delete_question" style="display: none; cursor: default">
+    <h1>Are you sure to delete this item?</h1>
+    <input type="button" id="delete_yes" value="Yes" />
+    <input type="button" id="delete_no" value="No" />
+</div>

@@ -1,0 +1,50 @@
+﻿@model PGx.Model.Entities.RAW_DATA_FILE
+@using PGx.Model.Resources
+
+
+<fieldset class="ui-helper-reset" style="margin-top: 30px">
+    @if (string.IsNullOrEmpty(Model.PatientName))
+    {
+        <legend>New Sample</legend>
+    }
+    else
+    {
+        <legend>@Model.PatientName</legend>
+    }
+
+    <div class="editor-label">
+        @Html.HiddenFor(m => m.ID)
+
+        <label>Patient Name</label>
+        <div>
+            @Html.TextBoxFor(model => model.PatientName)
+        </div>
+        <label>Patient Id</label>
+        <div>
+            @Html.TextBoxFor(model => model.PatientID, new { required = "" })
+        </div>
+        <label>Sex</label>
+        <div>
+            Male @Html.RadioButtonFor(model => model.Sex, true)
+            Female @Html.RadioButtonFor(model => model.Sex, false)
+        </div>
+        <label>Sample Id</label>
+        <div>
+            @Html.TextBoxFor(model => model.SampleCode)
+        </div>
+        <label>Laboratory</label>
+        <div>
+            @Html.TextBoxFor(model => model.Laboratory)
+        </div>
+        <label>Test Method</label>
+        <div>
+            @Html.TextBoxFor(model => model.Method)
+        </div>
+        <label>Select File</label>
+
+        <div class="editor-field">
+            @Html.TextBoxFor(m => m.FILE_PATH, new { type = "file" })
+        </div>
+    </div>
+</fieldset>
+

@@ -1,0 +1,337 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KB_PGxModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityType Name="Chemical">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ChemicalName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ChemicalNameCN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Recomendation" Relationship="Self.FK_ChemicalRecomendation" FromRole="Chemical" ToRole="Recomendation" />
+    <NavigationProperty Name="GeneChemical" Relationship="Self.FK_DrugGeneDict" FromRole="Chemical" ToRole="GeneChemical" />
+  </EntityType>
+  <EntityType Name="Diplotype">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DiplotypeSymbol" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PhenotypeId" Type="Int32" Nullable="false" />
+    <Property Name="GeneSymbol" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DiplotypeHaplotype" Relationship="Self.FK_DiplotypeDiplotypeHaplotype" FromRole="Diplotype" ToRole="DiplotypeHaplotype" />
+    <NavigationProperty Name="Phenotype" Relationship="Self.FK_PhenotypeDiplotype" FromRole="Diplotype" ToRole="Phenotype" />
+  </EntityType>
+  <EntityType Name="DiplotypeHaplotype">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DiplotypeId" Type="Int32" Nullable="false" />
+    <Property Name="HaplotypeId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Diplotype" Relationship="Self.FK_DiplotypeDiplotypeHaplotype" FromRole="DiplotypeHaplotype" ToRole="Diplotype" />
+    <NavigationProperty Name="Haplotype" Relationship="Self.FK_HaplotypeDiplotypeHaplotype" FromRole="DiplotypeHaplotype" ToRole="Haplotype" />
+  </EntityType>
+  <EntityType Name="GeneChemical">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GeneDictId" Type="Int32" Nullable="false" />
+    <Property Name="GeneSymbol" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ChemicalId" Type="Int32" Nullable="false" />
+    <Property Name="ChemicalSymbol" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Chemical" Relationship="Self.FK_DrugGeneDict" FromRole="GeneChemical" ToRole="Chemical" />
+    <NavigationProperty Name="GeneDict" Relationship="Self.FK_GeneDictGeneChemical" FromRole="GeneChemical" ToRole="GeneDict" />
+  </EntityType>
+  <EntityType Name="GeneDict">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GeneSymbol" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="GeneChemical" Relationship="Self.FK_GeneDictGeneChemical" FromRole="GeneDict" ToRole="GeneChemical" />
+    <NavigationProperty Name="Haplotype" Relationship="Self.FK_GeneDictHaplotype" FromRole="GeneDict" ToRole="Haplotype" />
+    <NavigationProperty Name="Phenotype" Relationship="Self.FK_GeneDictPhenotype" FromRole="GeneDict" ToRole="Phenotype" />
+  </EntityType>
+  <EntityType Name="Haplotype">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HaplotypeName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="HaplotypeSymbol" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="GeneDictId" Type="Int32" Nullable="false" />
+    <Property Name="Category" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DiplotypeHaplotype" Relationship="Self.FK_HaplotypeDiplotypeHaplotype" FromRole="Haplotype" ToRole="DiplotypeHaplotype" />
+    <NavigationProperty Name="GeneDict" Relationship="Self.FK_GeneDictHaplotype" FromRole="Haplotype" ToRole="GeneDict" />
+    <NavigationProperty Name="HaplotypeVarient" Relationship="Self.FK_HaplotypeHaplotypeVarient" FromRole="Haplotype" ToRole="HaplotypeVarient" />
+  </EntityType>
+  <EntityType Name="HaplotypeVarient">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HaplotypeId" Type="Int32" Nullable="false" />
+    <Property Name="VarientId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Haplotype" Relationship="Self.FK_HaplotypeHaplotypeVarient" FromRole="HaplotypeVarient" ToRole="Haplotype" />
+    <NavigationProperty Name="Varient" Relationship="Self.FK_VarientHaplotypeVarient" FromRole="HaplotypeVarient" ToRole="Varient" />
+  </EntityType>
+  <EntityType Name="Phenotype">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PhenotypeSymbol" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PhenotypeSymbolCN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Genotype" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GenotypeCN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ActivityScore" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GeneDictId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Diplotype" Relationship="Self.FK_PhenotypeDiplotype" FromRole="Phenotype" ToRole="Diplotype" />
+    <NavigationProperty Name="GeneDict" Relationship="Self.FK_GeneDictPhenotype" FromRole="Phenotype" ToRole="GeneDict" />
+    <NavigationProperty Name="RecomendationPhenotype" Relationship="Self.FK_PhenotypeRecomendationPhenotype" FromRole="Phenotype" ToRole="RecomendationPhenotype" />
+  </EntityType>
+  <EntityType Name="Recomendation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ChemicalName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ChemicalId" Type="Int32" />
+    <Property Name="GeneSymbol" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Phenotype" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Abnormal" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhenotypeId" Type="Int32" />
+    <Property Name="Implication" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ImplicationCN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DosingRecomendation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DosingRecomendationCN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Level" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Chemical" Relationship="Self.FK_ChemicalRecomendation" FromRole="Recomendation" ToRole="Chemical" />
+    <NavigationProperty Name="RecomendationPhenotype" Relationship="Self.FK_RecomendationRecomendationPhenotype" FromRole="Recomendation" ToRole="RecomendationPhenotype" />
+  </EntityType>
+  <EntityType Name="RecomendationPhenotype">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ChemicalId" Type="Int32" />
+    <Property Name="PhenotypeId" Type="Int32" Nullable="false" />
+    <Property Name="RecomendationId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Phenotype" Relationship="Self.FK_PhenotypeRecomendationPhenotype" FromRole="RecomendationPhenotype" ToRole="Phenotype" />
+    <NavigationProperty Name="Recomendation" Relationship="Self.FK_RecomendationRecomendationPhenotype" FromRole="RecomendationPhenotype" ToRole="Recomendation" />
+  </EntityType>
+  <EntityType Name="Varient">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VarientSymbol" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="HaplotypeVarient" Relationship="Self.FK_VarientHaplotypeVarient" FromRole="Varient" ToRole="HaplotypeVarient" />
+  </EntityType>
+  <Association Name="FK_ChemicalRecomendation">
+    <End Role="Chemical" Type="Self.Chemical" Multiplicity="0..1" />
+    <End Role="Recomendation" Type="Self.Recomendation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Chemical">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Recomendation">
+        <PropertyRef Name="ChemicalId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DrugGeneDict">
+    <End Role="Chemical" Type="Self.Chemical" Multiplicity="1" />
+    <End Role="GeneChemical" Type="Self.GeneChemical" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Chemical">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GeneChemical">
+        <PropertyRef Name="ChemicalId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DiplotypeDiplotypeHaplotype">
+    <End Role="Diplotype" Type="Self.Diplotype" Multiplicity="1" />
+    <End Role="DiplotypeHaplotype" Type="Self.DiplotypeHaplotype" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Diplotype">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DiplotypeHaplotype">
+        <PropertyRef Name="DiplotypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PhenotypeDiplotype">
+    <End Role="Phenotype" Type="Self.Phenotype" Multiplicity="1" />
+    <End Role="Diplotype" Type="Self.Diplotype" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Phenotype">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Diplotype">
+        <PropertyRef Name="PhenotypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HaplotypeDiplotypeHaplotype">
+    <End Role="Haplotype" Type="Self.Haplotype" Multiplicity="1" />
+    <End Role="DiplotypeHaplotype" Type="Self.DiplotypeHaplotype" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Haplotype">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DiplotypeHaplotype">
+        <PropertyRef Name="HaplotypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GeneDictGeneChemical">
+    <End Role="GeneDict" Type="Self.GeneDict" Multiplicity="1" />
+    <End Role="GeneChemical" Type="Self.GeneChemical" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GeneDict">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GeneChemical">
+        <PropertyRef Name="GeneDictId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GeneDictHaplotype">
+    <End Role="GeneDict" Type="Self.GeneDict" Multiplicity="1" />
+    <End Role="Haplotype" Type="Self.Haplotype" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GeneDict">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Haplotype">
+        <PropertyRef Name="GeneDictId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GeneDictPhenotype">
+    <End Role="GeneDict" Type="Self.GeneDict" Multiplicity="1" />
+    <End Role="Phenotype" Type="Self.Phenotype" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GeneDict">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Phenotype">
+        <PropertyRef Name="GeneDictId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HaplotypeHaplotypeVarient">
+    <End Role="Haplotype" Type="Self.Haplotype" Multiplicity="1" />
+    <End Role="HaplotypeVarient" Type="Self.HaplotypeVarient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Haplotype">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HaplotypeVarient">
+        <PropertyRef Name="HaplotypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VarientHaplotypeVarient">
+    <End Role="Varient" Type="Self.Varient" Multiplicity="1" />
+    <End Role="HaplotypeVarient" Type="Self.HaplotypeVarient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Varient">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HaplotypeVarient">
+        <PropertyRef Name="VarientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PhenotypeRecomendationPhenotype">
+    <End Role="Phenotype" Type="Self.Phenotype" Multiplicity="1" />
+    <End Role="RecomendationPhenotype" Type="Self.RecomendationPhenotype" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Phenotype">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RecomendationPhenotype">
+        <PropertyRef Name="PhenotypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RecomendationRecomendationPhenotype">
+    <End Role="Recomendation" Type="Self.Recomendation" Multiplicity="1" />
+    <End Role="RecomendationPhenotype" Type="Self.RecomendationPhenotype" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Recomendation">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RecomendationPhenotype">
+        <PropertyRef Name="RecomendationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PGxMFContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Chemical" EntityType="Self.Chemical" />
+    <EntitySet Name="Diplotype" EntityType="Self.Diplotype" />
+    <EntitySet Name="DiplotypeHaplotype" EntityType="Self.DiplotypeHaplotype" />
+    <EntitySet Name="GeneChemical" EntityType="Self.GeneChemical" />
+    <EntitySet Name="GeneDict" EntityType="Self.GeneDict" />
+    <EntitySet Name="Haplotype" EntityType="Self.Haplotype" />
+    <EntitySet Name="HaplotypeVarient" EntityType="Self.HaplotypeVarient" />
+    <EntitySet Name="Phenotype" EntityType="Self.Phenotype" />
+    <EntitySet Name="Recomendation" EntityType="Self.Recomendation" />
+    <EntitySet Name="RecomendationPhenotype" EntityType="Self.RecomendationPhenotype" />
+    <EntitySet Name="Varient" EntityType="Self.Varient" />
+    <AssociationSet Name="FK_ChemicalRecomendation" Association="Self.FK_ChemicalRecomendation">
+      <End Role="Chemical" EntitySet="Chemical" />
+      <End Role="Recomendation" EntitySet="Recomendation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DrugGeneDict" Association="Self.FK_DrugGeneDict">
+      <End Role="Chemical" EntitySet="Chemical" />
+      <End Role="GeneChemical" EntitySet="GeneChemical" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DiplotypeDiplotypeHaplotype" Association="Self.FK_DiplotypeDiplotypeHaplotype">
+      <End Role="Diplotype" EntitySet="Diplotype" />
+      <End Role="DiplotypeHaplotype" EntitySet="DiplotypeHaplotype" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PhenotypeDiplotype" Association="Self.FK_PhenotypeDiplotype">
+      <End Role="Phenotype" EntitySet="Phenotype" />
+      <End Role="Diplotype" EntitySet="Diplotype" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HaplotypeDiplotypeHaplotype" Association="Self.FK_HaplotypeDiplotypeHaplotype">
+      <End Role="Haplotype" EntitySet="Haplotype" />
+      <End Role="DiplotypeHaplotype" EntitySet="DiplotypeHaplotype" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GeneDictGeneChemical" Association="Self.FK_GeneDictGeneChemical">
+      <End Role="GeneDict" EntitySet="GeneDict" />
+      <End Role="GeneChemical" EntitySet="GeneChemical" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GeneDictHaplotype" Association="Self.FK_GeneDictHaplotype">
+      <End Role="GeneDict" EntitySet="GeneDict" />
+      <End Role="Haplotype" EntitySet="Haplotype" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GeneDictPhenotype" Association="Self.FK_GeneDictPhenotype">
+      <End Role="GeneDict" EntitySet="GeneDict" />
+      <End Role="Phenotype" EntitySet="Phenotype" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HaplotypeHaplotypeVarient" Association="Self.FK_HaplotypeHaplotypeVarient">
+      <End Role="Haplotype" EntitySet="Haplotype" />
+      <End Role="HaplotypeVarient" EntitySet="HaplotypeVarient" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VarientHaplotypeVarient" Association="Self.FK_VarientHaplotypeVarient">
+      <End Role="Varient" EntitySet="Varient" />
+      <End Role="HaplotypeVarient" EntitySet="HaplotypeVarient" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PhenotypeRecomendationPhenotype" Association="Self.FK_PhenotypeRecomendationPhenotype">
+      <End Role="Phenotype" EntitySet="Phenotype" />
+      <End Role="RecomendationPhenotype" EntitySet="RecomendationPhenotype" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RecomendationRecomendationPhenotype" Association="Self.FK_RecomendationRecomendationPhenotype">
+      <End Role="Recomendation" EntitySet="Recomendation" />
+      <End Role="RecomendationPhenotype" EntitySet="RecomendationPhenotype" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

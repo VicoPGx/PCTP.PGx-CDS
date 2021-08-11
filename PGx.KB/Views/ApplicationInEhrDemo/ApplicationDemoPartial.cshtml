@@ -1,0 +1,158 @@
+﻿@model PGx.Model.Entities.RAW_DATA_FILE
+<script>
+    $(function () {
+        debugger;
+        $("#demo_pres_table").dataTable({
+            "bJQueryUI": true,
+            "sAjaxSource": "/ApplicationInEhrDemo/DrugPrescribeDatatable",
+            "bServerSide": true,
+            "bProcessing": false,
+            "bAutoWidth": false,
+            "bSort": false,
+            "bRetrive": false,
+            "fnServerParams": function (aoData) {
+                aoData.push(
+                            { "name": "patientId", "value": "@Model.PatientID" });
+            },
+            "aoColumns": [
+            {
+                "fnRender": function (oObj) {
+                    debugger;
+                    return "<span>" + oObj.aData["0"] + "</span>";
+                }
+            },
+            {
+                "fnRender": function (oObj) {
+                    return "<span>" + oObj.aData["1"] + "</span>";
+                }
+            },
+            {
+                "fnRender": function (oObj) {
+                    return "<span>" + oObj.aData["2"] + "</span>";
+                }
+            },
+            {
+                "fnRender": function (oObj) {
+                    debugger;
+                    var ln = '<a href="#" onclick="submitDemo(\'' + oObj.aData["3"] + '\')">Prescribe </a>';
+                    return ln;
+                }
+            }
+            ]
+        });
+            $('#pre_alert_dialog').dialog({
+                autoOpen: false,
+                modal: true,
+                width: 950,
+                height: 860,
+                buttons: {
+                    'Override': function () {
+                        debugger;                       
+                        $("#pre_override_dialog").dialog('open');
+                    },
+                    'Modify order': function () {
+                        debugger;
+                        $(this).dialog('close');
+                    },
+                    'Cancel': function () {
+                        $(this).dialog('close');
+                    }
+                }
+            });
+            $('#post_alert_dialog').dialog({
+                autoOpen: false,
+                modal: true,
+                width: 950,
+                height: 860,
+                buttons: {
+                    'Override': function () {
+                        debugger;
+                        $(this).dialog('close');
+                    },
+                    'Modify order': function () {
+                        $(this).dialog('close');
+                    },
+                    'Cancel': function () {
+                        $(this).dialog('close');
+                    }
+                }
+            });
+    });
+
+    function submitDemo(drugName) {
+        var patientId = $("#PatientId").val();
+        $.ajax({
+            url: '@Url.Action("DemoSubmit", "ApplicationInEhrDemo")',//提交处方
+            data: { drugName: drugName, patientId: patientId },
+            type: 'Get',
+            async: false,
+            cache: false,
+            timeout: 10000
+        }).done(function (backData) {
+            debugger;
+            if (backData.indexOf("pre_alert_drug") != -1) {                           
+                $("#pre_alert_dialog").dialog('open');
+                $("#pre_alert_dialog").html(backData);
+            }
+            else
+                if (backData.indexOf("post_alert_drug") != -1) {
+                    $("#post_alert_dialog").dialog('open');
+                    $("#post_alert_dialog").html(backData);
+                }
+                else {
+                alert("No pharmacogenomics alert, submission continue!")}
+        });
+    }
+</script>
+<style>
+    .ui-autocomplete
+    {
+        max-height: 300px;
+        max-width: 300px;
+        overflow-y: auto;
+        /* 防止水平滚动条 */
+        overflow-x: hidden;
+    }
+    /* IE 6 不支持 max-height 我们使用 height 代替，但是这会强制菜单总是显示为那个高度*/
+    * html .ui-autocomplete
+    {
+        height: 100px;
+    }
+</style>
+<div id="dialog_special_pre" >
+    <div id="pre_alert_dialog" title="Pharmacogenomics Pre-test Alert"></div>
+</div>
+
+<div id="dialog_special_post">
+    <div id="post_alert_dialog" title="Pharmacogenomics Post-test Alert"></div>
+</div>
+ <input id="PatientId" name="PatientId" type="hidden" value="@Model.PatientID" />
+
+<input id="submitId" type="hidden"/>
+
+
+    <div class="panel panel-primary ">
+    	<div class="panel-heading">
+		<h3 class="panel-title">
+			@Model.PatientName
+		</h3>
+	</div>
+            <div class="panel-body">
+    <div style="font-style:italic">
+        Select a drug to prescribe. 
+    </div>
+    </div>
+
+<table id="demo_pres_table" class="table table-hover table-striped" style="margin-bottom:0px">
+    <thead>
+        <tr>
+            <th>Drug</th>
+            <th>Genotype</th>
+            <th>Alert type</th>
+            <th>Prescribe</th>
+            </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+    </div>

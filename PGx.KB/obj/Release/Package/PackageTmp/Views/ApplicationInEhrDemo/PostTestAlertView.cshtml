@@ -1,0 +1,129 @@
+﻿@using PGx.Model.Entities
+@model PGx.KB.Models.PostTestAlertServiceModel
+<script>
+    $(function () {
+        $("#post_override_dialog").dialog({
+            autoOpen: false,
+            modal: true,
+            width: 500,
+            height: 300,
+            buttons: {
+                'Next': function () {
+                    debugger;
+                    var reason = $("#post_override_reason").val();
+                    if (reason == "Unselected" || reason == "") {
+                        alert("Please select a override reason!");
+                        return;
+                    }
+                    var postOverrideDrug = $("#post_alert_drug").val();
+                    $('#post_override_dialog').dialog('close');
+                    $('#post_alert_dialog').dialog('close');
+                    var submitReady = submitDrugs("", postOverrideDrug, "", "");
+                    if (submitReady == true)
+                        $("#form_order_entry").submit();
+                },
+                'Cancel': function () {
+                    debugger;
+                    $('#post_override_dialog').dialog('close');
+                }
+            }
+        });
+
+
+        function selectAlternative(id) {
+            debugger;
+            var tds = $("#" + id).find("td");
+            var newOrderTds = $("#alt_new_order_table").find("tr").eq(1).find("td");
+            newOrderTds.eq(0).children().eq(0).val(tds.eq(0).text());
+            newOrderTds.eq(4).children().eq(0).val(tds.eq(5).text());
+        }
+
+
+        function selectDrugOrder(id) {
+            debugger;
+            var tds = $("#" + id).find("td");
+            var newOrderTds = $("#adjust_new_order_table").find("tr").eq(1).find("td");
+            newOrderTds.eq(1).children().eq(0).val(tds.eq(3).children().eq(0).text());
+            newOrderTds.eq(2).children().eq(0).val(tds.eq(4).text());
+            newOrderTds.eq(3).children().eq(0).val(tds.eq(5).text())
+
+        }
+    })
+</script>
+<div>
+
+    <input id="post_alert_drug" type="hidden" value="@Model.Chemical" />
+    <div class="panel panel-primary ">
+        <div class="panel-body" style="background-color: rgba(255,0,0,0.5);padding:5px;margin-bottom: 0px">
+            <p><b>WARNING: </b>Risk of <b>@Model.Chemical</b> related ADR or treatment inefficacy greatly increased based on the patient genotype of <b>@Model.GeneSymbol</b>!</p>
+        </div>
+        <div class="panel-body" style="background-color: rgba(255,255,0,0.5);padding:5px;margin-bottom:0px">
+            @if (string.IsNullOrEmpty(Model.DosingGuidance.Implication))
+            {
+                <p style="margin-bottom:0px"><b>IMPLICATION:</b> Not applicable.</p>
+            }
+            else
+            {        
+                <p style="margin-bottom:0px"><b>IMPLICATION: </b>@Model.DosingGuidance.Implication</p>
+            }
+            @if (string.IsNullOrEmpty(Model.GeneNull))
+            {
+                <p style="margin-bottom:0px"><b>RECOMMENDATION: </b>@Model.DosingGuidance.Recommendation Please consult a clinical pharmacist for more information.</p>
+            }
+            else
+            {
+                <p ><b>RECOMMENDATION: </b>@Model.DosingGuidance.Recommendation However,the genotype of @Model.GeneNull can not be found in the information system.Please consult a clinical pharmacist for more information.</p>        
+            }
+            <p style="margin-bottom:0px"><b>LEVEL:</b> @Model.DosingGuidance.EvidenceLevel</p>
+        </div>
+    </div>
+
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">Genotype & Phenotype
+            </h3>
+        </div>
+        <table class="table table-hover table-condensed" style="margin-bottom: 0px">
+            <thead>
+                <tr>
+                    <th>Gene</th>
+                    <th>Diplotype</th>
+                    <th>Phenotype</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var g in Model.DiplotypeResults)
+                {
+                    <tr>
+                        <td>@g.GeneSymbol</td>
+                        <td>@g.Diplotype</td>
+                        <td>@g.Phenotype</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="panel panel-info" style="margin-bottom: 0px">
+    <div class="panel-heading">
+        <h3 class="panel-title">Guidelines
+        </h3>
+    </div>
+    @if (Model.Guidelines == null)
+    {
+        <p>There is not yet a guideline literature for @Model.Chemical in the KnowledgeBase up to now, this knowledge will be uptated later. </p> 
+    }
+    else
+    {
+        <ul class="list-group" style="margin-bottom: 0px">
+
+            @foreach (var citation in Model.Guidelines)
+            {
+                var href = "https://pubmed.ncbi.nlm.nih.gov/" + citation.M_pmid;
+                <li class="list-group-item"><a href="@href">@citation.M_title</a> [PMID:@citation.M_pmid] <em>@citation.M_journal</em>. @citation.M_year</li> 
+            }
+        </ul>  
+    }
+</div>
+</div>
+
+

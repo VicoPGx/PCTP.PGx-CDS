@@ -1,0 +1,37 @@
+﻿@model PGx.Model.Entities.GeneCall
+@using PGx.Model.Entities
+<fieldset style="margin-top:30px">
+   @if(string.IsNullOrEmpty(Model.Gene)==false)
+   {
+     <legend>Diplotype</legend>
+   }
+    else
+    {
+       <legend>New Diplotype</legend>
+   }
+   
+    @{
+        var CallID = Model.ID.ToString();
+        PGx_KBEntities context=new PGx_KBEntities();
+        <input id="CallID" name="CallID" type="hidden" value="@CallID"/>
+        }
+       @Html.HiddenFor(model=>model.FileId)
+    <div class="editor-field">
+        <label>Gene</label> <div>@Html.DropDownList("Gene", new SelectList(context.DefinitionFile.Select(x => x.GeneSymbol).ToList(), Model.Gene), "Unselected", new {id="sample_gene", onchange="alleleList()"})</div></div>
+       <div class="editor-field"> 
+        <label>Diplotype</label>
+         <div id="pick_allele" class="row">
+    @if(Model.ID>0)
+    {       
+        <div class="col-md-6">Allele A @Html.DropDownList("HaplotypeA",new SelectList(context.DefinitionFile.Where(x=>x.GeneSymbol==Model.Gene).FirstOrDefault().NamedAllele.Select(x=>x.Name).ToList(),Model.Diplotype.Split('/').ElementAt(0)),"Unselected")</div>
+        <div class="col-md-6">Allele B @Html.DropDownList("HaplotypeB",new SelectList(context.DefinitionFile.Where(x=>x.GeneSymbol==Model.Gene).FirstOrDefault().NamedAllele.Select(x=>x.Name).ToList(),Model.Diplotype.Split('/').ElementAt(1)),"Unselected")</div>    
+    }
+    else
+    {
+         <div class="col-md-6">Allele A @Html.DropDownList("HaplotypeA",new SelectList(new List<string>()),"Unselected")</div>
+         <div class="col-md-6">Allele B @Html.DropDownList("HaplotypeB",new SelectList(new List<string>()),"Unselected")</div> 
+    }
+       </div>
+     </div> 
+</fieldset>
+

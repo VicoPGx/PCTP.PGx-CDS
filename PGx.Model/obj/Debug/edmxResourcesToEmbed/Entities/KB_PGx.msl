@@ -1,0 +1,492 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PGx_KBModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="Chemicals">
+      <EntityTypeMapping TypeName="IsTypeOf(PGx_KBModel.Chemical)">
+        <MappingFragment StoreEntitySet="Chemicals">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ChemicalName" ColumnName="ChemicalName" />
+          <ScalarProperty Name="ChemicalNameCN" ColumnName="ChemicalNameCN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="chemicalsPGKBs">
+      <EntityTypeMapping TypeName="IsTypeOf(PGx_KBModel.chemicalsPGKB)">
+        <MappingFragment StoreEntitySet="chemicalsPGKBs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PharmGKB_Accession_Id" ColumnName="PharmGKB_Accession_Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Generic_Names" ColumnName="Generic_Names" />
+          <ScalarProperty Name="Trade_Names" ColumnName="Trade_Names" />
+          <ScalarProperty Name="Brand_Mixtures" ColumnName="Brand_Mixtures" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Cross_references" ColumnName="Cross_references" />
+          <ScalarProperty Name="SMILES" ColumnName="SMILES" />
+          <ScalarProperty Name="InChI" ColumnName="InChI" />
+          <ScalarProperty Name="Dosing_Guideline" ColumnName="Dosing_Guideline" />
+          <ScalarProperty Name="External_Vocabulary" ColumnName="External_Vocabulary" />
+          <ScalarProperty Name="Clinical_Annotation_Count" ColumnName="Clinical_Annotation_Count" />
+          <ScalarProperty Name="Variant_Annotation_Count" ColumnName="Variant_Annotation_Count" />
+          <ScalarProperty Name="Pathway_Count" ColumnName="Pathway_Count" />
+          <ScalarProperty Name="VIP_Count" ColumnName="VIP_Count" />
+          <ScalarProperty Name="Dosing_Guideline_Sources" ColumnName="Dosing_Guideline_Sources" />
+          <ScalarProperty Name="Top_Clinical_Annotation_Level" ColumnName="Top_Clinical_Annotation_Level" />
+          <ScalarProperty Name="Top_FDA_Label_Testing_Level" ColumnName="Top_FDA_Label_Testing_Level" />
+          <ScalarProperty Name="Top_Any_Drug_Label_Testing_Level" ColumnName="Top_Any_Drug_Label_Testing_Level" />
+          <ScalarProperty Name="Label_Has_Dosing_Info" ColumnName="Label_Has_Dosing_Info" />
+          <ScalarProperty Name="Has_Rx_Annotation" ColumnName="Has_Rx_Annotation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ClinicalAnns">
+      <EntityTypeMapping TypeName="IsTypeOf(PGx_KBModel.ClinicalAnn)">
+        <MappingFragment StoreEntitySet="ClinicalAnns">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Genotype_Phenotype_ID" ColumnName="Genotype_Phenotype_ID" />
+          <ScalarProperty Name="Genotype" ColumnName="Genotype" />
+          <ScalarProperty Name="Clinical_Phenotype" ColumnName="Clinical_Phenotype" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ClinicalAnnMetadatas">
+      <EntityTypeMapping TypeName="IsTypeOf(PGx_KBModel.ClinicalAnnMetadata)">
+        <MappingFragment StoreEntitySet="ClinicalAnnMetadatas">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Clinical_Annotation_ID" ColumnName="Clinical_Annotation_ID" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Gene" ColumnName="Gene" />
+          <ScalarProperty Name="Level_of_Evidence" ColumnName="Level_of_Evidence" />
+          <ScalarProperty Name="Clinical_Annotation_Types" ColumnName="Clinical_Annotation_Types" />
+          <ScalarProperty Name="Genotype_Phenotype_IDs" ColumnName="Genotype_Phenotype_IDs" />
+          <ScalarProperty Name="Annotation_Text" ColumnName="Annotation_Text" />
+          <ScalarProperty Name="Variant_Annotations_IDs" ColumnName="Variant_Annotations_IDs" />
+          <ScalarProperty Name="Variant_Annotations" ColumnName="Variant_Annotations" />
+          <ScalarProperty Name="Literature_IDs" ColumnName="Literature_IDs" />
+          <ScalarProperty Name="Evidence_Count" ColumnName="Evidence_Count" />
+          <ScalarProperty Name="Related_Chemicals" ColumnName="Related_Chemicals" />
+          <ScalarProperty Name="Related_Diseases" ColumnName="Related_Diseases" />
+          <ScalarProperty Name="Race" ColumnName="Race" />
+          <ScalarProperty Name="Chromosome" ColumnName="Chromosome" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="clinicalVariants">
+      <EntityTypeMapping TypeName="IsTypeOf(PGx_KBModel.clinicalVariant)">
+        <MappingFragment StoreEntitySet="clinicalVariants">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="variant" ColumnName="variant" />
+          <ScalarProperty Name="gene" ColumnName="gene" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="level_of_evidence" ColumnName="level_of_evidence" />
+          <ScalarProperty Name="chemicals" ColumnName="chemicals" />
+          <ScalarProperty Name="phenotypes" ColumnName="phenotypes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DiplotypeDefinitions">
+      <EntityTypeMapping TypeName="IsTypeOf(PGx_KBModel.DiplotypeDefinition)">
+        <MappingFragment StoreEntitySet="DiplotypeDefinitions">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="GeneSymbol" ColumnName="GeneSymbol" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="RsId" ColumnName="RsId" />
+          <ScalarProperty Name="HaplotypeA" ColumnName="HaplotypeA" />
+          <ScalarProperty Name="HaplotypeB" ColumnName="HaplotypeB" />
+          <ScalarProperty Name="ScoreA" ColumnName="ScoreA" />
+          <ScalarProperty Name="ScoreB" ColumnName="ScoreB" />
+          <ScalarProperty Name="ScoreSum" ColumnName="ScoreSum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DiplotypePhenotypeSets">
+      <EntityTypeMapping TypeName="IsTypeOf(PGx_KBModel.DiplotypePhenotypeSet)">
+        <MappingFragment StoreEntitySet="DiplotypePhenotypeSets">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DiplotypeSymbol" ColumnName="DiplotypeSymbol" />
+          <ScalarProperty Name="AlleleA" ColumnName="AlleleA" />
+          <ScalarProperty Name="AlleleB" ColumnName="AlleleB" />
+          <ScalarProperty Name="PhenotypeName" ColumnName="PhenotypeName" />
+          <ScalarProperty Name="PhenotypeId" ColumnName="PhenotypeId" />
+          <ScalarProperty Name="GeneSymbol" ColumnName="GeneSymbol" />
+          <ScalarProperty Name="ActivityScore" ColumnName="ActivityScore" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Diplotypes">
+      <EntityTypeMapping TypeName="IsTypeOf(PGx_KBModel.Diplotype)">
+        <MappingFragment StoreEntitySet="Diplotypes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DiplotypeSymbol" ColumnName="DiplotypeSymbol" />
+          <ScalarProperty Name="Phenotype_Id" ColumnName="Phenotype_Id" />
+          <ScalarProperty Name="Gene_Id" ColumnName="Gene_Id" />
+          <ScalarProperty Name="Haplotype1_Id" ColumnName="Haplotype1_Id" />
+          <ScalarProperty Name="Haplotype2_Id" ColumnName="Haplotype2_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DrugLabels">
+      <EntityTypeMapping TypeName="IsTypeOf(PGx_KBModel.DrugLabel)">
+        <MappingFragment StoreEntitySet="DrugLabels">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PharmGKB_ID" ColumnName="PharmGKB_ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Source" ColumnName="Source" />
+          <ScalarProperty Name="Biomarker_Flag" ColumnName="Biomarker_Flag" />
+          <ScalarProperty Name="Testing_Level" ColumnName="Testing_Level" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DrugLabelsByGenes">
+      <EntityTypeMapping TypeName="IsTypeOf(PGx_KBModel.DrugLabelsByGene)">
+        <MappingFragment StoreEntitySet="DrugLabelsByGenes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Gene_ID" ColumnName="Gene_ID" />
+          <ScalarProperty Name="Gene_Symbol" ColumnName="Gene_Symbol" />
+          <ScalarProperty Name="Label_IDs" ColumnName="Label_IDs" />
+          <ScalarProperty Name="Label_Names" ColumnName="Label_Names" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Drugs">
+      <EntityTypeMapping TypeName="IsTypeOf(PGx_KBModel.Drug)">
+        <MappingFragment StoreEntitySet="Drugs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DrugName" ColumnName="DrugName" />
+          <ScalarProperty Name="DrugCode" ColumnName="DrugCode" />
+          <ScalarProperty Name="EMRId" ColumnName="EMRId" />
+          <ScalarProperty Name="Chemical_Id" ColumnName="Chemical_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="drugsPGKBs">
+      <EntityTypeMapping TypeName="IsTypeOf(PGx_KBModel.drugsPGKB)">
+        <MappingFragment StoreEntitySet="drugsPGKBs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PharmGKB_Accession_Id" ColumnName="PharmGKB_Accession_Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Generic_Names" ColumnName="Generic_Names" />
+          <ScalarProperty Name="Trade_Names" ColumnName="Trade_Names" />
+          <ScalarProperty Name="Brand_Mixtures" ColumnName="Brand_Mixtures" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Cross_references" ColumnName="Cross_references" />
+          <ScalarProperty Name="SMILES" ColumnName="SMILES" />
+          <ScalarProperty Name="InChI" ColumnName="InChI" />
+          <ScalarProperty Name="Dosing_Guideline" ColumnName="Dosing_Guideline" />
+          <ScalarProperty Name="External_Vocabulary" ColumnName="External_Vocabulary" />
+          <ScalarProperty Name="Clinical_Annotation_Count" ColumnName="Clinical_Annotation_Count" />
+          <ScalarProperty Name="Variant_Annotation_Count" ColumnName="Variant_Annotation_Count" />
+          <ScalarProperty Name="Pathway_Count" ColumnName="Pathway_Count" />
+          <ScalarProperty Name="VIP_Count" ColumnName="VIP_Count" />
+          <ScalarProperty Name="Dosing_Guideline_Sources" ColumnName="Dosing_Guideline_Sources" />
+          <ScalarProperty Name="Top_Clinical_Annotation_Level" ColumnName="Top_Clinical_Annotation_Level" />
+          <ScalarProperty Name="Top_FDA_Label_Testing_Level" ColumnName="Top_FDA_Label_Testing_Level" />
+          <ScalarProperty Name="Top_Any_Drug_Label_Testing_Level" ColumnName="Top_Any_Drug_Label_Testing_Level" />
+          <ScalarProperty Name="Label_Has_Dosing_Info" ColumnName="Label_Has_Dosing_Info" />
+          <ScalarProperty Name="Has_Rx_Annotation" ColumnName="Has_Rx_Annotation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Genes">
+      <EntityTypeMapping TypeName="IsTypeOf(PGx_KBModel.Gene)">
+        <MappingFragment StoreEntitySet="Genes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="GeneSymbol" ColumnName="GeneSymbol" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="genesPGKBs">
+      <EntityTypeMapping TypeName="IsTypeOf(PGx_KBModel.genesPGKB)">
+        <MappingFragment StoreEntitySet="genesPGKBs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PharmGKB_Accession_Id" ColumnName="PharmGKB_Accession_Id" />
+          <ScalarProperty Name="NCBI_Gene_ID" ColumnName="NCBI_Gene_ID" />
+          <ScalarProperty Name="HGNC_ID" ColumnName="HGNC_ID" />
+          <ScalarProperty Name="Ensembl_Id" ColumnName="Ensembl_Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+          <ScalarProperty Name="Alternate_Names" ColumnName="Alternate_Names" />
+          <ScalarProperty Name="Alternate_Symbols" ColumnName="Alternate_Symbols" />
+          <ScalarProperty Name="Is_VIP" ColumnName="Is_VIP" />
+          <ScalarProperty Name="Has_Variant_Annotation" ColumnName="Has_Variant_Annotation" />
+          <ScalarProperty Name="Cross_references" ColumnName="Cross_references" />
+          <ScalarProperty Name="Has_CPIC_Dosing_Guideline" ColumnName="Has_CPIC_Dosing_Guideline" />
+          <ScalarProperty Name="Chromosome" ColumnName="Chromosome" />
+          <ScalarProperty Name="Chromosomal_Start_GRCh37_p13" ColumnName="Chromosomal_Start_GRCh37_p13" />
+          <ScalarProperty Name="Chromosomal_Stop_GRCh37_p13" ColumnName="Chromosomal_Stop_GRCh37_p13" />
+          <ScalarProperty Name="Chromosomal_Start_GRCh38_p7" ColumnName="Chromosomal_Start_GRCh38_p7" />
+          <ScalarProperty Name="Chromosomal_Stop_GRCh38_p7" ColumnName="Chromosomal_Stop_GRCh38_p7" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HaplotypeDefinitions">
+      <EntityTypeMapping TypeName="IsTypeOf(PGx_KBModel.HaplotypeDefinition)">
+        <MappingFragment StoreEntitySet="HaplotypeDefinitions">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Allel" ColumnName="Allel" />
+          <ScalarProperty Name="GeneSymbol" ColumnName="GeneSymbol" />
+          <ScalarProperty Name="CommonName" ColumnName="CommonName" />
+          <ScalarProperty Name="ProteinRef" ColumnName="ProteinRef" />
+          <ScalarProperty Name="ChromosomeRef" ColumnName="ChromosomeRef" />
+          <ScalarProperty Name="GeneRef" ColumnName="GeneRef" />
+          <ScalarProperty Name="RsId" ColumnName="RsId" />
+          <ScalarProperty Name="BaseVar" ColumnName="BaseVar" />
+          <ScalarProperty Name="IsReference" ColumnName="IsReference" />
+          <ScalarProperty Name="Score" ColumnName="Score" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Haplotypes">
+      <EntityTypeMapping TypeName="IsTypeOf(PGx_KBModel.Haplotype)">
+        <MappingFragment StoreEntitySet="Haplotypes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HaplotypeSymbol" ColumnName="HaplotypeSymbol" />
+          <ScalarProperty Name="GeneSymbol" ColumnName="GeneSymbol" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="ClinicalFlag" ColumnName="ClinicalFlag" />
+          <ScalarProperty Name="Gene_Id" ColumnName="Gene_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="occurrences">
+      <EntityTypeMapping TypeName="IsTypeOf(PGx_KBModel.occurrence)">
+        <MappingFragment StoreEntitySet="occurrences">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Source_Type" ColumnName="Source_Type" />
+          <ScalarProperty Name="Source_ID" ColumnName="Source_ID" />
+          <ScalarProperty Name="Source_Name" ColumnName="Source_Name" />
+          <ScalarProperty Name="Object_Type" ColumnName="Object_Type" />
+          <ScalarProperty Name="Object_ID" ColumnName="Object_ID" />
+          <ScalarProperty Name="Object_Name" ColumnName="Object_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PhenotypeEntitySets">
+      <EntityTypeMapping TypeName="IsTypeOf(PGx_KBModel.PhenotypeEntitySet)">
+        <MappingFragment StoreEntitySet="PhenotypeEntitySets">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PhenotypeSymbol" ColumnName="PhenotypeSymbol" />
+          <ScalarProperty Name="GeneSymbol" ColumnName="GeneSymbol" />
+          <ScalarProperty Name="Genotype" ColumnName="Genotype" />
+          <ScalarProperty Name="Examples" ColumnName="Examples" />
+          <ScalarProperty Name="ActivityScore" ColumnName="ActivityScore" />
+          <ScalarProperty Name="IsNormal" ColumnName="IsNormal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Phenotypes">
+      <EntityTypeMapping TypeName="IsTypeOf(PGx_KBModel.Phenotype)">
+        <MappingFragment StoreEntitySet="Phenotypes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PhenotypeSymbol" ColumnName="PhenotypeSymbol" />
+          <ScalarProperty Name="PhenotypeSymbolCN" ColumnName="PhenotypeSymbolCN" />
+          <ScalarProperty Name="Genotype" ColumnName="Genotype" />
+          <ScalarProperty Name="GenotypeCN" ColumnName="GenotypeCN" />
+          <ScalarProperty Name="ActivityScore" ColumnName="ActivityScore" />
+          <ScalarProperty Name="Normal" ColumnName="Normal" />
+          <ScalarProperty Name="Gene_Id" ColumnName="Gene_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="phenotypesDiseasePGKBs">
+      <EntityTypeMapping TypeName="IsTypeOf(PGx_KBModel.phenotypesDiseasePGKB)">
+        <MappingFragment StoreEntitySet="phenotypesDiseasePGKBs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PharmGKB_Accession_Id" ColumnName="PharmGKB_Accession_Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Alternate_Names" ColumnName="Alternate_Names" />
+          <ScalarProperty Name="Cross_references" ColumnName="Cross_references" />
+          <ScalarProperty Name="External_Vocabulary" ColumnName="External_Vocabulary" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Recomendations">
+      <EntityTypeMapping TypeName="IsTypeOf(PGx_KBModel.Recomendation)">
+        <MappingFragment StoreEntitySet="Recomendations">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Implication" ColumnName="Implication" />
+          <ScalarProperty Name="ImplicationCN" ColumnName="ImplicationCN" />
+          <ScalarProperty Name="DosingRecomendation" ColumnName="DosingRecomendation" />
+          <ScalarProperty Name="DosingRecomendationCN" ColumnName="DosingRecomendationCN" />
+          <ScalarProperty Name="Level" ColumnName="Level" />
+          <ScalarProperty Name="Chemical_Id" ColumnName="Chemical_Id" />
+          <ScalarProperty Name="Phenotype_Id" ColumnName="Phenotype_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RecommendationEntitySets">
+      <EntityTypeMapping TypeName="IsTypeOf(PGx_KBModel.RecommendationEntitySet)">
+        <MappingFragment StoreEntitySet="RecommendationEntitySets">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Chemical" ColumnName="Chemical" />
+          <ScalarProperty Name="ChemicalId" ColumnName="ChemicalId" />
+          <ScalarProperty Name="GeneSymbol" ColumnName="GeneSymbol" />
+          <ScalarProperty Name="Phenotype" ColumnName="Phenotype" />
+          <ScalarProperty Name="PhenotypeName" ColumnName="PhenotypeName" />
+          <ScalarProperty Name="Implication" ColumnName="Implication" />
+          <ScalarProperty Name="Recommendation" ColumnName="Recommendation" />
+          <ScalarProperty Name="Level" ColumnName="Level" />
+          <ScalarProperty Name="PeopleGroup" ColumnName="PeopleGroup" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Relationships">
+      <EntityTypeMapping TypeName="IsTypeOf(PGx_KBModel.Relationship)">
+        <MappingFragment StoreEntitySet="Relationships">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Entity1_id" ColumnName="Entity1_id" />
+          <ScalarProperty Name="Entity1_name" ColumnName="Entity1_name" />
+          <ScalarProperty Name="Entity1_type" ColumnName="Entity1_type" />
+          <ScalarProperty Name="Entity2_id" ColumnName="Entity2_id" />
+          <ScalarProperty Name="Entity2_name" ColumnName="Entity2_name" />
+          <ScalarProperty Name="Entity2_type" ColumnName="Entity2_type" />
+          <ScalarProperty Name="Evidence" ColumnName="Evidence" />
+          <ScalarProperty Name="Association" ColumnName="Association" />
+          <ScalarProperty Name="PK" ColumnName="PK" />
+          <ScalarProperty Name="PD" ColumnName="PD" />
+          <ScalarProperty Name="PMIDs" ColumnName="PMIDs" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SampleResultSets">
+      <EntityTypeMapping TypeName="IsTypeOf(PGx_KBModel.SampleResultSet)">
+        <MappingFragment StoreEntitySet="SampleResultSets">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SampleId" ColumnName="SampleId" />
+          <ScalarProperty Name="SampleAddress" ColumnName="SampleAddress" />
+          <ScalarProperty Name="GeneSymbol" ColumnName="GeneSymbol" />
+          <ScalarProperty Name="HaplotypeA" ColumnName="HaplotypeA" />
+          <ScalarProperty Name="HaplotypeB" ColumnName="HaplotypeB" />
+          <ScalarProperty Name="GenotypeResult" ColumnName="GenotypeResult" />
+          <ScalarProperty Name="PhenotypeResult" ColumnName="PhenotypeResult" />
+          <ScalarProperty Name="VariantsRsIdA" ColumnName="VariantsRsIdA" />
+          <ScalarProperty Name="VariantsRsIdB" ColumnName="VariantsRsIdB" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="study_parameters">
+      <EntityTypeMapping TypeName="IsTypeOf(PGx_KBModel.study_parameters)">
+        <MappingFragment StoreEntitySet="study_parameters">
+          <ScalarProperty Name="Study_Parameters_ID" ColumnName="Study_Parameters_ID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Study_Type" ColumnName="Study_Type" />
+          <ScalarProperty Name="Study_Cases" ColumnName="Study_Cases" />
+          <ScalarProperty Name="Study_Controls" ColumnName="Study_Controls" />
+          <ScalarProperty Name="Characteristics" ColumnName="Characteristics" />
+          <ScalarProperty Name="Characteristics_Type" ColumnName="Characteristics_Type" />
+          <ScalarProperty Name="Frequency_In_Cases" ColumnName="Frequency_In_Cases" />
+          <ScalarProperty Name="Allele_Of_Frequency_In_Cases" ColumnName="Allele_Of_Frequency_In_Cases" />
+          <ScalarProperty Name="Frequency_In_Controls" ColumnName="Frequency_In_Controls" />
+          <ScalarProperty Name="Allele_Of_Frequency_In_Controls" ColumnName="Allele_Of_Frequency_In_Controls" />
+          <ScalarProperty Name="P_Value_Operator" ColumnName="P_Value_Operator" />
+          <ScalarProperty Name="P_Value" ColumnName="P_Value" />
+          <ScalarProperty Name="Ratio_Stat_Type" ColumnName="Ratio_Stat_Type" />
+          <ScalarProperty Name="Ratio_Stat" ColumnName="Ratio_Stat" />
+          <ScalarProperty Name="Confidence_Interval_Start" ColumnName="Confidence_Interval_Start" />
+          <ScalarProperty Name="Confidence_Interval_Stop" ColumnName="Confidence_Interval_Stop" />
+          <ScalarProperty Name="Race" ColumnName="Race" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="var_drug_ann">
+      <EntityTypeMapping TypeName="IsTypeOf(PGx_KBModel.var_drug_ann)">
+        <MappingFragment StoreEntitySet="var_drug_ann">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Annotation_ID" ColumnName="Annotation_ID" />
+          <ScalarProperty Name="Variant" ColumnName="Variant" />
+          <ScalarProperty Name="Gene" ColumnName="Gene" />
+          <ScalarProperty Name="Chemical" ColumnName="Chemical" />
+          <ScalarProperty Name="Literature_ID" ColumnName="Literature_ID" />
+          <ScalarProperty Name="Phenotype_Category" ColumnName="Phenotype_Category" />
+          <ScalarProperty Name="Significance" ColumnName="Significance" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Sentence" ColumnName="Sentence" />
+          <ScalarProperty Name="StudyParameters" ColumnName="StudyParameters" />
+          <ScalarProperty Name="Alleles" ColumnName="Alleles" />
+          <ScalarProperty Name="Chromosome" ColumnName="Chromosome" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="var_fa_ann">
+      <EntityTypeMapping TypeName="IsTypeOf(PGx_KBModel.var_fa_ann)">
+        <MappingFragment StoreEntitySet="var_fa_ann">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Annotation_ID" ColumnName="Annotation_ID" />
+          <ScalarProperty Name="Variant" ColumnName="Variant" />
+          <ScalarProperty Name="Gene" ColumnName="Gene" />
+          <ScalarProperty Name="Chemical" ColumnName="Chemical" />
+          <ScalarProperty Name="Literature_ID" ColumnName="Literature_ID" />
+          <ScalarProperty Name="Phenotype_Category" ColumnName="Phenotype_Category" />
+          <ScalarProperty Name="Significance" ColumnName="Significance" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Sentence" ColumnName="Sentence" />
+          <ScalarProperty Name="StudyParameters" ColumnName="StudyParameters" />
+          <ScalarProperty Name="Alleles" ColumnName="Alleles" />
+          <ScalarProperty Name="Chromosome" ColumnName="Chromosome" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="var_pheno_ann">
+      <EntityTypeMapping TypeName="IsTypeOf(PGx_KBModel.var_pheno_ann)">
+        <MappingFragment StoreEntitySet="var_pheno_ann">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Annotation_ID" ColumnName="Annotation_ID" />
+          <ScalarProperty Name="Variant" ColumnName="Variant" />
+          <ScalarProperty Name="Gene" ColumnName="Gene" />
+          <ScalarProperty Name="Chemical" ColumnName="Chemical" />
+          <ScalarProperty Name="Literature_ID" ColumnName="Literature_ID" />
+          <ScalarProperty Name="Phenotype_Category" ColumnName="Phenotype_Category" />
+          <ScalarProperty Name="Significance" ColumnName="Significance" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Sentence" ColumnName="Sentence" />
+          <ScalarProperty Name="StudyParameters" ColumnName="StudyParameters" />
+          <ScalarProperty Name="Alleles" ColumnName="Alleles" />
+          <ScalarProperty Name="Chromosome" ColumnName="Chromosome" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="variantsPGKBs">
+      <EntityTypeMapping TypeName="IsTypeOf(PGx_KBModel.variantsPGKB)">
+        <MappingFragment StoreEntitySet="variantsPGKBs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Variant_ID" ColumnName="Variant_ID" />
+          <ScalarProperty Name="Variant_Name" ColumnName="Variant_Name" />
+          <ScalarProperty Name="Variant_Symbol" ColumnName="Variant_Symbol" />
+          <ScalarProperty Name="Gene_IDs" ColumnName="Gene_IDs" />
+          <ScalarProperty Name="Gene_Symbols" ColumnName="Gene_Symbols" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="VA_count" ColumnName="VA_count" />
+          <ScalarProperty Name="CA_count" ColumnName="CA_count" />
+          <ScalarProperty Name="Level_1_2_CA_count" ColumnName="Level_1_2_CA_count" />
+          <ScalarProperty Name="DG_count" ColumnName="DG_count" />
+          <ScalarProperty Name="Haplotype" ColumnName="Haplotype" />
+          <ScalarProperty Name="Synonyms" ColumnName="Synonyms" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Varients">
+      <EntityTypeMapping TypeName="IsTypeOf(PGx_KBModel.Varient)">
+        <MappingFragment StoreEntitySet="Varients">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="VarientSymbol" ColumnName="VarientSymbol" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="ChemicalGene" TypeName="PGx_KBModel.ChemicalGene" StoreEntitySet="ChemicalGene">
+      <EndProperty Name="Chemicals">
+        <ScalarProperty Name="Id" ColumnName="Chemicals_Id" />
+      </EndProperty>
+      <EndProperty Name="Genes">
+        <ScalarProperty Name="Id" ColumnName="Genes_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="HaplotypeVarient" TypeName="PGx_KBModel.HaplotypeVarient" StoreEntitySet="HaplotypeVarient">
+      <EndProperty Name="Haplotypes">
+        <ScalarProperty Name="Id" ColumnName="Haplotypes_Id" />
+      </EndProperty>
+      <EndProperty Name="Varients">
+        <ScalarProperty Name="Id" ColumnName="Varients_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

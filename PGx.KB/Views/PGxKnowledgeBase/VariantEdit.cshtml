@@ -1,0 +1,132 @@
+﻿@model PGx.Model.Entities.VariantLocus
+
+<script>
+    $(document).ready(function () {
+
+        $("#variant-form>div").accordion({ heightStyle: "content", header: "h3", collapsible: true });
+    });
+    function saveVariantLocus() {
+        debugger;
+        
+        var funcInputArr = document.getElementsByName("posAllele_name");
+        var funcArr = new Array();
+        for (var i = 0; i < funcInputArr.length; i++) {
+            funcArr[i] = funcInputArr[i].value;
+        }
+        //document.getElementById("NamedFunctions").value = funcArr.join(",");
+        $("#Alleles").attr("value", funcArr.join(","));
+        $('#variant-form').ajaxSubmit(function (data) {
+            debugger;
+            alert(data);
+        });
+        geneEdit('@Model.DefinitionFileID');
+            $('#tabs a[href="#fragment-1"]').click();
+        return false;
+    }
+</script>
+   <div>
+
+          @{ string positionName="New Variant";
+    if (Model.ID > 0)
+    {
+        positionName = Model.DefinitionFile.RefSeqChromosome + ":" + Model.ChromosomeHgvsName;
+    }
+    }
+         <fieldset style="margin-left:5px">
+    <legend>@positionName</legend>
+@using (@Html.BeginForm("VariantEdit", "PGxKnowledgeBase", FormMethod.Post, new { id="variant-form",onsubmit="return saveVariantLocus();"}))
+{
+        @Html.HiddenFor(m=>m.ID)
+      @Html.HiddenFor(m => m.Alleles)
+    @Html.HiddenFor(m=>m.DefinitionFileID)
+
+                 <div>
+             <h3>Primary Info</h3>
+             <div>
+<div class="editor-field">
+
+<label>HGVS-Chromosome Name</label>
+<div>
+    @Html.EditorFor(m => m.ChromosomeHgvsName)
+</div>
+       </div> 
+        <div class="editor-field">
+<label>Position</label>
+<div class="editor-field">
+    @Html.EditorFor(m => m.Position)
+</div>
+            </div>
+
+<div class="editor-field">
+    @{
+    string[] posAlleles = null;
+    string refAllele = string.Empty, altAllele = string.Empty;
+    if(string.IsNullOrEmpty(Model.Alleles)==false)
+    {
+       posAlleles = Model.Alleles.Split(',');
+       refAllele = posAlleles[0];
+       altAllele = posAlleles[1];
+    }   
+    }
+    <label>Ref Allele</label>
+    <div>
+      @Html.TextBox("posAllele_name",refAllele , new { style="margin:3px; width: 300px;"})
+     </div>
+      <label>Alt Allele</label> <img onclick="addInput('','position-alleles','posAllele_name');" style="cursor:pointer; position: relative; margin-bottom: -5px" src="/Content/images/add_black.png" alt="Add alt" />
+   <div id="position-alleles">
+       @Html.TextBox("posAllele_name",altAllele , new { style="margin:3px; width: 300px;"})
+        @{if (posAlleles != null&& posAlleles.Count()>2)
+          {
+              for (var i = 2; i<posAlleles.Count();i++ )
+              {
+                 <div>
+                 @Html.TextBox("posAllele_name",posAlleles[i], new { style = "margin:3px; width: 300px;" })<img onclick="deleteInput(this,'position-alleles');" style="cursor:pointer; position: relative; margin-bottom: 0px" src="/Content/images/trash.png" alt="Delete" />
+                 </div>
+              }
+          }
+            }
+    </div>
+</div>
+        <div class="editor-field">
+    <label>Type</label>
+<div>
+       @Html.DropDownListFor(m => m.Type, new List<string> { "Unselected","SNP", "DEL", "INS","REPEAT" }.Select(x => new SelectListItem { Text=x,Value=x,Selected=x==Model.Type}))
+</div>
+            </div>
+                 </div>
+  </div>
+                     <div>
+             <h3>Additional Info</h3>
+             <div>
+
+        <div class="editor-field">
+  <label>HGVS-Gene Name</label>
+<div>
+    @Html.EditorFor(m => m.GeneHgvsName)
+</div>
+            </div>
+<div class="editor-field">
+    <label>RsId</label>
+<div>
+    @Html.EditorFor(m => m.Rsid)
+</div>
+            </div>
+        <div class="editor-field">
+
+<label>Effect on Protein</label>
+<div>
+    @Html.TextBoxFor(m => m.ProteinNote)
+</div>
+            </div>
+                 </div>
+            </div>
+    <br />
+        <div class="editor-field">
+     <p><input type="submit" value="Save"/>
+            <button type="button" onclick="delVariant('@Model.ID')">Delete</button>
+         <Button type="button" onclick="GeneCancel()" >Cancle</Button>
+        </p>
+            </div>
+}
+                 </fieldset>
+   </div>

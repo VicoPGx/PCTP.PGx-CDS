@@ -1,0 +1,184 @@
+﻿@model PGx.Model.Entities.DosingGuidence
+@using PGx.Model.Resources
+@using PGx.Model.Entities
+
+
+<style>
+    .box {
+        padding: 5px;
+        position: relative;
+        border: 1px rgba(200,200,200,0.5) solid;
+        border-radius: 6px;
+        margin-bottom: 10px;
+    }
+
+        .box::before {
+            content: attr(content);
+            position: absolute;
+            left: 20%;
+            transform: translateX(-50%);
+            -webkit-transform: translate(-50%,-50%);
+            padding: 0 5px;
+            background-color: #fff;
+        }
+</style>
+@*<script src="@Url.Content("~/Scripts/jquery.mousewheel.js")" type="text/javascript"></script>*@
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#recommendation-form>div").accordion({ heightStyle: "content", header: "h3", collapsible: true });
+    });
+
+
+        function saveDosing() {
+            debugger;
+            var pRows = $("#pheno_select").find("tr");
+            var pheObj, pheArr = [];
+            for (var i = 1; i < pRows.length; i++) {
+                pheObj = {}
+                pheObj["Gene"] = pRows[i].children[0].textContent;
+                pheObj["Phenotype"] = pRows[i].children[1].children[0].value;
+                pheArr.push(pheObj)
+            }
+            var pheStr = JSON.stringify(pheArr);
+            $("#GenePhenotype").val(pheStr);
+            if ($("input[name='Contraindicated']:checked").val() === "True") {
+                $("#Proportion").val("");
+            }
+
+            $("#recommendation-form").ajaxSubmit(function (data) {
+                debugger;
+                alert(data);
+            });
+
+            guideLineEdit($("#PGxGuidelineID").val());
+            $('#tabs a[href="#fragment-1"]').click();
+            return false;
+        }
+
+        function deleteDosing(id, guidelineId) {
+            debugger;
+            $.blockUI({ message: $('#delete_question'), css: { width: '275px' } });
+            $('#delete_yes').click(function () {
+                $.ajax({
+                    url: '@Url.Action("DeleteDosing", "PGxKnowledgeBase")',
+            data: { id: id },
+            type: 'Get',
+            async: false,
+            cache: false,
+            timeout: 10000
+                }).done(function (data) {
+                    $.unblockUI();
+            $('#treatmentKnowledge-edit').html('');
+            guideLineEdit(guidelineId);
+           
+            alert(data);
+            $("#tabs a[href='#fragment-1']").click();
+        });
+        });
+    $('#delete_no').click(function () {
+        $.unblockUI();
+    });
+}
+
+</script>
+@{
+    string dosingTitle;
+    if (Model.ID == 0)
+    {
+        dosingTitle = "New Item";
+    }
+    else
+    {
+        dosingTitle = Model.Name;
+    }
+}
+
+<div class="panel panel-default " style="margin-top:5px">
+    <div class="panel-heading">
+        <h3 class="panel-title">@dosingTitle</h3>
+    </div>
+
+        @using (Html.BeginForm("DosingEdit", "PGxKnowledgeBase", FormMethod.Post, new { id = "recommendation-form", onsubmit = "return saveDosing();" }))
+        {
+            PGx_KBEntities context = new PGx_KBEntities();
+           var geneDefs = context.PGxGuideline.Where(x => x.ID == Model.PGxGuidelineID).FirstOrDefault().DefinitionFile.ToList();
+         
+            @Html.HiddenFor(m => m.ID)
+            @Html.HiddenFor(m => m.PGxGuidelineID)
+            @Html.HiddenFor(m => m.GenePhenotype)
+            @Html.HiddenFor(m => m.Phenotype)
+            @Html.HiddenFor(m => m.Name)
+         
+            <div>
+                <h3>Primary Info</h3>
+                <div>
+                <table id="pheno_select" class="table" style="margin-bottom: 0px">
+                        <thead>
+                            <tr>
+                                <th style="padding-left:0px">Phenotype</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var c in geneDefs)
+                            {
+                                List<string> phenotypes = c.PhenotypeMap.Select(x => x.Phenotype.Trim()).Distinct().ToList();
+                                string phenotype=string.Empty;
+                                var genePhe = Model.RecommendationPhenotype.Where(x => x.Gene == c.GeneSymbol).FirstOrDefault();
+                                if (genePhe != null)
+                                {
+                                    phenotype = genePhe.Phenotype;
+                                }
+                                <tr>
+                                    <td style="padding-left:0px">@c.GeneSymbol</td>
+                                    <td>
+                                        @Html.DropDownList("_phenotype", new SelectList(new[] { "Unselected" }.Concat(phenotypes), phenotype), new { @class="phe_list",style="width:500px"})
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <div class="editor-field">
+                        <label style="width: 300px">Risk Phenotype</label>
+                        <div>
+                            Yes @Html.RadioButton("RxChange","Yes",Model.RxChange=="Yes") No @Html.RadioButton("RxChange","No",Model.RxChange=="No") Unknown @Html.RadioButton("RxChange","",String.IsNullOrEmpty(Model.RxChange)==true)
+                        </div>
+                    </div>
+                    <div class="editor-field">
+                        <label style="width: 300px">Recommendation Strength</label>
+                        <div>
+                            Strong @Html.RadioButton("Strength","Strong",Model.Strength=="Strong")
+                            Moderate @Html.RadioButton("Strength","Moderate",Model.Strength=="Moderate")
+                            Optional @Html.RadioButton("Strength","Optional",Model.Strength=="Optional")
+                            Unknown @Html.RadioButton("Strength","",string.IsNullOrEmpty(Model.Strength)==true)  
+                        </div>
+                    </div>
+                  </div>
+            </div>
+
+            <div>
+                <h3>Recommendation Details</h3>
+                <div>
+
+                    <div class="editor-field">
+                        <div>@Html.LabelFor(m => m.Implication)</div>
+                        @Html.TextAreaFor(m => m.Implication, 8, 0, new { @class = "form-control" })
+                    </div>
+                    <div class="editor-field">
+                        <div>@Html.LabelFor(m => m.Recommendation)</div>
+                        @Html.TextAreaFor(m => m.Recommendation, 8, 0, new { @class = "form-control" })
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="editor-field" style="margin:5px">
+                <input type="submit" value="Save" />
+                <button type="button" onclick="deleteDosing(@Model.ID,@Model.PGxGuidelineID)">Delete</button>
+                <button type="button" onclick="GuidelineCancel()">Cancel</button>
+                
+            </div>
+        }
+
+</div>

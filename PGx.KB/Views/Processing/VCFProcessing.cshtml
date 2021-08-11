@@ -1,0 +1,235 @@
+﻿@using Resource = PGx.Model.Resources.Resource;
+@using PGx.Model.Entities
+@model IEnumerable<PGx.Model.Entities.RAW_DATA_FILE>
+@{
+    ViewBag.Title = "VCFProcessing";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        debugger;
+        //VCF File submit
+        $("#form-add-vcf").submit(function () {
+            debugger;
+
+            var patientId = $("#PatientID").val();
+            if (!patientId) {
+                alert("PatientID is required!")
+                return false;
+            }
+            $("#dialog-add-vcf").dialog("close");
+        });
+
+        //Dialog weidget
+        $('#dialog-add-vcf').dialog({
+            autoOpen: false,
+            modal: true,
+            width: 500,
+            height: 500,
+            buttons: {
+
+                'Save': function () {
+                    debugger;
+                    $("#form-add-vcf").submit();
+                },
+                'Delete': function () {
+                    debugger;
+                    var id = $("#ID").val();
+                    deleteSample(id);
+
+                },
+                'Close': function () {
+                    $("#dialog-add-vcf").dialog("close");
+                }
+            }
+        });
+
+        function deleteSample(id) {
+            debugger;
+            $.ajax({
+                url: '@Url.Action("DeleteSample", "Processing")',
+                data: { id: id },
+                type: 'Get'
+            }).done(function (data) {
+                debugger;
+                $("#dialog-add-vcf").dialog("close");
+                alert(data);
+                window.location.reload();
+            })
+            }
+
+
+        var options_vcf = {
+            type: 'POST',
+            success: function (backData) {
+                var data = backData.obj;
+                debugger;
+                if (data) {
+                    debugger;
+                    alert("Sucess!");
+                    window.location.reload();
+              }
+                else {
+                    alert("Sucess!");
+                    location.reload();
+                }
+            }
+        };
+        $('#form-add-vcf').ajaxForm(options_vcf);
+    })
+
+</script>
+
+<script>
+    function vcfDlg(fileId) {
+        debugger;
+        $.ajax({
+            url: '@Url.Action("UploadFile", "Processing")',
+            data: { id: fileId },
+            type: 'Get',
+            async: false,
+            cache: false,
+            timeout: 100000
+        }).done(function (data) {
+            debugger;
+            $("#form-add-vcf").html(data)
+            $("#dialog-add-vcf").dialog('open');
+            var obj = $("#dialog-add-vcf").next().find("button").eq(1);
+            if (fileId == "0" || fileId == "") {
+                obj.hide();
+            }
+            else {
+                obj.show();
+            }
+        })
+    };
+
+    function delFile(fileId) {
+        debugger;
+        $.ajax({
+            url: '@Url.Action("DeleteVcfFile", "Processing")',
+            data: { id: fileId },
+            type: 'Get',
+            async: false,
+            cache: false,
+            timeout: 10000
+        }).done(function (data) {
+            window.location.reload();
+        })
+    };
+    function ClinicalRecommendation(id) {
+        $.ajax({
+            url: '/Processing/ReportView/',
+            data: { id: id },
+            type: 'Get'
+        }).done(function (data) {
+            $('#genomic_detail').html('');
+            $('#genomic_detail').html(data);
+        });
+    };
+    function genomicDetail(id) {
+        $.ajax({
+            url: '/Processing/DiplotypeCalls/',
+            data: { id: id },
+            type: 'Get'
+        }).done(function (data) {
+            $('#genomic_detail').html('');
+            $('#genomic_detail').html(data);
+        });
+    };
+    function vcfProcessing(id) {
+        debugger;
+        $.blockUI({ message: $('#question'), css: { width: '275px' } });
+        $('#yes').click(function () {
+            $.blockUI({ message: "<h3>In progress...</h3>" });
+            $.ajax({
+                url: '@Url.Action("StartingAnalyze", "Processing")',
+                data: { id: id },
+                type: 'Get'
+            }).done(function (data) {
+                debugger;
+                $('#genomic_detail').html('');
+                $('#genomic_detail').html(data);
+                $.unblockUI();
+            })
+        });
+        $('#no').click(function () {
+            $.unblockUI();
+        })
+    };
+
+</script>
+    <div  class="page-header">
+        <h1>Genomic Data
+            <small>Patient data management</small>
+        </h1>
+    </div>
+<div class="row">
+    <div class="col-md-4 col-sm-4">
+        <div class="panel panel-primary ">
+            <div class="panel-heading">
+                <h3 class="panel-title">Patients</h3>
+            </div>
+            <div class="panel-body" style="padding-bottom:0px">
+                <div style="font-style: italic">
+                    Following are persons included in the genomic data repository. Choose one to view and manage his/her PGx infomation or <span onclick="vcfDlg('');" style="text-decoration: underline; color: Blue; cursor: pointer">create a new person</span>.
+                </div>
+            </div>
+
+            <table id="selected-image-file" class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Patient ID</th>
+                        <th>Name</th>
+                        <th>Sex</th>
+                        <th>Edit Sample</th>
+                        <th>Genotype</th>
+                        <th>Recom</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{foreach (var item in Model)
+                      {
+                        <tr>
+                            <td>@item.PatientID</td>
+                            <td>@item.PatientName</td>
+                            @if (item.Sex == true)
+                            {
+                                <td>Male</td>
+                            }
+                            else if (item.Sex == false)
+                            {
+                                <td>Female</td>
+                            }
+                            else
+                            {
+                                <td>Unknown</td>
+                            }
+                            <td>
+                                <img onclick="vcfDlg('@item.ID')" style="cursor:pointer; position: relative; margin-bottom: -5px" src="/Content/images/edit1.png" alt="Edit image" /></td>
+                            <td>
+                                <img style='cursor:pointer; position: relative; margin-bottom: 0px' onclick="genomicDetail('@item.ID')" src='/Content/images/check.png' alt='Diplotype Result' /></td>
+                            <td><img style='cursor:pointer; position: relative; margin-bottom: 0px' onclick="ClinicalRecommendation('@item.ID')" src='/Content/images/check.png' alt='Clinical recommendation' /></td>
+                        </tr>
+                      }
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    <div id="genomic_detail" class="article col-sm-8 col-md-8"></div>
+</div>
+
+<div id="question" style="display: none; cursor: default">
+    <h3>Would you like to contine?.</h3>
+    <input type="button" id="yes" value="Yes" />
+    <input type="button" id="no" value="No" />
+</div>
+
+<div id="dialog-add-vcf" title="Sample">
+    @using (Html.BeginForm("UploadFile", "Market", FormMethod.Post, new { enctype = "multipart/form-data", id = "form-add-vcf" }))
+    { }
+</div>

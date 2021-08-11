@@ -1,0 +1,92 @@
+﻿
+@using PGx.Model.Entities
+
+<script>
+    $(document).ready(function () {
+        $("#report_chemical_list").dataTable({
+            "bJQueryUI": true,
+            "sAjaxSource": "/AjaxHandler/ReportSelectTableAjaxHandler",
+            "bServerSide": true,
+            "bProcessing": false,
+            "bAutoWidth": false,
+            "bSort": false,
+            "bRetrive": false,
+            "fnServerParams": function (aoData) {
+                aoData.push(
+                            { "name": "FileID", "value": "@ViewBag.fileId" });
+                        },
+            "aoColumns": [
+
+            {
+                "fnRender": function (oObj) {
+                    var ln = '<a href="#" onclick="recommendationView(' + oObj.aData["0"] +','+@ViewBag.fileId+ ')">'+oObj.aData['1']+' </a>';
+                    return ln;
+                }
+            },
+            {
+                "fnRender": function (oObj) {
+                    return "<span>" + oObj.aData["2"] + "</span>";
+                }
+            },
+            {
+                "fnRender": function (oObj) {
+                    return "<span>" + oObj.aData["3"] + "</span>";
+                }
+            },
+
+            {
+                "fnRender": function (oObj) {
+                    if (oObj.aData['4'] == "Yes") {
+                        return '<img src="../../Content/Images/Red.png" alt="red" />';
+                    }
+                    else {
+                        return '<img src="../../Content/Images/green.png" alt="green"/>';
+                    }
+                }
+            },
+            ]
+        })
+    })
+    function recommendationView(guidelineId,fileId){
+        debugger;      
+            $.ajax({
+                url: '@Url.Action("RecommendationReportView","Processing")',
+                data: { guidelineId: guidelineId,fileId:fileId },
+                type: 'Get'
+            }).done(function (data) {
+                $("#drug_recom").html('');
+                $("#drug_recom").html(data);
+            })       
+    }
+</script>
+
+@{
+    PGx_KBEntities context = new PGx_KBEntities();
+    int fileID = ViewBag.fileId;
+    var patientName = context.RAW_DATA_FILE.Where(x => x.ID == fileID).FirstOrDefault().PatientName;
+ }
+
+        <div class="panel panel-primary" style="margin-bottom: 0px">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    @patientName
+                </h3>
+            </div>
+            <div class="panel-body">
+             <div style="font-style: italic">
+                    Following are drugs with phenotype-based recommendation.Choose one drug to view the detailed clinical recommendation.
+             </div>
+                    </div>
+<table id="report_chemical_list" class="table table-hover table-striped" style="margin-bottom:0px">
+   <thead>
+     <tr>
+        <th>Drug</th>
+        <th>Gene</th>
+         <th>Genotype</th>
+        <th>Risk Genotype</th>
+    </tr>
+       </thead>
+</table>
+
+            </div>
+<div id="drug_recom" ></div>

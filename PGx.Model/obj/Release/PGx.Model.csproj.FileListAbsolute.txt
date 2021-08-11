@@ -1,0 +1,107 @@
+F:\PGx\PGx.Model\bin\Release\PGx.Model.dll.config
+F:\PGx\PGx.Model\bin\Release\PGx.Model.dll
+F:\PGx\PGx.Model\bin\Release\PGx.Model.pdb
+F:\PGx\PGx.Model\bin\Release\en-US\PGx.Model.resources.dll
+F:\PGx\PGx.Model\bin\Release\EntityFramework.dll
+F:\PGx\PGx.Model\bin\Release\System.Net.Http.dll
+F:\PGx\PGx.Model\bin\Release\System.Net.Http.xml
+F:\PGx\PGx.Model\obj\Release\PGx.Model.csprojResolveAssemblyReference.cache
+F:\PGx\PGx.Model\obj\Release\PGx.Model.Resources.Resource.resources
+F:\PGx\PGx.Model\obj\Release\PGx.Model.Resources.Resource.en-US.resources
+F:\PGx\PGx.Model\obj\Release\PGx.Model.csproj.GenerateResource.Cache
+F:\PGx\PGx.Model\obj\Release\en-US\PGx.Model.resources.dll
+F:\PGx\PGx.Model\obj\Release\PGx.Model.dll
+F:\PGx\PGx.Model\obj\Release\PGx.Model.pdb
+F:\新建文件夹\PGx\PGx.Model\bin\Release\PGx.Model.dll.config
+F:\新建文件夹\PGx\PGx.Model\bin\Release\PGx.Model.dll
+F:\新建文件夹\PGx\PGx.Model\bin\Release\PGx.Model.pdb
+F:\新建文件夹\PGx\PGx.Model\bin\Release\en-US\PGx.Model.resources.dll
+F:\新建文件夹\PGx\PGx.Model\bin\Release\EntityFramework.dll
+F:\新建文件夹\PGx\PGx.Model\bin\Release\System.Net.Http.dll
+F:\新建文件夹\PGx\PGx.Model\bin\Release\System.Net.Http.xml
+F:\新建文件夹\PGx\PGx.Model\obj\Release\PGx.Model.csprojResolveAssemblyReference.cache
+F:\新建文件夹\PGx\PGx.Model\obj\Release\PGx.Model.Resources.Resource.resources
+F:\新建文件夹\PGx\PGx.Model\obj\Release\PGx.Model.Resources.Resource.en-US.resources
+F:\新建文件夹\PGx\PGx.Model\obj\Release\PGx.Model.csproj.GenerateResource.Cache
+F:\新建文件夹\PGx\PGx.Model\obj\Release\en-US\PGx.Model.resources.dll
+F:\新建文件夹\PGx\PGx.Model\obj\Release\PGx.Model.dll
+F:\新建文件夹\PGx\PGx.Model\obj\Release\PGx.Model.pdb
+F:\新建文件夹\PGx\PGx.Model\bin\Release\EntityFramework.xml
+E:\PGx.KB\PGx.KB 003\PGx.Model\bin\Release\PGx.Model.dll.config
+E:\PGx.KB\PGx.KB 003\PGx.Model\bin\Release\PGx.Model.dll
+E:\PGx.KB\PGx.KB 003\PGx.Model\bin\Release\PGx.Model.pdb
+E:\PGx.KB\PGx.KB 003\PGx.Model\bin\Release\en-US\PGx.Model.resources.dll
+E:\PGx.KB\PGx.KB 003\PGx.Model\bin\Release\EntityFramework.dll
+E:\PGx.KB\PGx.KB 003\PGx.Model\bin\Release\System.Net.Http.dll
+E:\PGx.KB\PGx.KB 003\PGx.Model\bin\Release\EntityFramework.xml
+E:\PGx.KB\PGx.KB 003\PGx.Model\bin\Release\System.Net.Http.xml
+E:\PGx.KB\PGx.KB 003\PGx.Model\bin\Release\zh-Hans\EntityFramework.resources.dll
+E:\PGx.KB\PGx.KB 003\PGx.Model\bin\Release\zh-Hans\System.Net.Http.resources.dll
+E:\PGx.KB\PGx.KB 003\PGx.Model\obj\Release\PGx.Model.csprojResolveAssemblyReference.cache
+E:\PGx.KB\PGx.KB 003\PGx.Model\obj\Release\PGx.Model.Resources.Resource.resources
+E:\PGx.KB\PGx.KB 003\PGx.Model\obj\Release\PGx.Model.Resources.Resource.en-US.resources
+E:\PGx.KB\PGx.KB 003\PGx.Model\obj\Release\PGx.Model.csproj.GenerateResource.Cache
+E:\PGx.KB\PGx.KB 003\PGx.Model\obj\Release\en-US\PGx.Model.resources.dll
+E:\PGx.KB\PGx.KB 003\PGx.Model\obj\Release\PGx.Model.dll
+E:\PGx.KB\PGx.KB 003\PGx.Model\obj\Release\PGx.Model.pdb
+D:\PGx.KB\PGx.KB 004\PGx.Model\bin\Release\PGx.Model.dll.config
+D:\PGx.KB\PGx.KB 004\PGx.Model\bin\Release\PGx.Model.dll
+D:\PGx.KB\PGx.KB 004\PGx.Model\bin\Release\PGx.Model.pdb
+D:\PGx.KB\PGx.KB 004\PGx.Model\bin\Release\en-US\PGx.Model.resources.dll
+D:\PGx.KB\PGx.KB 004\PGx.Model\bin\Release\EntityFramework.dll
+D:\PGx.KB\PGx.KB 004\PGx.Model\bin\Release\System.Net.Http.dll
+D:\PGx.KB\PGx.KB 004\PGx.Model\bin\Release\EntityFramework.xml
+D:\PGx.KB\PGx.KB 004\PGx.Model\bin\Release\System.Net.Http.xml
+D:\PGx.KB\PGx.KB 004\PGx.Model\bin\Release\zh-Hans\EntityFramework.resources.dll
+D:\PGx.KB\PGx.KB 004\PGx.Model\bin\Release\zh-Hans\System.Net.Http.resources.dll
+D:\PGx.KB\PGx.KB 004\PGx.Model\obj\Release\PGx.Model.csprojResolveAssemblyReference.cache
+D:\PGx.KB\PGx.KB 004\PGx.Model\obj\Release\PGx.Model.Resources.Resource.resources
+D:\PGx.KB\PGx.KB 004\PGx.Model\obj\Release\PGx.Model.Resources.Resource.en-US.resources
+D:\PGx.KB\PGx.KB 004\PGx.Model\obj\Release\PGx.Model.csproj.GenerateResource.Cache
+D:\PGx.KB\PGx.KB 004\PGx.Model\obj\Release\en-US\PGx.Model.resources.dll
+D:\PGx.KB\PGx.KB 004\PGx.Model\obj\Release\PGx.Model.dll
+D:\PGx.KB\PGx.KB 004\PGx.Model\obj\Release\PGx.Model.pdb
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Release\Java\iris.arff
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Release\PGx.Model.dll.config
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Release\PGx.Model.dll
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Release\PGx.Model.pdb
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Release\en-US\PGx.Model.resources.dll
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Release\EntityFramework.dll
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Release\System.App.Utility.dll
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Release\System.Net.Http.dll
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Release\System.App.Utility.UnitsConversion.dll
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Release\IKVM.OpenJDK.Core.dll
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Release\weka.dll
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Release\LumenWorks.Framework.IO.dll
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Release\IKVM.Runtime.dll
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Release\IKVM.OpenJDK.Util.dll
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Release\IKVM.OpenJDK.Security.dll
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Release\IKVM.OpenJDK.Text.dll
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Release\IKVM.OpenJDK.XML.API.dll
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Release\IKVM.OpenJDK.SwingAWT.dll
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Release\IKVM.OpenJDK.Beans.dll
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Release\IKVM.OpenJDK.Management.dll
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Release\IKVM.OpenJDK.Remoting.dll
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Release\IKVM.OpenJDK.Media.dll
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Release\IKVM.Runtime.JNI.dll
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Release\IKVM.OpenJDK.Naming.dll
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Release\IKVM.AWT.WinForms.dll
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Release\IKVM.OpenJDK.Charsets.dll
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Release\IKVM.OpenJDK.Corba.dll
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Release\IKVM.OpenJDK.Misc.dll
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Release\System.App.Utility.pdb
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Release\System.App.Utility.xml
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Release\EntityFramework.xml
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Release\System.Net.Http.xml
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Release\System.App.Utility.UnitsConversion.pdb
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Release\LumenWorks.Framework.IO.pdb
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Release\LumenWorks.Framework.IO.xml
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Release\zh-Hans\EntityFramework.resources.dll
+D:\PGx.KB\PGx.KB 005\PGx.Model\bin\Release\zh-Hans\System.Net.Http.resources.dll
+D:\PGx.KB\PGx.KB 005\PGx.Model\obj\Release\PGx.Model.csprojResolveAssemblyReference.cache
+D:\PGx.KB\PGx.KB 005\PGx.Model\obj\Release\PGx.Model.Resources.Resource.resources
+D:\PGx.KB\PGx.KB 005\PGx.Model\obj\Release\PGx.Model.Resources.Resource.en-US.resources
+D:\PGx.KB\PGx.KB 005\PGx.Model\obj\Release\PGx.Model.csproj.GenerateResource.Cache
+D:\PGx.KB\PGx.KB 005\PGx.Model\obj\Release\en-US\PGx.Model.resources.dll
+D:\PGx.KB\PGx.KB 005\PGx.Model\obj\Release\PGx.Model.dll
+D:\PGx.KB\PGx.KB 005\PGx.Model\obj\Release\PGx.Model.pdb

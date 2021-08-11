@@ -1,0 +1,252 @@
+﻿@using PGx.Model.Entities
+@model PGx.Model.Entities.RAW_DATA_FILE
+<script>
+    $(function () {
+        $("#form-add-diplotype").submit(function () {
+            $(this).ajaxSubmit(function (data) {
+                alert(data);
+                $("#dialog-add-diplotype").dialog("close");
+                debugger;
+                var id = $('#ID').val();
+                genomicDetail(id);
+                //window.location.reload();
+            })
+            return false;
+        })
+
+        $('#dialog-add-diplotype').dialog({
+            autoOpen: false,
+            modal: true,
+            width: 600,
+            height: 400,
+            buttons: {
+                'Close': function () {
+                    debugger;
+                    $(this).dialog("close");
+                },
+                'Delete': function () {
+                    debugger;
+                    var id = $("#CallID").val();
+                    deleteDiplotype(id)
+                },
+                'Save': function () {
+                    debugger;
+                    $("#form-add-diplotype").submit();
+                }
+            }
+        });
+    });
+
+    function alleleList() {
+        var gene = $("#sample_gene").find("option:selected").text();
+        if (gene == "Unselected") {
+            $("#pick_allele").html("<div><label>Haplotype A</label><select><option>Unselected</option></select></div><div><label>Haplotype B</label><select><option>Unselected</option></select></div>")
+        }
+        else {
+            $.ajax({
+                url: '@Url.Action("AlleleList", "Processing")',
+                data: { gene: gene },
+                type: "get"
+            }).done(function (data) {
+                $("#pick_allele").html(data);
+            })
+        }
+    }
+    $("#update_vcf").click(function () {
+        debugger;
+        var path=$("#allele_definitionPath").text();
+        if (path == "No VCF file")
+        {
+            alert("No VCF file!");
+        }
+        else{
+            $.blockUI({ message: $('#update_question'), css: { width: '350px' } });
+            $('#update_yes').click(function () {
+                $("#update_vcf_form").ajaxSubmit(function (data) {
+                    alert(data);
+                    genomicDetail($("#update_vcf_form [Name='ID']").val());
+                    $.unblockUI();
+                });
+            })
+            $('#update_no').click(function () {
+                $.unblockUI();
+            });
+        }
+        })
+        
+
+    function addDiplotypes(id, callId) {
+        $.ajax({
+            url: '@Url.Action("AddSampleDiplotype", "Processing")',
+            data: { id: id, callId: callId },
+            type: 'Get',
+        }).done(function (data) {
+            debugger;
+            $("#form-add-diplotype").html(data);
+            $("#dialog-add-diplotype").dialog("open");
+            var obj = $("#dialog-add-diplotype").next().find("button").eq(1);
+            if (callId == "" || callId == "0") {
+                obj.hide();
+            }
+            else {
+                obj.show();
+            }
+        })
+        }
+
+        function deleteDiplotype(id) {
+            debugger;
+            if (id == "0" || id == "") {
+                alert("This diplotype has not been saved!")
+                return;
+            }
+            $.ajax({
+                url: '@Url.Action("DeleteDiplotype", "Processing")',
+                data: { id: id },
+                type: 'Get'
+            }).done(function (data) {
+                alert(data);
+                $("#dialog-add-diplotype").dialog("close");
+                window.location.reload();
+            })
+        }
+        function updateVCF() {
+        }
+</script>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Patient info</h3>
+    </div>
+    <div class="panel-body" style="background-color: #d9edf7">
+
+            <ul class="list-inline">
+                <li class="col-md-4">@Model.PatientID</li>
+                <li class="col-md-4">@Model.PatientName</li>
+                @if (Model.Sex == true)
+                {
+                    <li class="col-md-4">Male</li>  
+                }
+                else if (Model.Sex == false)
+                {
+                    <li class="col-md-4">Female</li>  
+                }
+                else
+                {
+                    <li class="col-md-4">Unknown</li>  
+                }
+
+            </ul>
+
+        </div>
+            @{
+            string file = string.Empty;
+            if (string.IsNullOrEmpty(Model.FILE_PATH))
+            {
+                file = "No VCF file";
+            }
+            else
+            {
+                file = Model.FILE_PATH.Substring(Model.FILE_PATH.LastIndexOf('-') + 1);
+            }}
+            <table class="table table-hover table-striped" style="margin-bottom:0px;background-color: #d9edf7"">
+                <thead>
+                    <tr>
+                        <th>Select VCF file
+                        </th>
+                        <th>Update VCF</th>
+                        <th>Download VCF</th>
+                        <th>Call diplotype</th>                    
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a id="allele_definitionPath" href="#" onclick="document.getElementById('allele_definitionFile').click();">@file</a></td>
+                        <td>
+                            <img id="update_vcf" style='cursor: pointer; position: relative' src='/Content/images/UpArrow.png' alt='Update vcf' /></td>
+                        @if (string.IsNullOrEmpty(Model.FILE_PATH) == false)
+                        {
+                            <td>
+                                <img onclick="window.open('@Model.FILE_PATH')" style="cursor:pointer; position: relative" src="/Content/images/DownArrow.png" alt="Download"/></td>
+                            <td>
+                                <img onclick="vcfProcessing('@Model.ID')" style='cursor:pointer; position: relative' src='/Content/images/analysis.png' alt='Call diplotype'/></td>
+                        }
+                        else
+                        {
+                            <td>Null</td>
+                            <td>Null</td>
+                        }
+                    </tr>
+                </tbody>
+            </table>
+
+        <div class="panel-heading">
+        <h3 class="panel-title">Genotype info</h3>
+    </div>
+    <div class="panel-body" style="padding-bottom:0px">
+                <div>
+                @using (Html.BeginForm("UpdateVCF", "Processing", FormMethod.Post, new { id = "update_vcf_form" }))
+                {
+                    @Html.HiddenFor(m => m.ID);
+                    <input id="allele_definitionFile" type="file" name="VcfFile" style="display: none;" accept=".vcf" onchange="document.getElementById('allele_definitionPath').innerText=this.value.substring(this.value.lastIndexOf('\\')+1)" />
+                }
+            </div>
+            <ul class="list-inline">
+                <li>
+                    <img onclick="addDiplotypes('@Model.ID','')" style="cursor:pointer; position: relative; margin-bottom: 0px" src="/Content/images/add_black.png" alt="Edit image" /><a href="#" onclick="addDiplotypes('@Model.ID','')">Add New</a></li>
+            </ul>
+        </div>
+    <table id="gene_calls_table" class="table table-hover table-striped" style="margin-bottom: 0px">
+        <thead>
+            <tr>
+                <th>Gene</th>
+                <th>Diplotype</th>
+                <th>Phenotype</th>
+                <th>Source</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var call in Model.GeneCall)
+            {
+                <tr>
+                    <td>
+                        @call.Gene
+                    </td>
+                    @if (call.DiplotypeMatch.Count > 0)
+                    {
+                        <td>@call.DiplotypeMatch.FirstOrDefault().Name</td>
+                        <td>@call.DiplotypeMatch.FirstOrDefault().Phenotype</td>
+                    }
+                    else
+                    {                        
+                        <td>@call.Diplotype</td>
+                        <td>@call.Phenotype</td>
+                    }
+                    @if (call.IsVcfCall == true)
+                    {
+                        <td>Automatic</td> 
+                    }
+                    else
+                    {
+                        <td>Manual</td>
+                    }
+                    <td>
+                        <img onclick="addDiplotypes('@call.FileId','@call.ID')" style="cursor:pointer; position: relative; margin-bottom: -5px" src="/Content/images/edit1.png" alt="Edit image" /></td>
+                </tr>             
+            }
+        </tbody>
+    </table>
+</div>
+
+<div id="dialog-add-diplotype" title="Add/Modeify genotype">
+    @using (Html.BeginForm("AddSampleDiplotype", "Processing", FormMethod.Post, new { enctype = "multipart/form-data", id = "form-add-diplotype" }))
+    { }
+
+</div>
+
+<div id="update_question" style="display: none; cursor: default">
+    <p>This action would replace the old VCF file,would you like to contine?</p>
+    <input type="button" id="update_yes" value="Yes" />
+    <input type="button" id="update_no" value="No" />
+</div>

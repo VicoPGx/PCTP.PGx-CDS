@@ -1,0 +1,658 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PGx_KBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Chemicals" EntityType="PGx_KBModel.Chemical" />
+    <EntitySet Name="chemicalsPGKBs" EntityType="PGx_KBModel.chemicalsPGKB" />
+    <EntitySet Name="ClinicalAnns" EntityType="PGx_KBModel.ClinicalAnn" />
+    <EntitySet Name="ClinicalAnnMetadatas" EntityType="PGx_KBModel.ClinicalAnnMetadata" />
+    <EntitySet Name="clinicalVariants" EntityType="PGx_KBModel.clinicalVariant" />
+    <EntitySet Name="DiplotypeDefinitions" EntityType="PGx_KBModel.DiplotypeDefinition" />
+    <EntitySet Name="DiplotypePhenotypeSets" EntityType="PGx_KBModel.DiplotypePhenotypeSet" />
+    <EntitySet Name="Diplotypes" EntityType="PGx_KBModel.Diplotype" />
+    <EntitySet Name="DrugLabels" EntityType="PGx_KBModel.DrugLabel" />
+    <EntitySet Name="DrugLabelsByGenes" EntityType="PGx_KBModel.DrugLabelsByGene" />
+    <EntitySet Name="Drugs" EntityType="PGx_KBModel.Drug" />
+    <EntitySet Name="drugsPGKBs" EntityType="PGx_KBModel.drugsPGKB" />
+    <EntitySet Name="Genes" EntityType="PGx_KBModel.Gene" />
+    <EntitySet Name="genesPGKBs" EntityType="PGx_KBModel.genesPGKB" />
+    <EntitySet Name="HaplotypeDefinitions" EntityType="PGx_KBModel.HaplotypeDefinition" />
+    <EntitySet Name="Haplotypes" EntityType="PGx_KBModel.Haplotype" />
+    <EntitySet Name="occurrences" EntityType="PGx_KBModel.occurrence" />
+    <EntitySet Name="PhenotypeEntitySets" EntityType="PGx_KBModel.PhenotypeEntitySet" />
+    <EntitySet Name="Phenotypes" EntityType="PGx_KBModel.Phenotype" />
+    <EntitySet Name="phenotypesDiseasePGKBs" EntityType="PGx_KBModel.phenotypesDiseasePGKB" />
+    <EntitySet Name="Recomendations" EntityType="PGx_KBModel.Recomendation" />
+    <EntitySet Name="RecommendationEntitySets" EntityType="PGx_KBModel.RecommendationEntitySet" />
+    <EntitySet Name="Relationships" EntityType="PGx_KBModel.Relationship" />
+    <EntitySet Name="SampleResultSets" EntityType="PGx_KBModel.SampleResultSet" />
+    <EntitySet Name="study_parameters" EntityType="PGx_KBModel.study_parameters" />
+    <EntitySet Name="var_drug_ann" EntityType="PGx_KBModel.var_drug_ann" />
+    <EntitySet Name="var_fa_ann" EntityType="PGx_KBModel.var_fa_ann" />
+    <EntitySet Name="var_pheno_ann" EntityType="PGx_KBModel.var_pheno_ann" />
+    <EntitySet Name="variantsPGKBs" EntityType="PGx_KBModel.variantsPGKB" />
+    <EntitySet Name="Varients" EntityType="PGx_KBModel.Varient" />
+    <AssociationSet Name="FK_ChemicalDrug" Association="PGx_KBModel.FK_ChemicalDrug">
+      <End Role="Chemicals" EntitySet="Chemicals" />
+      <End Role="Drugs" EntitySet="Drugs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RecomendationChemical" Association="PGx_KBModel.FK_RecomendationChemical">
+      <End Role="Chemicals" EntitySet="Chemicals" />
+      <End Role="Recomendations" EntitySet="Recomendations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DiplotypeHaplotype1" Association="PGx_KBModel.FK_DiplotypeHaplotype1">
+      <End Role="Haplotypes" EntitySet="Haplotypes" />
+      <End Role="Diplotypes" EntitySet="Diplotypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DiplotypeHaplotype2" Association="PGx_KBModel.FK_DiplotypeHaplotype2">
+      <End Role="Haplotypes" EntitySet="Haplotypes" />
+      <End Role="Diplotypes" EntitySet="Diplotypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DiplotypePhenotype" Association="PGx_KBModel.FK_DiplotypePhenotype">
+      <End Role="Phenotypes" EntitySet="Phenotypes" />
+      <End Role="Diplotypes" EntitySet="Diplotypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GeneDiplotype" Association="PGx_KBModel.FK_GeneDiplotype">
+      <End Role="Genes" EntitySet="Genes" />
+      <End Role="Diplotypes" EntitySet="Diplotypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GenePhenotype" Association="PGx_KBModel.FK_GenePhenotype">
+      <End Role="Genes" EntitySet="Genes" />
+      <End Role="Phenotypes" EntitySet="Phenotypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HaplotypeGene" Association="PGx_KBModel.FK_HaplotypeGene">
+      <End Role="Genes" EntitySet="Genes" />
+      <End Role="Haplotypes" EntitySet="Haplotypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PhenotypeRecomendation" Association="PGx_KBModel.FK_PhenotypeRecomendation">
+      <End Role="Phenotypes" EntitySet="Phenotypes" />
+      <End Role="Recomendations" EntitySet="Recomendations" />
+    </AssociationSet>
+    <AssociationSet Name="ChemicalGene" Association="PGx_KBModel.ChemicalGene">
+      <End Role="Chemicals" EntitySet="Chemicals" />
+      <End Role="Genes" EntitySet="Genes" />
+    </AssociationSet>
+    <AssociationSet Name="HaplotypeVarient" Association="PGx_KBModel.HaplotypeVarient">
+      <End Role="Haplotypes" EntitySet="Haplotypes" />
+      <End Role="Varients" EntitySet="Varients" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Chemical">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ChemicalName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="ChemicalNameCN" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Drugs" Relationship="PGx_KBModel.FK_ChemicalDrug" FromRole="Chemicals" ToRole="Drugs" />
+    <NavigationProperty Name="Recomendations" Relationship="PGx_KBModel.FK_RecomendationChemical" FromRole="Chemicals" ToRole="Recomendations" />
+    <NavigationProperty Name="Genes" Relationship="PGx_KBModel.ChemicalGene" FromRole="Chemicals" ToRole="Genes" />
+  </EntityType>
+  <EntityType Name="chemicalsPGKB">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PharmGKB_Accession_Id" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Generic_Names" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Trade_Names" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Brand_Mixtures" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Type" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Cross_references" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="SMILES" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="InChI" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Dosing_Guideline" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="External_Vocabulary" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Clinical_Annotation_Count" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Variant_Annotation_Count" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Pathway_Count" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="VIP_Count" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Dosing_Guideline_Sources" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Top_Clinical_Annotation_Level" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Top_FDA_Label_Testing_Level" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Top_Any_Drug_Label_Testing_Level" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Label_Has_Dosing_Info" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Has_Rx_Annotation" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="ClinicalAnn">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Genotype_Phenotype_ID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Genotype" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Clinical_Phenotype" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="ClinicalAnnMetadata">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Clinical_Annotation_ID" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Location" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Gene" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Level_of_Evidence" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Clinical_Annotation_Types" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Genotype_Phenotype_IDs" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Annotation_Text" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Variant_Annotations_IDs" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Variant_Annotations" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Literature_IDs" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Evidence_Count" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Related_Chemicals" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Related_Diseases" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Race" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Chromosome" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="clinicalVariant">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="variant" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="gene" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="type" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="level_of_evidence" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="chemicals" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="phenotypes" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="DiplotypeDefinition">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GeneSymbol" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="RsId" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="HaplotypeA" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="HaplotypeB" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="ScoreA" Type="Int32" />
+    <Property Name="ScoreB" Type="Int32" />
+    <Property Name="ScoreSum" Type="Int32" />
+  </EntityType>
+  <EntityType Name="DiplotypePhenotypeSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DiplotypeSymbol" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="AlleleA" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="AlleleB" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="PhenotypeName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="PhenotypeId" Type="Int32" />
+    <Property Name="GeneSymbol" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="ActivityScore" Type="Double" />
+  </EntityType>
+  <EntityType Name="Diplotype">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DiplotypeSymbol" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Phenotype_Id" Type="Int32" />
+    <Property Name="Gene_Id" Type="Int32" />
+    <Property Name="Haplotype1_Id" Type="Int32" />
+    <Property Name="Haplotype2_Id" Type="Int32" />
+    <NavigationProperty Name="Haplotype" Relationship="PGx_KBModel.FK_DiplotypeHaplotype1" FromRole="Diplotypes" ToRole="Haplotypes" />
+    <NavigationProperty Name="Haplotype1" Relationship="PGx_KBModel.FK_DiplotypeHaplotype2" FromRole="Diplotypes" ToRole="Haplotypes" />
+    <NavigationProperty Name="Phenotype" Relationship="PGx_KBModel.FK_DiplotypePhenotype" FromRole="Diplotypes" ToRole="Phenotypes" />
+    <NavigationProperty Name="Gene" Relationship="PGx_KBModel.FK_GeneDiplotype" FromRole="Diplotypes" ToRole="Genes" />
+  </EntityType>
+  <EntityType Name="DrugLabel">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PharmGKB_ID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Name" Type="String" MaxLength="1024" Unicode="false" FixedLength="false" />
+    <Property Name="Source" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Biomarker_Flag" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Testing_Level" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="DrugLabelsByGene">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Gene_ID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Gene_Symbol" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Label_IDs" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Label_Names" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Drug">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DrugName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="DrugCode" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="EMRId" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Chemical_Id" Type="Int32" />
+    <NavigationProperty Name="Chemical" Relationship="PGx_KBModel.FK_ChemicalDrug" FromRole="Drugs" ToRole="Chemicals" />
+  </EntityType>
+  <EntityType Name="drugsPGKB">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PharmGKB_Accession_Id" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Generic_Names" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Trade_Names" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Brand_Mixtures" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Type" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Cross_references" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="SMILES" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="InChI" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Dosing_Guideline" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="External_Vocabulary" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Clinical_Annotation_Count" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Variant_Annotation_Count" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Pathway_Count" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="VIP_Count" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Dosing_Guideline_Sources" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Top_Clinical_Annotation_Level" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Top_FDA_Label_Testing_Level" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Top_Any_Drug_Label_Testing_Level" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Label_Has_Dosing_Info" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Has_Rx_Annotation" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Gene">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GeneSymbol" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Diplotypes" Relationship="PGx_KBModel.FK_GeneDiplotype" FromRole="Genes" ToRole="Diplotypes" />
+    <NavigationProperty Name="Phenotypes" Relationship="PGx_KBModel.FK_GenePhenotype" FromRole="Genes" ToRole="Phenotypes" />
+    <NavigationProperty Name="Haplotypes" Relationship="PGx_KBModel.FK_HaplotypeGene" FromRole="Genes" ToRole="Haplotypes" />
+    <NavigationProperty Name="Chemicals" Relationship="PGx_KBModel.ChemicalGene" FromRole="Genes" ToRole="Chemicals" />
+  </EntityType>
+  <EntityType Name="genesPGKB">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PharmGKB_Accession_Id" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="NCBI_Gene_ID" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="HGNC_ID" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Ensembl_Id" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Symbol" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Alternate_Names" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Alternate_Symbols" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Is_VIP" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Has_Variant_Annotation" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Cross_references" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Has_CPIC_Dosing_Guideline" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Chromosome" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Chromosomal_Start_GRCh37_p13" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Chromosomal_Stop_GRCh37_p13" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Chromosomal_Start_GRCh38_p7" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Chromosomal_Stop_GRCh38_p7" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="HaplotypeDefinition">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Allel" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="GeneSymbol" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="CommonName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="ProteinRef" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="ChromosomeRef" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="GeneRef" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="RsId" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="BaseVar" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="IsReference" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Score" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Haplotype">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HaplotypeSymbol" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="GeneSymbol" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Category" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="ClinicalFlag" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Gene_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Diplotypes" Relationship="PGx_KBModel.FK_DiplotypeHaplotype1" FromRole="Haplotypes" ToRole="Diplotypes" />
+    <NavigationProperty Name="Diplotypes1" Relationship="PGx_KBModel.FK_DiplotypeHaplotype2" FromRole="Haplotypes" ToRole="Diplotypes" />
+    <NavigationProperty Name="Gene" Relationship="PGx_KBModel.FK_HaplotypeGene" FromRole="Haplotypes" ToRole="Genes" />
+    <NavigationProperty Name="Varients" Relationship="PGx_KBModel.HaplotypeVarient" FromRole="Haplotypes" ToRole="Varients" />
+  </EntityType>
+  <EntityType Name="occurrence">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Source_Type" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Source_ID" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Source_Name" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Object_Type" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Object_ID" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Object_Name" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="PhenotypeEntitySet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PhenotypeSymbol" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="GeneSymbol" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Genotype" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Examples" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="ActivityScore" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="IsNormal" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Phenotype">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PhenotypeSymbol" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="PhenotypeSymbolCN" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Genotype" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="GenotypeCN" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="ActivityScore" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Normal" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Gene_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Diplotypes" Relationship="PGx_KBModel.FK_DiplotypePhenotype" FromRole="Phenotypes" ToRole="Diplotypes" />
+    <NavigationProperty Name="Gene" Relationship="PGx_KBModel.FK_GenePhenotype" FromRole="Phenotypes" ToRole="Genes" />
+    <NavigationProperty Name="Recomendations" Relationship="PGx_KBModel.FK_PhenotypeRecomendation" FromRole="Phenotypes" ToRole="Recomendations" />
+  </EntityType>
+  <EntityType Name="phenotypesDiseasePGKB">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PharmGKB_Accession_Id" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Alternate_Names" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Cross_references" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="External_Vocabulary" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Recomendation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Implication" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="ImplicationCN" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="DosingRecomendation" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="DosingRecomendationCN" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Level" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Chemical_Id" Type="Int32" Nullable="false" />
+    <Property Name="Phenotype_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Chemical" Relationship="PGx_KBModel.FK_RecomendationChemical" FromRole="Recomendations" ToRole="Chemicals" />
+    <NavigationProperty Name="Phenotype" Relationship="PGx_KBModel.FK_PhenotypeRecomendation" FromRole="Recomendations" ToRole="Phenotypes" />
+  </EntityType>
+  <EntityType Name="RecommendationEntitySet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Chemical" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="ChemicalId" Type="Int32" />
+    <Property Name="GeneSymbol" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Phenotype" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="PhenotypeName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Implication" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Recommendation" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Level" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="PeopleGroup" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Note" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Relationship">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Entity1_id" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Entity1_name" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Entity1_type" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Entity2_id" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Entity2_name" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Entity2_type" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Evidence" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Association" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="PK" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="PD" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="PMIDs" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="SampleResultSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SampleId" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="SampleAddress" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="GeneSymbol" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="HaplotypeA" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="HaplotypeB" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="GenotypeResult" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="PhenotypeResult" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="VariantsRsIdA" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="VariantsRsIdB" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="study_parameters">
+    <Key>
+      <PropertyRef Name="Study_Parameters_ID" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Study_Parameters_ID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Study_Type" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Study_Cases" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Study_Controls" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Characteristics" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Characteristics_Type" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Frequency_In_Cases" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Allele_Of_Frequency_In_Cases" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Frequency_In_Controls" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Allele_Of_Frequency_In_Controls" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="P_Value_Operator" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="P_Value" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Ratio_Stat_Type" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Ratio_Stat" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Confidence_Interval_Start" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Confidence_Interval_Stop" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Race" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="var_drug_ann">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Annotation_ID" Type="Int32" />
+    <Property Name="Variant" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Gene" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Chemical" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Literature_ID" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Phenotype_Category" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Significance" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Notes" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Sentence" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="StudyParameters" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Alleles" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Chromosome" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="var_fa_ann">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Annotation_ID" Type="Int64" />
+    <Property Name="Variant" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Gene" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Chemical" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Literature_ID" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Phenotype_Category" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Significance" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Notes" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Sentence" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="StudyParameters" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Alleles" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Chromosome" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="var_pheno_ann">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Annotation_ID" Type="Int64" />
+    <Property Name="Variant" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Gene" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Chemical" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Literature_ID" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Phenotype_Category" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Significance" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Notes" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Sentence" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="StudyParameters" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Alleles" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Chromosome" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="variantsPGKB">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Variant_ID" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Variant_Name" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Variant_Symbol" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Gene_IDs" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Gene_Symbols" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Location" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="VA_count" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="CA_count" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Level_1_2_CA_count" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="DG_count" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Haplotype" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Synonyms" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Varient">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VarientSymbol" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Haplotypes" Relationship="PGx_KBModel.HaplotypeVarient" FromRole="Varients" ToRole="Haplotypes" />
+  </EntityType>
+  <Association Name="FK_ChemicalDrug">
+    <End Role="Chemicals" Type="PGx_KBModel.Chemical" Multiplicity="0..1" />
+    <End Role="Drugs" Type="PGx_KBModel.Drug" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Chemicals">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Drugs">
+        <PropertyRef Name="Chemical_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RecomendationChemical">
+    <End Role="Chemicals" Type="PGx_KBModel.Chemical" Multiplicity="1" />
+    <End Role="Recomendations" Type="PGx_KBModel.Recomendation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Chemicals">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Recomendations">
+        <PropertyRef Name="Chemical_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DiplotypeHaplotype1">
+    <End Role="Haplotypes" Type="PGx_KBModel.Haplotype" Multiplicity="0..1" />
+    <End Role="Diplotypes" Type="PGx_KBModel.Diplotype" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Haplotypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Diplotypes">
+        <PropertyRef Name="Haplotype1_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DiplotypeHaplotype2">
+    <End Role="Haplotypes" Type="PGx_KBModel.Haplotype" Multiplicity="0..1" />
+    <End Role="Diplotypes" Type="PGx_KBModel.Diplotype" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Haplotypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Diplotypes">
+        <PropertyRef Name="Haplotype2_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DiplotypePhenotype">
+    <End Role="Phenotypes" Type="PGx_KBModel.Phenotype" Multiplicity="0..1" />
+    <End Role="Diplotypes" Type="PGx_KBModel.Diplotype" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Phenotypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Diplotypes">
+        <PropertyRef Name="Phenotype_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GeneDiplotype">
+    <End Role="Genes" Type="PGx_KBModel.Gene" Multiplicity="0..1" />
+    <End Role="Diplotypes" Type="PGx_KBModel.Diplotype" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Genes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Diplotypes">
+        <PropertyRef Name="Gene_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GenePhenotype">
+    <End Role="Genes" Type="PGx_KBModel.Gene" Multiplicity="1" />
+    <End Role="Phenotypes" Type="PGx_KBModel.Phenotype" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Genes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Phenotypes">
+        <PropertyRef Name="Gene_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HaplotypeGene">
+    <End Role="Genes" Type="PGx_KBModel.Gene" Multiplicity="1" />
+    <End Role="Haplotypes" Type="PGx_KBModel.Haplotype" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Genes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Haplotypes">
+        <PropertyRef Name="Gene_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PhenotypeRecomendation">
+    <End Role="Phenotypes" Type="PGx_KBModel.Phenotype" Multiplicity="1" />
+    <End Role="Recomendations" Type="PGx_KBModel.Recomendation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Phenotypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Recomendations">
+        <PropertyRef Name="Phenotype_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ChemicalGene">
+    <End Role="Chemicals" Type="PGx_KBModel.Chemical" Multiplicity="*" />
+    <End Role="Genes" Type="PGx_KBModel.Gene" Multiplicity="*" />
+  </Association>
+  <Association Name="HaplotypeVarient">
+    <End Role="Haplotypes" Type="PGx_KBModel.Haplotype" Multiplicity="*" />
+    <End Role="Varients" Type="PGx_KBModel.Varient" Multiplicity="*" />
+  </Association>
+</Schema>
